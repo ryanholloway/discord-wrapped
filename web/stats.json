@@ -1,100 +1,455 @@
 {
-  "generated_at": "2026-04-16T00:11:00.797895+01:00",
-  "server_name": "YouTube Recording",
-  "server_icon": "https://cdn.discordapp.com/icons/752648277681373225/cb264bad838f32dbb94bab586127adba.png?size=1024",
+  "generated_at": "2026-04-16T00:17:19.309338+01:00",
+  "server_name": "Game Dev & IDAD at SETU",
+  "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2024-09-01",
     "to": "2026-04-16"
   },
-  "total_messages": 25,
-  "midnight_questions": 0,
+  "total_messages": 12670,
+  "midnight_questions": 12,
   "top_senders": [
     {
-      "name": "akaryano",
-      "count": 25
+      "name": "Steven Kelly",
+      "count": 1369
+    },
+    {
+      "name": "Pastor Fred",
+      "count": 1331
+    },
+    {
+      "name": "Dunnesparce [Stephen]",
+      "count": 1307
+    },
+    {
+      "name": "Scaldy Panda (Emily)",
+      "count": 669
+    },
+    {
+      "name": "CraicMeister (Kyle D)",
+      "count": 616
+    },
+    {
+      "name": "TheDanox (Daniel M)",
+      "count": 572
+    },
+    {
+      "name": "(Edward) DishonoredSkull",
+      "count": 552
+    },
+    {
+      "name": "BlueBaron(Jordan)",
+      "count": 519
+    },
+    {
+      "name": "MEABEAB(Alex)",
+      "count": 512
+    },
+    {
+      "name": "akaryano (Ryan)",
+      "count": 472
     }
   ],
-  "top_emojis": [],
+  "top_emojis": [
+    {
+      "emoji": "😭",
+      "count": 823
+    },
+    {
+      "emoji": "❤️",
+      "count": 596
+    },
+    {
+      "emoji": "✅",
+      "count": 429
+    },
+    {
+      "emoji": "🤣",
+      "count": 288
+    },
+    {
+      "emoji": "👍",
+      "count": 209
+    },
+    {
+      "emoji": "🙏",
+      "count": 193
+    },
+    {
+      "emoji": "🔥",
+      "count": 186
+    },
+    {
+      "emoji": "😂",
+      "count": 169
+    },
+    {
+      "emoji": "🫃",
+      "count": 166
+    },
+    {
+      "emoji": "💀",
+      "count": 110
+    }
+  ],
   "top_channels": [
     {
-      "name": "general",
-      "count": 17
+      "name": "game-dev-class-info",
+      "count": 4723
     },
     {
-      "name": "test",
-      "count": 8
+      "name": "general",
+      "count": 3772
+    },
+    {
+      "name": "game-dev-assignments",
+      "count": 942
+    },
+    {
+      "name": "idad-assignments",
+      "count": 791
+    },
+    {
+      "name": "idad-class-info",
+      "count": 750
+    },
+    {
+      "name": "counting",
+      "count": 426
+    },
+    {
+      "name": "video-games",
+      "count": 209
+    },
+    {
+      "name": "gayming",
+      "count": 209
     }
   ],
-  "top_mentioned": [],
+  "top_mentioned": [
+    {
+      "name": "Dunnesparce [Stephen]",
+      "count": 315
+    },
+    {
+      "name": "Pastor Fred",
+      "count": 265
+    },
+    {
+      "name": "Steven Kelly",
+      "count": 215
+    },
+    {
+      "name": "CraicMeister (Kyle D)",
+      "count": 140
+    },
+    {
+      "name": "MEABEAB(Alex)",
+      "count": 120
+    },
+    {
+      "name": "(Edward) DishonoredSkull",
+      "count": 113
+    },
+    {
+      "name": "Scaldy Panda (Emily)",
+      "count": 110
+    },
+    {
+      "name": "akaryano (Ryan)",
+      "count": 103
+    },
+    {
+      "name": "Jad Fuhr",
+      "count": 89
+    },
+    {
+      "name": "Matt",
+      "count": 75
+    }
+  ],
   "keyword_buckets": {
     "panic_deadline": {
-      "count": 0,
-      "samples": []
-    },
-    "noel_mentions": {
-      "count": 2,
+      "count": 48,
       "samples": [
         {
-          "author": "akaryano",
-          "content": "noel",
-          "timestamp": "2026-04-15T22:35:44.063000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494103963732148385"
+          "author": "TheDanox (Daniel M)",
+          "content": "if so im screwed",
+          "timestamp": "2024-10-09T11:49:15.138000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1293540781511938059"
         },
         {
-          "author": "akaryano",
-          "content": "test test noel test",
-          "timestamp": "2026-04-15T22:54:11.439000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494108608403603667"
+          "author": "TheDanox (Daniel M)",
+          "content": "gotta make an all nighter today as long as my game works",
+          "timestamp": "2025-04-10T15:29:26.578000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359913173712638094"
+        },
+        {
+          "author": "BlueBaron(Jordan)",
+          "content": "I literally mistook honest criticism for cynicism because i am so used to our lecturers.\n\nI was told where i went wrong while trying to be down to earth with me so it blended into the text, as such i ",
+          "timestamp": "2025-04-10T21:00:42.311000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359996538578927746"
+        },
+        {
+          "author": "capybara (Brandon)",
+          "content": "Would anyone be able to help me with the schema.txt for Paul? I messed it up last time and im not sure how to translate his one from teams to my own",
+          "timestamp": "2025-08-28T22:28:04.572000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1410752827399344208"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "Oh right, I've not finished the entirety of sprint 2 but is there meant to be a way to navigate to the combined page from the first one?",
+          "timestamp": "2025-09-16T22:38:01.834000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1417640701943877736"
+        }
+      ]
+    },
+    "noel_mentions": {
+      "count": 347,
+      "samples": [
+        {
+          "author": "Zoë",
+          "content": "The edited timetable with Noel’s new class times",
+          "timestamp": "2024-09-13T13:31:53.265000+00:00",
+          "channel": "timetables",
+          "jump_url": "https://discord.com/channels/976854702278975529/1175873140837072998/1284144526063173662"
+        },
+        {
+          "author": "akaryano (Ryan)",
+          "content": "Updated Timetable (Noels lecture on Thursday has moved) <@&978215914023571507>",
+          "timestamp": "2024-09-13T16:51:42.765000+00:00",
+          "channel": "timetables",
+          "jump_url": "https://discord.com/channels/976854702278975529/1175873140837072998/1284194813671116820"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "so would this be our new time table then since noel just kinda decided to change it up?",
+          "timestamp": "2024-09-11T15:16:26.296000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1283446061330858006"
+        },
+        {
+          "author": "(Cyprian) SlippyCyppy",
+          "content": "Noel 👎",
+          "timestamp": "2024-09-12T10:42:35.832000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1283739534835716129"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "And the only thing to be working on right now is Noel’s yeah ?",
+          "timestamp": "2024-09-12T18:25:57.644000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1283856144086863914"
         }
       ]
     },
     "dark_humor": {
-      "count": 1,
+      "count": 36,
       "samples": [
         {
-          "author": "akaryano",
-          "content": "kms",
-          "timestamp": "2026-04-15T22:35:52.351000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494103998494408795"
+          "author": "TheDanox (Daniel M)",
+          "content": "I couldnt get a bus tomorrow, can someone get notes on the work placement lecture ans send it through here please?",
+          "timestamp": "2024-10-02T22:09:54.944000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1291160261520265296"
+        },
+        {
+          "author": "Scaldy Panda (Emily)",
+          "content": "<@208585478713114634> yeah course send it on I'll take a look and help out!",
+          "timestamp": "2025-08-30T06:43:14.420000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1411239827398987817"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "any chance you could send it on <:SkullBruuh:1149945004089937943>",
+          "timestamp": "2025-09-13T13:50:00.685000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1416420657977102488"
+        },
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "if im not wrong, in the end its meant to look like this with the numbers and heatmaps for both cost field and integration field?",
+          "timestamp": "2025-11-01T15:38:05.284000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434204861771153560"
+        },
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "I have built up a check for the obstacles, and if they are there it cannot do a diagonal, i can send it over if you would like",
+          "timestamp": "2025-11-01T15:38:41.637000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434205014246559765"
         }
       ]
     },
     "violence_jokes": {
-      "count": 0,
-      "samples": []
+      "count": 4,
+      "samples": [
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Smack your hand",
+          "timestamp": "2026-04-12T00:13:04.230000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678907705426071"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "It’s turned out really well when the vehicle intersects with the fire it applys a burn effect on the battery draining it for a short time and adds more risk when a giant plane appears on the map you m",
+          "timestamp": "2025-04-08T20:27:03.145000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1359263293851832321"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "https://tenor.com/view/credit-card-smacking-credit-card-on-table-gif-21340324",
+          "timestamp": "2025-11-23T19:18:37.449000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1442232894536814673"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "Honestly general use with an alright amount of gaming use and holding a day and a half / 2 day battery life is quite decent honestly",
+          "timestamp": "2026-03-13T19:59:42.095000+00:00",
+          "channel": "laptops-and-pcs",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804223535906846/1482105897227518052"
+        }
+      ]
     },
     "cope_messages": {
-      "count": 0,
-      "samples": []
+      "count": 6,
+      "samples": [
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "Dying light one was peak at it's finest, the following was really well done",
+          "timestamp": "2025-09-28T14:58:00.767000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1421873589065617409"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "I think most of them take the reasonable stance that it's fine as long you're not basically vibecoding entire files, but using it to help understand new things or clean up some logic flow or structura",
+          "timestamp": "2026-03-19T14:01:57.223000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1484190194222764136"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Yeah like and even then the blueball if you \"get caught\" when multiple of the supervisors said its fine to use 🤷‍♂️",
+          "timestamp": "2026-04-12T00:12:41.940000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678814214656000"
+        },
+        {
+          "author": "Nathan_Hater69",
+          "content": "it's fine now",
+          "timestamp": "2025-11-03T08:33:20.825000+00:00",
+          "channel": "idad-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1158145344832552960/1434822747934167221"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "Yeah I did click the Select your school yk and tried to log in but it didnt redirect me to the outlook login the first time. Now it did its fine 👍",
+          "timestamp": "2025-07-01T12:47:27.930000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1389588215727394917"
+        }
+      ]
     },
     "classic_excuses": {
-      "count": 0,
-      "samples": []
+      "count": 22,
+      "samples": [
+        {
+          "author": "BlueBaron(Jordan)",
+          "content": "Honestly im a little dazed, had issues saving the work so i forgotten most of the details <:kekw:957357033508704256>",
+          "timestamp": "2024-09-13T14:52:08.297000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1284164721771151401"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "got 5/50 because i forgot to upload the ZIP to onedrive🥲",
+          "timestamp": "2025-01-16T20:57:18.457000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1329555102843015258"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "I forgot blackboard existed 😭",
+          "timestamp": "2025-09-10T08:50:57.506000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1415258235232981032"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "it wasnt there in the marks so I didnt implement the thing I forgot the name of it",
+          "timestamp": "2025-11-18T18:11:52.548000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440404157436788737"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "oh SHIT i forgot about that exam",
+          "timestamp": "2025-11-23T19:47:25.567000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1442240142789181471"
+        }
+      ]
     }
   },
   "hourly_activity": {
-    "0": 3,
-    "1": 1,
-    "2": 2,
-    "13": 3,
-    "14": 3,
-    "16": 1,
-    "17": 1,
-    "18": 3,
-    "23": 8
+    "0": 304,
+    "1": 146,
+    "2": 52,
+    "3": 48,
+    "4": 26,
+    "5": 5,
+    "6": 19,
+    "7": 53,
+    "8": 167,
+    "9": 425,
+    "10": 621,
+    "11": 811,
+    "12": 1061,
+    "13": 906,
+    "14": 1079,
+    "15": 900,
+    "16": 859,
+    "17": 1024,
+    "18": 691,
+    "19": 755,
+    "20": 842,
+    "21": 655,
+    "22": 687,
+    "23": 534
   },
   "monthly_activity": {
-    "2024-11": 1,
-    "2024-12": 3,
-    "2025-05": 1,
-    "2025-07": 1,
-    "2025-08": 1,
-    "2025-10": 1,
-    "2026-03": 6,
-    "2026-04": 11
+    "2024-09": 1187,
+    "2024-10": 470,
+    "2024-11": 476,
+    "2024-12": 636,
+    "2025-01": 367,
+    "2025-02": 238,
+    "2025-03": 112,
+    "2025-04": 515,
+    "2025-05": 86,
+    "2025-06": 341,
+    "2025-07": 196,
+    "2025-08": 522,
+    "2025-09": 1579,
+    "2025-10": 886,
+    "2025-11": 1400,
+    "2025-12": 1084,
+    "2026-01": 957,
+    "2026-02": 310,
+    "2026-03": 433,
+    "2026-04": 875
   },
   "midnight_zone": {
     "start": 2,
