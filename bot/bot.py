@@ -16,6 +16,7 @@ import json
 import asyncio
 import logging
 import base64
+from contextlib import suppress
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
 
@@ -64,7 +65,10 @@ def to_local(dt: datetime) -> datetime:
 def parse_date(s: str | None) -> datetime | None:
     if not s:
         return None
-    return TZ.localize(datetime.strptime(s, "%Y-%m-%d"))
+    try:
+        return TZ.localize(datetime.strptime(s, "%Y-%m-%d"))
+    except ValueError as exc:
+        raise RuntimeError(f"Invalid date in config ({s}). Use YYYY-MM-DD.") from exc
 
 DATE_FROM = parse_date(CONFIG["DATE_FROM"])
 DATE_TO   = parse_date(CONFIG["DATE_TO"]) if CONFIG["DATE_TO"] else None
@@ -80,6 +84,7 @@ UNICODE_EMOJI_RE = re.compile(
 )
 CUSTOM_EMOJI_RE = re.compile(r"<a?:[a-zA-Z0-9_]+:\d+>")
 QUESTION_RE     = re.compile(r"\?")
+SCRAPE_LOCK     = asyncio.Lock()
 
 
 def extract_emojis(text: str) -> list[str]:
@@ -110,6 +115,29 @@ def safe_message_preview(msg: discord.Message, max_len: int = 200) -> dict:
     }
 
 
+def in_midnight_zone(hour: int, start: int, end: int) -> bool:
+    if start == end:
+        return True
+    if start < end:
+        return start <= hour < end
+    return hour >= start or hour < end
+
+
+def build_spotlight_mentions(mention_counts: dict[str, int]) -> list[dict]:
+    spotlight_names = [n.strip().lower() for n in CONFIG.get("SPOTLIGHT_NAMES", []) if n.strip()]
+    if not spotlight_names:
+        return []
+
+    spotlight = []
+    for name, count in mention_counts.items():
+        lower_name = name.lower()
+        if any(target in lower_name for target in spotlight_names):
+            spotlight.append({"name": name, "count": count})
+
+    spotlight.sort(key=lambda x: x["count"], reverse=True)
+    return spotlight
+
+
 async def push_stats_via_api(stats_json: str) -> str:
     token = GITHUB_TOKEN
     repo = GITHUB_REPO
@@ -125,15 +153,19 @@ async def push_stats_via_api(stats_json: str) -> str:
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
-    async with aiohttp.ClientSession() as session:
+    timeout = aiohttp.ClientTimeout(total=30)
+    async with aiohttp.ClientSession(timeout=timeout) as session:
         sha = None
-        async with session.get(api_url, headers=headers) as resp:
-            if resp.status == 200:
-                data = await resp.json()
-                sha = data.get("sha")
-            elif resp.status != 404:
-                err = await resp.text()
-                return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
+        try:
+            async with session.get(api_url, headers=headers) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    sha = data.get("sha")
+                elif resp.status != 404:
+                    err = await resp.text()
+                    return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
+        except aiohttp.ClientError as exc:
+            return f"⚠️ Could not contact GitHub API: {exc}"
 
         encoded = base64.b64encode(stats_json.encode("utf-8")).decode("ascii")
         payload = {
@@ -147,11 +179,14 @@ async def push_stats_via_api(stats_json: str) -> str:
         if sha:
             payload["sha"] = sha
 
-        async with session.put(api_url, headers=headers, json=payload) as resp:
-            if resp.status in (200, 201):
-                return "✅ Stats pushed to GitHub — Vercel redeploying now!"
-            err = await resp.text()
-            return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
+        try:
+            async with session.put(api_url, headers=headers, json=payload) as resp:
+                if resp.status in (200, 201):
+                    return "✅ Stats pushed to GitHub — Vercel redeploying now!"
+                err = await resp.text()
+                return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
+        except aiohttp.ClientError as exc:
+            return f"⚠️ Failed to push stats to GitHub: {exc}"
 
 
 # ── Core scraper ─────────────────────────────────────────────────────────────
@@ -223,10 +258,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
                 # ── Midnight zone questions ─────────────────────────────────
                 mz_start = CONFIG["MIDNIGHT_ZONE_START"]
                 mz_end   = CONFIG["MIDNIGHT_ZONE_END"]
-                in_midnight = (
-                    (mz_start < mz_end and mz_start <= hour < mz_end) or
-                    (mz_start > mz_end and (hour >= mz_start or hour < mz_end))
-                )
+                in_midnight = in_midnight_zone(hour, mz_start, mz_end)
                 if in_midnight and QUESTION_RE.search(msg.content):
                     midnight_questions += 1
 
@@ -284,6 +316,8 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
             )[:top_n]
         ],
 
+        "spotlight_mentions": build_spotlight_mentions(mention_counts),
+
         "keyword_buckets": {
             bucket: {
                 "count":   bucket_counts[bucket],
@@ -307,14 +341,19 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
 def _get_channels(guild: discord.Guild) -> list[discord.TextChannel]:
     configured_ids = [int(x) for x in CONFIG["CHANNEL_IDS"] if x]
     exclude_names  = [x.lower() for x in CONFIG["EXCLUDE_CHANNELS"]]
-
     channels = []
+
+    bot_member = guild.me or guild.get_member(bot.user.id)
+    if bot_member is None:
+        return channels
+
     for ch in guild.text_channels:
         if configured_ids and ch.id not in configured_ids:
             continue
         if any(ex in ch.name.lower() for ex in exclude_names):
             continue
-        if not ch.permissions_for(guild.me).read_message_history:
+        perms = ch.permissions_for(bot_member)
+        if not (perms.view_channel and perms.read_message_history):
             continue
         channels.append(ch)
 
@@ -342,6 +381,8 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     !wrapped preview  → scrape + post a summary embed (no file write)
     """
 
+    subcommand = (subcommand or "").strip().lower()
+
     if subcommand == "status":
         await _cmd_status(ctx)
         return
@@ -355,14 +396,20 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
         return
 
     # ── Full scrape ──────────────────────────────────────────────────────────
+    if SCRAPE_LOCK.locked():
+        await ctx.send("⏳ A wrapped scrape is already running. Please wait for it to finish.")
+        return
+
     status_msg = await ctx.send("⏳ Starting scrape… this may take a few minutes.")
 
-    try:
-        stats = await scrape_guild(ctx.guild, status_msg)
-    except Exception as e:
-        await status_msg.edit(content=f"❌ Scrape failed: `{e}`")
-        log.exception("Scrape error")
-        return
+    async with SCRAPE_LOCK:
+        try:
+            stats = await scrape_guild(ctx.guild, status_msg)
+        except Exception as e:
+            with suppress(Exception):
+                await status_msg.edit(content=f"❌ Scrape failed: `{e}`")
+            log.exception("Scrape error")
+            return
 
     # Write JSON
     out_path = os.path.join(os.path.dirname(__file__), CONFIG["OUTPUT_PATH"])

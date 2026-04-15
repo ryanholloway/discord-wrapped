@@ -14,7 +14,7 @@ CONFIG = {
     "EXCLUDE_CHANNELS": ["rules", "announcements", "welcome", "bot-commands"],
 
     # Date range to analyse (ISO format "YYYY-MM-DD", or None for no limit)
-    "DATE_FROM": "2024-09-01",
+    "DATE_FROM": "2022-09-01",
     "DATE_TO":   None,   # None = up to today
 
     # ── PEOPLE TO SPOTLIGHT ────────────────────────────────────────
@@ -22,12 +22,14 @@ CONFIG = {
     "SPOTLIGHT_NAMES": [
         "noel",
         "dr noel",
+        "noel o'hara",
+        "o'hara"
     ],
 
     # ── MIDNIGHT ZONE ─────────────────────────────────────────────
     # Questions or messages sent in this hour range get counted separately
     # Uses the server timezone (UTC by default — adjust TIMEZONE below)
-    "MIDNIGHT_ZONE_START": 2,   # 2am
+    "MIDNIGHT_ZONE_START": 1,   # 1am
     "MIDNIGHT_ZONE_END":   6,   # 6am
     "TIMEZONE": "Europe/Dublin",
 
@@ -44,7 +46,7 @@ CONFIG = {
         ],
 
         "noel_mentions": [
-            "noel", "dr noel", "that lecturer", "the lecturer",
+            "noel", "noel o'hara", "that lecturer", "the lecturer", "that dickhead", "that asshole", "o'hara"
         ],
 
         "dark_humor": [
@@ -72,13 +74,47 @@ CONFIG = {
             "wrong branch", "wrong file", "corrupted",
             "github ate my", "lost my work",
         ],
+        
+        "swear_words": [
+            "fuck", "shit", "damn", "bitch", "asshole", "dick", "crap", "piss", "bastard", "slut",
+        ],
+        
+        "procrastination": [
+            "procrastinating", "procrastinate", "procrastination",
+            "distracted", "distracting", "distraction",
+            "can't focus", "cant focus", "cannot focus",
+            "lost motivation", "no motivation",
+        ],
+        
+        "ai_mentions": [
+            "chatgpt", "gpt-4", "gpt-3.5", "bard", "gemini", "ai wrote",
+            "ai-generated", "ai generated", "artificial intelligence", "claude", "chatgpt wrote",
+            "chatgpt-generated", "chatgpt generated", "AI wrote this", "AI-generated", "AI generated",
+        ],
+        
+       "stress_indicators": [
+            "stressed", "stress", "overwhelmed", "anxious", "panic attack",
+            "burned out", "burnt out", "exhausted", "sleepless",
+            "can't sleep", "cant sleep", "insomnia",
+        ],
+       
+       "capstone_mentions": [
+            "capstone", "final project", "final-year project", "final year project",
+            "graduation project", "thesis", "dissertation",
+        ],
+       
+       "mental_health": [
+            "depressed", "depression", "suicidal", "self-harm", "cutting", "eating disorder", "mental illness",
+            "therapy", "counseling", "psychologist", "psychiatrist", "mental health",
+        ],
+       
     },
 
     # ── TOP N LIMITS ──────────────────────────────────────────────
     "TOP_SENDERS_COUNT":  10,
     "TOP_EMOJIS_COUNT":   10,
     "TOP_CHANNELS_COUNT": 8,
-    "SAMPLE_MESSAGES":    5,   # How many example messages to save per bucket
+    "SAMPLE_MESSAGES":    15,   # How many example messages to save per bucket
 
     # ── OUTPUT ────────────────────────────────────────────────────
     # Path to write stats.json (relative to bot.py location)

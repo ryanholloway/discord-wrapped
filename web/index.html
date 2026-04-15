@@ -85,6 +85,13 @@
     .lb-bar-wrap{grid-column:1/-1;height:3px;background:rgba(255,255,255,.07);border-radius:var(--rfull);}
     .lb-bar{height:100%;border-radius:var(--rfull);background:linear-gradient(90deg,var(--blurple),var(--fuchsia));transition:width 1.1s var(--ease) .2s;width:0%;}
 
+    .empty-note{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.2);border-radius:var(--rl);padding:var(--sp5);color:var(--muted);font-size:var(--sm);}
+
+    .spotlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:var(--sp4);}
+    .spotlight-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--rl);padding:var(--sp5);}
+    .spotlight-name{font-weight:700;font-size:var(--base);margin-bottom:var(--sp2);}
+    .spotlight-count{font-family:'Space Mono',monospace;color:var(--fuchsia);font-size:var(--lg);}
+
     /* Emoji grid */
     .emoji-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(120px,100%),1fr));gap:var(--sp4);}
     .e-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--rxl);padding:var(--sp5) var(--sp4);
@@ -203,6 +210,13 @@
     <div class="lb-list" id="mentions-list"></div>
   </div>
 
+  <!-- SPOTLIGHT -->
+  <div class="wrap section" id="s-spotlight">
+    <div class="sec-label">Spotlight</div>
+    <h2 class="sec-title">Named Shoutouts</h2>
+    <div class="spotlight-grid" id="spotlight-grid"></div>
+  </div>
+
   <!-- KEYWORD BUCKETS -->
   <div class="wrap section" id="s-buckets">
     <div class="sec-label">Hall of Fame</div>
@@ -268,11 +282,27 @@ function bucketStyle(key) {
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const medals = ["🥇","🥈","🥉"];
 function fmtN(n) { return n?.toLocaleString() ?? "—"; }
+function esc(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 function fmtTime(iso) {
   try { return new Date(iso).toLocaleString("en-IE",{dateStyle:"medium",timeStyle:"short"}); }
   catch { return iso; }
 }
 function initials(name) { return name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(); }
+function hasStatsShape(s) {
+  return s && typeof s === "object" && Number.isFinite(s.total_messages);
+}
+function inMidnightZone(hour, start, end) {
+  if (start === end) return true;
+  if (start < end) return hour >= start && hour < end;
+  return hour >= start || hour < end;
+}
 
 // ── Load stats.json ──────────────────────────────────────────────────────────
 fetch("./stats.json")
@@ -281,21 +311,31 @@ fetch("./stats.json")
   .catch(err => {
     document.getElementById("loading").innerHTML =
       `<p style="color:var(--red);text-align:center;max-width:40ch">
-        Could not load <code>stats.json</code>.<br>
-        Run <code>!wrapped</code> in Discord first, then commit the file.<br>
-        <small style="color:var(--muted)">${err.message}</small>
+          Could not load stats.json.<br>
+          Run !wrapped in Discord first, then commit the file.<br>
+          <small style="color:var(--muted)">${esc(err.message)}</small>
       </p>`;
   });
 
 // ── Render ───────────────────────────────────────────────────────────────────
 function render(S) {
+  if (!hasStatsShape(S)) {
+    const note = esc(S?._note || "No stats yet. Run !wrapped in Discord to generate stats.json.");
+    document.getElementById("loading").innerHTML =
+      `<p style="color:var(--yellow);text-align:center;max-width:44ch">
+        ${note}<br>
+        <small style="color:var(--muted)">After running the bot, refresh this page.</small>
+      </p>`;
+    return;
+  }
+
   document.getElementById("loading").style.display = "none";
   const main = document.getElementById("main");
   main.style.display = "block";
 
   // Hero
   document.getElementById("hero-range").textContent =
-    `${S.server_name} · ${S.date_range.from} → ${S.date_range.to}`;
+    `${S.server_name || "Discord Server"} · ${S.date_range.from} → ${S.date_range.to}`;
   document.getElementById("hero-sub").innerHTML =
     `One server. Four years. <em>${fmtN(S.total_messages)} messages</em> and mild academic panic.`;
   document.getElementById("footer-meta").textContent =
@@ -312,9 +352,9 @@ function render(S) {
   ];
   const statsRow = document.getElementById("stats-row");
   statsData.forEach(d => {
-    statsRow.innerHTML += `<div class="stat-card ${d.cls}">
-      <div class="stat-val" data-target="${d.val}">${d.val}</div>
-      <div class="stat-lbl">${d.lbl}</div>
+    statsRow.innerHTML += `<div class="stat-card ${esc(d.cls)}">
+      <div class="stat-val" data-target="${esc(d.val)}">${esc(d.val)}</div>
+      <div class="stat-lbl">${esc(d.lbl)}</div>
     </div>`;
   });
 
@@ -324,11 +364,15 @@ function render(S) {
   // Emojis
   const eg = document.getElementById("emoji-grid");
   const medals = ["🥇","🥈","🥉"];
-  (S.top_emojis || []).forEach((x,i) => {
+  const topEmojis = S.top_emojis || [];
+  if (!topEmojis.length) {
+    eg.innerHTML = `<div class="empty-note">No emoji data found in this date range.</div>`;
+  }
+  topEmojis.forEach((x,i) => {
     const cls = i===0?"gold":i===1?"silver":i===2?"bronze":"";
-    eg.innerHTML += `<div class="e-card ${cls}">
-      <div class="e-rank">${i<3?medals[i]:"#"+(i+1)}</div>
-      <span class="e-glyph">${x.emoji}</span>
+    eg.innerHTML += `<div class="e-card ${esc(cls)}">
+      <div class="e-rank">${esc(i<3?medals[i]:"#"+(i+1))}</div>
+      <span class="e-glyph">${esc(x.emoji)}</span>
       <div class="e-count">${fmtN(x.count)}</div>
     </div>`;
   });
@@ -337,6 +381,19 @@ function render(S) {
   renderLeaderboard("mentions-list", S.top_mentioned || [], "fuchsia");
   if (!S.top_mentioned?.length) {
     document.getElementById("s-mentions").style.display = "none";
+  }
+
+  const spotlightGrid = document.getElementById("spotlight-grid");
+  const spotlight = S.spotlight_mentions || [];
+  if (!spotlight.length) {
+    document.getElementById("s-spotlight").style.display = "none";
+  } else {
+    spotlight.slice(0, 8).forEach((item) => {
+      spotlightGrid.innerHTML += `<div class="spotlight-card">
+        <div class="spotlight-name">${esc(item.name)}</div>
+        <div class="spotlight-count">${fmtN(item.count)} mentions</div>
+      </div>`;
+    });
   }
 
   // Keyword buckets
@@ -348,19 +405,22 @@ function render(S) {
     const samplesHtml = samples.map(m => `
       <div class="b-msg">
         <div class="b-msg-head">
-          <div class="b-avatar">${initials(m.author)}</div>
-          <span class="b-author">${m.author}</span>
-          <span class="b-time">${fmtTime(m.timestamp)}</span>
+          <div class="b-avatar">${esc(initials(m.author || "?"))}</div>
+            <span class="b-author">${esc(m.author)}</span>
+            <span class="b-time">${esc(fmtTime(m.timestamp))}</span>
         </div>
-        <div class="b-text">${m.content.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+          <div class="b-text">${esc(m.content)}</div>
       </div>`).join("");
 
-    bg.innerHTML += `<div class="bucket-card ${st.color}">
-      <div class="b-title">${st.icon} ${st.label}</div>
+      bg.innerHTML += `<div class="bucket-card ${esc(st.color)}">
+        <div class="b-title">${esc(st.icon)} ${esc(st.label)}</div>
       <div class="b-count">${fmtN(data.count)}</div>
       ${samplesHtml ? `<div class="b-samples">${samplesHtml}</div>` : ""}
     </div>`;
   });
+    if (!Object.keys(buckets).length) {
+      bg.innerHTML = `<div class="empty-note">No keyword buckets were configured in this run.</div>`;
+    }
 
   // Hourly chart
   const hb = document.getElementById("hourly-bars");
@@ -371,11 +431,11 @@ function render(S) {
   for (let h=0; h<24; h++) {
     const count = hourly[h] || 0;
     const pct = Math.round(count/maxH*100);
-    const isMidnight = h >= mzStart && h < mzEnd;
+    const isMidnight = inMidnightZone(h, mzStart, mzEnd);
     const label = h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h-12}p`;
     hb.innerHTML += `<div class="c-bar-col">
-      <div class="c-bar ${isMidnight?"midnight":""}" style="height:0px" data-h="${pct}" title="${h}:00 — ${fmtN(count)} msgs"></div>
-      <div class="c-label">${h%3===0?label:""}</div>
+      <div class="c-bar ${isMidnight?"midnight":""}" style="height:0px" data-h="${pct}" title="${esc(`${h}:00 - ${fmtN(count)} msgs`)}"></div>
+      <div class="c-label">${esc(h%3===0?label:"")}</div>
     </div>`;
   }
 
@@ -388,10 +448,13 @@ function render(S) {
     const pct = Math.round(count/maxM*80);
     const label = month.slice(2).replace("-","/");
     mb.innerHTML += `<div class="m-bar-col">
-      <div class="m-bar" style="height:0px" data-h="${pct}" title="${month} — ${fmtN(count)} msgs"></div>
-      <div class="m-label">${label}</div>
+      <div class="m-bar" style="height:0px" data-h="${pct}" title="${esc(`${month} - ${fmtN(count)} msgs`)}"></div>
+      <div class="m-label">${esc(label)}</div>
     </div>`;
   });
+  if (!months.length) {
+    mb.innerHTML = `<div class="empty-note">No month-by-month activity was captured.</div>`;
+  }
 
   // Channels
   const cl = document.getElementById("ch-list");
@@ -400,11 +463,14 @@ function render(S) {
     const pct = Math.round(c.count/maxC*100);
     cl.innerHTML += `<div class="ch-row">
       <span style="color:var(--muted);font-family:'Space Mono',monospace;font-size:var(--xs)">#${i+1}</span>
-      <span class="ch-name">#${c.name}</span>
+      <span class="ch-name">#${esc(c.name)}</span>
       <div class="ch-bar-wrap"><div class="ch-bar" data-w="${pct}"></div></div>
       <span class="ch-count">${fmtN(c.count)}</span>
     </div>`;
   });
+  if (!(S.top_channels || []).length) {
+    cl.innerHTML = `<div class="empty-note">No channel activity was captured.</div>`;
+  }
 
   // Intersection observer for scroll reveals + bar animations
   const io = new IntersectionObserver(entries => {
@@ -448,12 +514,16 @@ function render(S) {
 
 function renderLeaderboard(containerId, data, accentVar) {
   const el = document.getElementById(containerId);
+  if (!data.length) {
+    el.innerHTML = `<div class="empty-note">No ranking data available.</div>`;
+    return;
+  }
   const max = data[0]?.count || 1;
   data.forEach((item, i) => {
     const pct = Math.round(item.count/max*100);
     el.innerHTML += `<div class="lb-row">
       <div class="lb-rank ${i===0?"gold":""}">${i===0?"👑":"#"+(i+1)}</div>
-      <div><div class="lb-name">${item.name}</div></div>
+      <div><div class="lb-name">${esc(item.name)}</div></div>
       <div class="lb-count">${fmtN(item.count)}×</div>
       <div class="lb-bar-wrap" style="grid-column:1/-1"><div class="lb-bar" data-w="${pct}" style="background:linear-gradient(90deg,var(--${accentVar}),var(--fuchsia))"></div></div>
     </div>`;
