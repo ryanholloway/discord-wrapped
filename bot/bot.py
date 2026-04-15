@@ -15,11 +15,11 @@ import re
 import json
 import asyncio
 import logging
-import subprocess
-import shutil
+import base64
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
 
+import aiohttp
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -41,8 +41,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise RuntimeError("DISCORD_TOKEN not set in .env")
 
-GIT = shutil.which("git") or "git"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_REPO = os.getenv("GITHUB_REPO")
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -108,6 +108,50 @@ def safe_message_preview(msg: discord.Message, max_len: int = 200) -> dict:
         "channel":   msg.channel.name if hasattr(msg.channel, "name") else "DM",
         "jump_url":  msg.jump_url,
     }
+
+
+async def push_stats_via_api(stats_json: str) -> str:
+    token = GITHUB_TOKEN
+    repo = GITHUB_REPO
+
+    if not token or not repo:
+        return "⚠️ GITHUB_TOKEN or GITHUB_REPO not set in env variables."
+
+    file_path = "web/stats.json"
+    api_url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+
+    async with aiohttp.ClientSession() as session:
+        sha = None
+        async with session.get(api_url, headers=headers) as resp:
+            if resp.status == 200:
+                data = await resp.json()
+                sha = data.get("sha")
+            elif resp.status != 404:
+                err = await resp.text()
+                return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
+
+        encoded = base64.b64encode(stats_json.encode("utf-8")).decode("ascii")
+        payload = {
+            "message": "chore: update wrapped stats",
+            "content": encoded,
+            "committer": {
+                "name": "Server Wrapped Bot",
+                "email": "bot@wrapped.local",
+            },
+        }
+        if sha:
+            payload["sha"] = sha
+
+        async with session.put(api_url, headers=headers, json=payload) as resp:
+            if resp.status in (200, 201):
+                return "✅ Stats pushed to GitHub — Vercel redeploying now!"
+            err = await resp.text()
+            return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
 
 
 # ── Core scraper ─────────────────────────────────────────────────────────────
@@ -335,75 +379,9 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     if subcommand == "preview":
         return
 
-    # Auto-commit and push updated stats when there are staged changes.
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    rel_out_path = os.path.relpath(os.path.abspath(out_path), repo_root)
-
-    push_target = "origin"
-    if GITHUB_TOKEN:
-        try:
-            origin_url = subprocess.run(
-                [GIT, "remote", "get-url", "origin"],
-                cwd=repo_root,
-                check=True,
-                capture_output=True,
-                text=True,
-            ).stdout.strip()
-            if origin_url.startswith("https://github.com/"):
-                push_target = origin_url.replace(
-                    "https://github.com/",
-                    f"https://x-access-token:{GITHUB_TOKEN}@github.com/",
-                    1,
-                )
-        except subprocess.CalledProcessError:
-            pass
-
-    try:
-        subprocess.run(
-            [GIT, "add", rel_out_path],
-            cwd=repo_root,
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-
-        has_staged_changes = subprocess.run(
-            [GIT, "diff", "--cached", "--quiet"],
-            cwd=repo_root,
-            check=False,
-        ).returncode != 0
-
-        if has_staged_changes:
-            subprocess.run(
-                [
-                    GIT,
-                    "-c", "user.email=bot@wrapped.local",
-                    "-c", "user.name=Server Wrapped Bot",
-                    "commit", "-m", "chore: update wrapped stats",
-                ],
-                cwd=repo_root,
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-            subprocess.run(
-                [GIT, "push", push_target, "HEAD:main"],
-                cwd=repo_root,
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-            await ctx.send("✅ Stats committed and pushed successfully.")
-        else:
-            await ctx.send("ℹ️ No changes detected in stats file; nothing to commit.")
-
-    except FileNotFoundError as e:
-        await ctx.send("⚠️ Git automation failed: `git` was not found in this environment.")
-        log.error(f"Git automation failed: {e}")
-    except subprocess.CalledProcessError as e:
-        err = (e.stderr or e.stdout or str(e)).strip()
-        await ctx.send(f"⚠️ Git automation failed: `{err}`")
-        log.error(f"Git automation failed: {err}")
+    stats_json = json.dumps(stats, ensure_ascii=False, indent=2)
+    msg = await push_stats_via_api(stats_json)
+    await ctx.send(msg)
 
 
 async def _cmd_status(ctx: commands.Context):
