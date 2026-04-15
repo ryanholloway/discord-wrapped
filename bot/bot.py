@@ -16,6 +16,7 @@ import json
 import asyncio
 import logging
 import subprocess
+import shutil
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
 
@@ -39,6 +40,9 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise RuntimeError("DISCORD_TOKEN not set in .env")
+
+GIT = shutil.which("git") or "/usr/bin/git"
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -335,9 +339,28 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     rel_out_path = os.path.relpath(os.path.abspath(out_path), repo_root)
 
+    push_target = "origin"
+    if GITHUB_TOKEN:
+        try:
+            origin_url = subprocess.run(
+                [GIT, "remote", "get-url", "origin"],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
+            if origin_url.startswith("https://github.com/"):
+                push_target = origin_url.replace(
+                    "https://github.com/",
+                    f"https://x-access-token:{GITHUB_TOKEN}@github.com/",
+                    1,
+                )
+        except subprocess.CalledProcessError:
+            pass
+
     try:
         subprocess.run(
-            ["git", "add", rel_out_path],
+            [GIT, "add", rel_out_path],
             cwd=repo_root,
             check=True,
             capture_output=True,
@@ -345,21 +368,26 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
         )
 
         has_staged_changes = subprocess.run(
-            ["git", "diff", "--cached", "--quiet"],
+            [GIT, "diff", "--cached", "--quiet"],
             cwd=repo_root,
             check=False,
         ).returncode != 0
 
         if has_staged_changes:
             subprocess.run(
-                ["git", "commit", "-m", "chore: update wrapped stats"],
+                [
+                    GIT,
+                    "-c", "user.email=bot@wrapped.local",
+                    "-c", "user.name=Server Wrapped Bot",
+                    "commit", "-m", "chore: update wrapped stats",
+                ],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
                 text=True,
             )
             subprocess.run(
-                ["git", "push"],
+                [GIT, "push", push_target, "HEAD:main"],
                 cwd=repo_root,
                 check=True,
                 capture_output=True,
