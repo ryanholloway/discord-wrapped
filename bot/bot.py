@@ -193,19 +193,22 @@ async def push_stats_via_api(stats_json: str) -> str:
 
 async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None = None):
     log.info(f"Starting scrape for guild: {guild.name}")
+    started_at = datetime.now(timezone.utc)
 
     total_messages      = 0
     sender_counts       = Counter()     # display_name → count
+    active_member_ids   = set()
     emoji_counts        = Counter()
     channel_counts      = Counter()
     hourly_counts       = defaultdict(int)    # 0-23 → count
+    weekday_counts      = defaultdict(int)    # Monday-Sunday
     monthly_counts      = defaultdict(int)    # "YYYY-MM" → count
     midnight_questions  = 0
     bucket_counts       = {k: 0 for k in CONFIG["KEYWORD_BUCKETS"]}
     bucket_samples      = {k: [] for k in CONFIG["KEYWORD_BUCKETS"]}
     mention_counts      = defaultdict(int)    # member_id → count (who got mentioned)
 
-    channels_to_scrape = _get_channels(guild)
+    channels_to_scrape, skipped_channels = _classify_channels(guild)
     log.info(f"Channels to scrape: {[c.name for c in channels_to_scrape]}")
 
     for idx, channel in enumerate(channels_to_scrape):
@@ -234,6 +237,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
 
                 # ── Sender ──────────────────────────────────────────────────
                 sender_counts[msg.author.display_name] += 1
+                active_member_ids.add(msg.author.id)
 
                 # ── Channel ─────────────────────────────────────────────────
                 channel_counts[channel.name] += 1
@@ -241,6 +245,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
                 # ── Time buckets ────────────────────────────────────────────
                 hour = local_dt.hour
                 hourly_counts[hour] += 1
+                weekday_counts[local_dt.strftime("%A")] += 1
                 monthly_counts[local_dt.strftime("%Y-%m")] += 1
 
                 # ── Emojis ──────────────────────────────────────────────────
@@ -282,6 +287,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
     top_n     = CONFIG["TOP_SENDERS_COUNT"]
     top_emoji = CONFIG["TOP_EMOJIS_COUNT"]
     top_chan  = CONFIG["TOP_CHANNELS_COUNT"]
+    duration_seconds = round((datetime.now(timezone.utc) - started_at).total_seconds(), 2)
 
     stats = {
         "generated_at":  datetime.now(TZ).isoformat(),
@@ -292,6 +298,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
             "to":   CONFIG["DATE_TO"]   or datetime.now(TZ).strftime("%Y-%m-%d"),
         },
         "total_messages":     total_messages,
+        "active_members":     len(active_member_ids),
         "midnight_questions": midnight_questions,
 
         "top_senders": [
@@ -327,37 +334,52 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
         },
 
         "hourly_activity": dict(sorted(hourly_counts.items())),
+        "weekday_activity": {
+            day: weekday_counts.get(day, 0)
+            for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        },
         "monthly_activity": dict(sorted(monthly_counts.items())),
 
         "midnight_zone": {
             "start": CONFIG["MIDNIGHT_ZONE_START"],
             "end":   CONFIG["MIDNIGHT_ZONE_END"],
         },
+
+        "scrape_meta": {
+            "channels_scraped": len(channels_to_scrape),
+            "channels_skipped": skipped_channels,
+            "duration_seconds": duration_seconds,
+        },
     }
 
     return stats
 
 
-def _get_channels(guild: discord.Guild) -> list[discord.TextChannel]:
+def _classify_channels(guild: discord.Guild) -> tuple[list[discord.TextChannel], dict[str, int]]:
     configured_ids = [int(x) for x in CONFIG["CHANNEL_IDS"] if x]
     exclude_names  = [x.lower() for x in CONFIG["EXCLUDE_CHANNELS"]]
     channels = []
+    skipped = defaultdict(int)
 
     bot_member = guild.me or guild.get_member(bot.user.id)
     if bot_member is None:
-        return channels
+        skipped["bot_not_visible"] = len(guild.text_channels)
+        return channels, dict(skipped)
 
     for ch in guild.text_channels:
         if configured_ids and ch.id not in configured_ids:
+            skipped["not_in_channel_ids"] += 1
             continue
         if any(ex in ch.name.lower() for ex in exclude_names):
+            skipped["excluded_by_name"] += 1
             continue
         perms = ch.permissions_for(bot_member)
         if not (perms.view_channel and perms.read_message_history):
+            skipped["missing_permissions"] += 1
             continue
         channels.append(ch)
 
-    return channels
+    return channels, dict(skipped)
 
 
 # ── Commands ──────────────────────────────────────────────────────────────────
@@ -432,12 +454,18 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
 
 
 async def _cmd_status(ctx: commands.Context):
-    channels = _get_channels(ctx.guild)
+    channels, skipped = _classify_channels(ctx.guild)
     lines = [f"📡 **{len(channels)} channels** will be scraped:\n"]
     for ch in channels[:20]:
         lines.append(f"  • #{ch.name}")
     if len(channels) > 20:
         lines.append(f"  … and {len(channels)-20} more")
+
+    if skipped:
+        lines.append("\n⏭️ Skipped channels:")
+        for reason, count in sorted(skipped.items()):
+            lines.append(f"  • {reason}: {count}")
+
     await ctx.send("\n".join(lines))
 
 

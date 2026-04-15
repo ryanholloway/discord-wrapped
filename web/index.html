@@ -236,6 +236,15 @@
       </div>
     </div>
   </div>
+  
+  <!-- WEEKDAY ACTIVITY -->
+  <div class="wrap section" id="s-weekday">
+    <div class="sec-label">Rhythm</div>
+    <h2 class="sec-title">Weekday Pulse</h2>
+    <div class="chart-wrap">
+      <div class="month-bars" id="weekday-bars"></div>
+    </div>
+  </div>
 
   <!-- MONTHLY ACTIVITY -->
   <div class="wrap section" id="s-monthly">
@@ -346,6 +355,7 @@ function render(S) {
   const darkBucket = S.keyword_buckets?.dark_humor;
   const statsData = [
     { val: fmtN(S.total_messages),       lbl:"Total Messages",           cls:"" },
+    { val: fmtN(S.active_members),       lbl:"Active Members",           cls:"accent-green" },
     { val: fmtN(S.midnight_questions),   lbl:`Midnight Zone Questions (${S.midnight_zone?.start}am–${S.midnight_zone?.end}am)`, cls:"accent-fuchsia" },
     { val: fmtN(noelBucket?.count),      lbl:"Noel Mentions",            cls:"accent-yellow" },
     { val: fmtN(darkBucket?.count),      lbl:"Dark Humour Messages",     cls:"accent-red" },
@@ -441,6 +451,25 @@ function render(S) {
 
   // Monthly chart
   const mb = document.getElementById("month-bars");
+  const wb = document.getElementById("weekday-bars");
+  const weekday = S.weekday_activity || {};
+  const order = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const maxW = Math.max(...order.map(day => weekday[day] || 0), 1);
+  order.forEach((day) => {
+    const count = weekday[day] || 0;
+    const pct = Math.round(count / maxW * 80);
+    wb.innerHTML += `<div class="m-bar-col">
+      <div class="m-bar" style="height:0px" data-h="${pct}" title="${esc(`${day} - ${fmtN(count)} msgs`)}"></div>
+      <div class="m-label">${esc(day.slice(0,3))}</div>
+    </div>`;
+  });
+
+  if (S.scrape_meta?.duration_seconds) {
+    statsRow.innerHTML += `<div class="stat-card">
+      <div class="stat-val">${fmtN(Math.round(S.scrape_meta.duration_seconds))}s</div>
+      <div class="stat-lbl">Scrape Duration</div>
+    </div>`;
+  }
   const monthly = S.monthly_activity || {};
   const months = Object.entries(monthly).sort(([a],[b])=>a.localeCompare(b));
   const maxM = Math.max(...months.map(([,v])=>v), 1);
