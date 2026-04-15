@@ -15,6 +15,7 @@ import re
 import json
 import asyncio
 import logging
+import subprocess
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
 
@@ -297,6 +298,14 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
         await _cmd_status(ctx)
         return
 
+    if subcommand == "clear":
+        blank = {"_note": "Cleared. Run !wrapped to regenerate."}
+        out_path = os.path.join(os.path.dirname(__file__), CONFIG["OUTPUT_PATH"])
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(blank, f, indent=2)
+        await ctx.send("🗑️ `stats.json` cleared.")
+        return
+
     # ── Full scrape ──────────────────────────────────────────────────────────
     status_msg = await ctx.send("⏳ Starting scrape… this may take a few minutes.")
 
@@ -322,11 +331,48 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     if subcommand == "preview":
         return
 
-    # Remind to commit
-    await ctx.send(
-        "📁 **Next step:** Commit `web/stats.json` to your repo and Vercel will auto-redeploy!\n"
-        "```bash\ngit add web/stats.json\ngit commit -m 'chore: update wrapped stats'\ngit push\n```"
-    )
+    # Auto-commit and push updated stats when there are staged changes.
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    rel_out_path = os.path.relpath(os.path.abspath(out_path), repo_root)
+
+    try:
+        subprocess.run(
+            ["git", "add", rel_out_path],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        has_staged_changes = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"],
+            cwd=repo_root,
+            check=False,
+        ).returncode != 0
+
+        if has_staged_changes:
+            subprocess.run(
+                ["git", "commit", "-m", "chore: update wrapped stats"],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            subprocess.run(
+                ["git", "push"],
+                cwd=repo_root,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            await ctx.send("✅ Stats committed and pushed successfully.")
+        else:
+            await ctx.send("ℹ️ No changes detected in stats file; nothing to commit.")
+
+    except subprocess.CalledProcessError as e:
+        err = (e.stderr or e.stdout or str(e)).strip()
+        await ctx.send(f"⚠️ Git automation failed: `{err}`")
+        log.error(f"Git automation failed: {err}")
 
 
 async def _cmd_status(ctx: commands.Context):
