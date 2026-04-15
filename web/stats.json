@@ -1,1 +1,103 @@
-{"_note": "No stats yet. Run !wrapped in Discord."}
+{
+  "generated_at": "2026-04-16T00:11:00.797895+01:00",
+  "server_name": "YouTube Recording",
+  "server_icon": "https://cdn.discordapp.com/icons/752648277681373225/cb264bad838f32dbb94bab586127adba.png?size=1024",
+  "date_range": {
+    "from": "2024-09-01",
+    "to": "2026-04-16"
+  },
+  "total_messages": 25,
+  "midnight_questions": 0,
+  "top_senders": [
+    {
+      "name": "akaryano",
+      "count": 25
+    }
+  ],
+  "top_emojis": [],
+  "top_channels": [
+    {
+      "name": "general",
+      "count": 17
+    },
+    {
+      "name": "test",
+      "count": 8
+    }
+  ],
+  "top_mentioned": [],
+  "keyword_buckets": {
+    "panic_deadline": {
+      "count": 0,
+      "samples": []
+    },
+    "noel_mentions": {
+      "count": 2,
+      "samples": [
+        {
+          "author": "akaryano",
+          "content": "noel",
+          "timestamp": "2026-04-15T22:35:44.063000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494103963732148385"
+        },
+        {
+          "author": "akaryano",
+          "content": "test test noel test",
+          "timestamp": "2026-04-15T22:54:11.439000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494108608403603667"
+        }
+      ]
+    },
+    "dark_humor": {
+      "count": 1,
+      "samples": [
+        {
+          "author": "akaryano",
+          "content": "kms",
+          "timestamp": "2026-04-15T22:35:52.351000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/752648277681373225/1026579963224260690/1494103998494408795"
+        }
+      ]
+    },
+    "violence_jokes": {
+      "count": 0,
+      "samples": []
+    },
+    "cope_messages": {
+      "count": 0,
+      "samples": []
+    },
+    "classic_excuses": {
+      "count": 0,
+      "samples": []
+    }
+  },
+  "hourly_activity": {
+    "0": 3,
+    "1": 1,
+    "2": 2,
+    "13": 3,
+    "14": 3,
+    "16": 1,
+    "17": 1,
+    "18": 3,
+    "23": 8
+  },
+  "monthly_activity": {
+    "2024-11": 1,
+    "2024-12": 3,
+    "2025-05": 1,
+    "2025-07": 1,
+    "2025-08": 1,
+    "2025-10": 1,
+    "2026-03": 6,
+    "2026-04": 11
+  },
+  "midnight_zone": {
+    "start": 2,
+    "end": 6
+  }
+}
