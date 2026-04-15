@@ -41,7 +41,7 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise RuntimeError("DISCORD_TOKEN not set in .env")
 
-GIT = shutil.which("git") or "/usr/bin/git"
+GIT = shutil.which("git") or "git"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
@@ -397,6 +397,9 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
         else:
             await ctx.send("ℹ️ No changes detected in stats file; nothing to commit.")
 
+    except FileNotFoundError as e:
+        await ctx.send("⚠️ Git automation failed: `git` was not found in this environment.")
+        log.error(f"Git automation failed: {e}")
     except subprocess.CalledProcessError as e:
         err = (e.stderr or e.stdout or str(e)).strip()
         await ctx.send(f"⚠️ Git automation failed: `{err}`")
