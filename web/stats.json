@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-04-16T14:05:44.477892+01:00",
+  "generated_at": "2026-04-16T14:31:14.510134+01:00",
   "server_name": "Game Dev & IDAD at SETU",
   "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2022-09-01",
     "to": "2026-04-16"
   },
-  "total_messages": 50775,
+  "total_messages": 50783,
   "active_members": 77,
   "midnight_questions": 136,
   "top_senders": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 3276
+      "count": 3278
     },
     {
       "name": "Steven Kelly",
-      "count": 3177
+      "count": 3179
     },
     {
       "name": "wisp",
@@ -66,7 +66,7 @@
     },
     {
       "emoji": "😂",
-      "count": 735
+      "count": 736
     },
     {
       "emoji": "👍",
@@ -81,12 +81,12 @@
       "count": 484
     },
     {
-      "emoji": "🟨",
+      "emoji": "🤣",
       "count": 431
     },
     {
-      "emoji": "🤣",
-      "count": 430
+      "emoji": "🟨",
+      "count": 431
     },
     {
       "emoji": "🔥",
@@ -138,7 +138,7 @@
   "top_mentioned": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 583
+      "count": 584
     },
     {
       "name": "Pastor Fred",
@@ -180,7 +180,8 @@
   "spotlight_mentions": [],
   "keyword_buckets": {
     "panic_deadline": {
-      "count": 177,
+      "count": 163,
+      "weighted_count": 229.64,
       "samples": [
         {
           "author": "Pastor Fred",
@@ -204,81 +205,81 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1303443225838751747"
         },
         {
-          "author": "akaryano (Ryan)",
-          "content": "<@&978215914023571507>  Hello Fellow Game Devs\n\nAs many of you are aware, the situation surrounding the capstone demos this week has been deeply unfair and has affected a lot of us. I've put together ",
-          "timestamp": "2026-04-14T17:01:29.426000+00:00",
-          "channel": "announcements",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1493657460622491679"
-        },
-        {
-          "author": "wisp",
-          "content": "if anyone has ex 5 done pls help me im so lost",
-          "timestamp": "2022-10-13T18:45:30.534000+00:00",
+          "author": "Steven Kelly",
+          "content": "pulled an all nighter and came into lab at 6am",
+          "timestamp": "2026-04-13T07:01:10.453000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1030189557624352769"
-        },
-        {
-          "author": "Zoë",
-          "content": "Oh wait no it’s just them being uploaded that’s due tomorrow isn’t it sorry my bad",
-          "timestamp": "2022-11-30T20:04:09.855000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1047603969440096276"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493143998234361856"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Like how does it even help me giving me the answer, I need to know *why* that's the answer",
-          "timestamp": "2023-09-18T15:44:53.007000+00:00",
+          "content": "Does anyone know Ben's project actual deadline btw?",
+          "timestamp": "2026-04-10T11:44:04.090000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153355976045498522"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "because if i get deducted marks on my 2 UNNECESSARY all nighters i swear to god",
-          "timestamp": "2023-10-02T10:02:47.959000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1158343317872975932"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "if so im screwed",
-          "timestamp": "2024-10-09T11:49:15.138000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1293540781511938059"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "gotta make an all nighter today as long as my game works",
-          "timestamp": "2025-04-10T15:29:26.578000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359913173712638094"
-        },
-        {
-          "author": "BlueBaron(Jordan)",
-          "content": "I literally mistook honest criticism for cynicism because i am so used to our lecturers.\n\nI was told where i went wrong while trying to be down to earth with me so it blended into the text, as such i ",
-          "timestamp": "2025-04-10T21:00:42.311000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359996538578927746"
-        },
-        {
-          "author": "capybara (Brandon)",
-          "content": "Would anyone be able to help me with the schema.txt for Paul? I messed it up last time and im not sure how to translate his one from teams to my own",
-          "timestamp": "2025-08-28T22:28:04.572000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1410752827399344208"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492128027230867642"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Oh right, I've not finished the entirety of sprint 2 but is there meant to be a way to navigate to the combined page from the first one?",
-          "timestamp": "2025-09-16T22:38:01.834000+00:00",
+          "content": "I emailed Martin just there asking about the deadline and the declaration, I'll update here if he replies",
+          "timestamp": "2026-04-09T10:50:33.931000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1417640701943877736"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1491752174982664252"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "Yeah this is less important tbh cos it's only for the showcase, idk if they mentioned a deadline for this bit specifically",
+          "timestamp": "2026-04-08T20:41:45.989000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1491538567711817870"
+        },
+        {
+          "author": "Jakefitz",
+          "content": "Martin is after sending out an email with the dates for the capstone deadline",
+          "timestamp": "2026-03-11T12:32:42.829000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1481268633341657129"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "Libor has suggested to me to use AI for multiple things in my project at this stage to help me with researching like the foundations of new things I add in, I don't see what their problem is lmao",
+          "timestamp": "2026-01-29T13:47:50.685000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466429638170640585"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Just praying they dont pull a last minute change or some shit, but all I got from Omer and Ben so",
+          "timestamp": "2026-01-28T23:41:14.152000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466216582069096702"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "is it not due tomorrow",
+          "timestamp": "2025-12-04T20:01:12.853000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1446229879199629413"
         },
         {
           "author": "MEABEAB(Alex)",
-          "content": "ye david spotted it last minute",
-          "timestamp": "2025-09-26T10:29:29.458000+00:00",
+          "content": "Is p2 due tomorrow or Monday ?",
+          "timestamp": "2025-12-04T19:10:56.240000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1421081237606633482"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1446217226607919238"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "im having fun with a project someone help me",
+          "timestamp": "2025-11-22T18:20:26.595000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1441855864968314951"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "He may at the very least extend the deadline or drop down the amount of % its worth if literally everyone's a week late to start it, through no fault of ours",
+          "timestamp": "2025-11-15T12:56:43.280000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1439237682621448273"
         },
         {
           "author": "CraicMeister (Kyle D)",
@@ -290,28 +291,15 @@
       ]
     },
     "noel_mentions": {
-      "count": 480,
+      "count": 375,
+      "weighted_count": 633.08,
       "samples": [
         {
-          "author": "Jemstone",
-          "content": "I agree that the server needs tidying up.\n\nA suggestion I'd put forth in relation to vent channels, is perhaps making the server into a community server, giving access to Forum Channels. That way one ",
-          "timestamp": "2023-11-19T14:50:41.408000+00:00",
+          "author": "Dunnesparce [Stephen]",
+          "content": "Wait what happened with Noel?",
+          "timestamp": "2024-01-25T12:52:38.949000+00:00",
           "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1175810385518010479"
-        },
-        {
-          "author": "Devi",
-          "content": "Rant about Noel",
-          "timestamp": "2024-01-25T12:16:37.023000+00:00",
-          "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200051598752239728"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Noel Rant before Gta 6",
-          "timestamp": "2024-01-25T12:18:54.055000+00:00",
-          "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200052173506101288"
+          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200060666527096842"
         },
         {
           "author": "(Cyprian) SlippyCyppy",
@@ -321,11 +309,18 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200054770598166559"
         },
         {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Wait what happened with Noel?",
-          "timestamp": "2024-01-25T12:52:38.949000+00:00",
+          "author": "(Edward) DishonoredSkull",
+          "content": "Noel Rant before Gta 6",
+          "timestamp": "2024-01-25T12:18:54.055000+00:00",
           "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200060666527096842"
+          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200052173506101288"
+        },
+        {
+          "author": "Devi",
+          "content": "Rant about Noel",
+          "timestamp": "2024-01-25T12:16:37.023000+00:00",
+          "channel": "suggestions",
+          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1200051598752239728"
         },
         {
           "author": "Zoë",
@@ -335,72 +330,80 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1175873140837072998/1284144526063173662"
         },
         {
+          "author": "d.crim02",
+          "content": "noel going too easy not good",
+          "timestamp": "2026-04-16T10:38:08.319000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494285762718601277"
+        },
+        {
+          "author": "d.crim02",
+          "content": "it feels like a bad sign when noel says nothing like that",
+          "timestamp": "2026-04-16T10:34:47.225000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494284919269232701"
+        },
+        {
+          "author": "Jad Fuhr",
+          "content": "Noel didnt say a peep to me 😂",
+          "timestamp": "2026-04-16T10:29:50.468000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494283674579894272"
+        },
+        {
+          "author": "ZetDerp (Nathan)",
+          "content": "Summary of Noel for the demos:",
+          "timestamp": "2026-04-16T10:28:12.068000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494283261860380855"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "<@1156928841990819931> was Noel like pretending not to know shit, asking questions in that kinda way?",
+          "timestamp": "2026-04-16T10:19:18.064000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494281022085402694"
+        },
+        {
+          "author": "d.crim02",
+          "content": "I can only assume Noel took it handy during my demo because he thinks Im done anyways",
+          "timestamp": "2026-04-16T10:18:48.328000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494280897363447809"
+        },
+        {
+          "author": "d.crim02",
+          "content": "I got asked by Noel what are unique ptrs and what are quaternions",
+          "timestamp": "2026-04-16T09:44:27.059000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494272251774636144"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "So Martian scientists rinsed me out of it by asking me about a file I didn’t make ( it’s clearly labelled I didn’t make it ) and Noel was kind to me",
+          "timestamp": "2026-04-15T13:05:36.352000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493960486192943124"
+        },
+        {
           "author": "akaryano (Ryan)",
-          "content": "Updated Timetable (Noels lecture on Thursday has moved) <@&978215914023571507>",
-          "timestamp": "2024-09-13T16:51:42.765000+00:00",
-          "channel": "timetables",
-          "jump_url": "https://discord.com/channels/976854702278975529/1175873140837072998/1284194813671116820"
+          "content": "Noel said he'd never seen code in the format of `bool isTrue = (variable.true || variable2.false)` so idk what's going on with him tbh",
+          "timestamp": "2026-04-15T09:09:03.713000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493900957950672916"
         },
         {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Wonder what the lecturers will do, are they assuming we'll just not be there tomorrow or what",
-          "timestamp": "2022-10-12T12:55:24.657000+00:00",
+          "author": "akaryano (Ryan)",
+          "content": "Noel asked some stupid questions but didn't seem too terrible",
+          "timestamp": "2026-04-15T09:06:21.002000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1029739064724828230"
-        },
-        {
-          "author": "Wavesan",
-          "content": "Noel's classes are year 1 level til the very end I can assure you that",
-          "timestamp": "2023-09-18T14:53:28.053000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153343036810600508"
-        },
-        {
-          "author": "BlueBaron(Jordan)",
-          "content": "Ill have to email all the lecturers anyway so ill ask him then",
-          "timestamp": "2023-11-05T12:46:57.429000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1170705816974807131"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Noel O Hara, we don't have him until second semester",
-          "timestamp": "2023-11-06T09:06:26.376000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1171012709781880892"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "noel.ohara@setu.ie",
-          "timestamp": "2023-11-06T10:55:27.496000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1171040145227657327"
-        },
-        {
-          "author": "Jemstone",
-          "content": "Noel leaving a comment 😲\n\nI'm stunned.",
-          "timestamp": "2023-11-06T12:20:51.435000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1171061636585492570"
-        },
-        {
-          "author": "Jemstone",
-          "content": "It was worse last year. We had 6 modules at once, not split up into semesters and all the lecturers left the projects to the end",
-          "timestamp": "2023-11-14T16:16:34.727000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1174020060776513686"
-        },
-        {
-          "author": "Jemstone",
-          "content": "Who is our tutor btw? Is it Ross or Noel this semester?",
-          "timestamp": "2024-03-06T01:24:35.777000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1214745414843236353"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493900275491143831"
         }
       ]
     },
     "phil_mentions": {
-      "count": 602,
+      "count": 417,
+      "weighted_count": 608.17,
       "samples": [
         {
           "author": "Zoë",
@@ -410,13 +413,6 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1218215239703597126"
         },
         {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Phil hate channel, not speaking for myself here",
-          "timestamp": "2023-11-19T14:08:14.803000+00:00",
-          "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1175799704282484798"
-        },
-        {
           "author": "Devi",
           "content": "Phil vent channel would be genuinely nice, not just for actual venting but because it'll let us highlight important notes about his assignments. Like how his code for the player rectangle's collider i",
           "timestamp": "2023-11-19T14:09:35.044000+00:00",
@@ -424,177 +420,129 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1175800040837615686"
         },
         {
-          "author": "wisp",
-          "content": "https://tenor.com/view/the-office-craig-robinson-darryl-philbin-cry-crying-gif-4710264",
-          "timestamp": "2022-11-14T11:31:19.904000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1041676705061928960"
-        },
-        {
-          "author": "Croissant (Jonathan)",
-          "content": "like phil?",
-          "timestamp": "2023-09-13T20:18:25.547000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1151612875899674694"
-        },
-        {
-          "author": "capybara (Brandon)",
-          "content": "tbf i like phil seems like a good guy",
-          "timestamp": "2023-09-13T20:19:42.985000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1151613200698196038"
+          "author": "(Edward) DishonoredSkull",
+          "content": "Phil hate channel, not speaking for myself here",
+          "timestamp": "2023-11-19T14:08:14.803000+00:00",
+          "channel": "suggestions",
+          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1175799704282484798"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "This is Phil's makefile. I have just the all, build and clean sections in it and I still don't understand what any of it does",
-          "timestamp": "2023-09-18T08:39:30.697000+00:00",
+          "content": "Phil Morris's module lol",
+          "timestamp": "2026-03-31T16:50:52.723000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153248927718576139"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1488581359977889893"
         },
         {
-          "author": "Devi",
-          "content": "Is anyone compiling with a command different from this?\n```cpp\ng++ -o sampleapp ./makemeapointer.cpp -I.\n```\nBecuase Philip has told me and Dylan it's wrong",
-          "timestamp": "2023-09-18T09:33:12.070000+00:00",
+          "author": "Dunnesparce [Stephen]",
+          "content": "We've got UI with Phil Morris so hopefully he'll comfort us in the aftermath",
+          "timestamp": "2026-01-29T00:00:58.932000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153262439136252026"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466221551396458506"
         },
         {
-          "author": "TheDanox (Daniel M)",
-          "content": "ah fuck off phil\ni was working til half 11 lmao",
-          "timestamp": "2023-09-18T09:34:19.304000+00:00",
+          "author": "Dunnesparce [Stephen]",
+          "content": "Phil Morris ❤️",
+          "timestamp": "2026-01-14T16:26:19.424000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153262721136074842"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1461033702728667278"
         },
         {
-          "author": "(Cyprian) SlippyCyppy",
-          "content": "anti phil channel when",
-          "timestamp": "2023-09-18T09:37:17.613000+00:00",
+          "author": "Scaldy Panda (Emily)",
+          "content": "Yeah we just go to the class that we picked and see what happens I mailed Phil for UI/UX and I would paste a screenshot here but tbh it'll just confuse the situation more 😅",
+          "timestamp": "2026-01-14T10:39:00.626000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153263469018226712"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1460946298474856532"
         },
         {
-          "author": "Devi",
-          "content": "<@&978966789310541854> phil rant channel",
-          "timestamp": "2023-09-18T09:37:41.004000+00:00",
+          "author": "Scaldy Panda (Emily)",
+          "content": "Philip Morris for UI 😍",
+          "timestamp": "2026-01-05T11:34:19.857000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153263567127195689"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "good phil and bad phil\nphil 2 is chill",
-          "timestamp": "2023-09-18T09:37:51.745000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153263612178206742"
-        },
-        {
-          "author": "(Cyprian) SlippyCyppy",
-          "content": "phil 2 > phil 1",
-          "timestamp": "2023-09-18T09:39:05.179000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153263920182734918"
-        },
-        {
-          "author": "(Cyprian) SlippyCyppy",
-          "content": "i have not understood a word that phil has spoken/written so far",
-          "timestamp": "2023-09-18T09:40:57.427000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153264390984962138"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1457698729548185744"
         },
         {
           "author": "(Edward) DishonoredSkull",
-          "content": "Only reading through this now but if this many, including myself, are lost and questioning so much with little answers or reasons then something is 100% wrong. \n\nPhil needs to be very direct with his ",
-          "timestamp": "2023-09-18T14:35:21.237000+00:00",
+          "content": "4 fucking years 😭 Phil could never",
+          "timestamp": "2025-12-02T18:49:36.974000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1153338478373908612"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1445487085246218384"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Aight I'm going cloud and Ai 🗣️ Praying no Phil or Noel for some fuck ass guest appearance like a TV sitcom 😭",
+          "timestamp": "2025-11-18T21:54:49.380000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440460263936757911"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "oh good lord the idea of having Phil Bourke for that module",
+          "timestamp": "2025-11-18T21:52:13.541000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440459610300354732"
+        },
+        {
+          "author": "Scaldy Panda (Emily)",
+          "content": "He might be a TA though like with Daire and Colm and these are old like Philip is on games Engineering II",
+          "timestamp": "2025-11-18T21:51:16.850000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440459372521193522"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Was gonna go Ai regardless unless it was Noel, if Noel or Phil were any instant drop for me",
+          "timestamp": "2025-11-18T21:51:12.071000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440459352476614716"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "And if it's Phil M like",
+          "timestamp": "2025-11-18T17:48:52.599000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440398369510920344"
+        },
+        {
+          "author": "Scaldy Panda (Emily)",
+          "content": "If its Phil M we are singing",
+          "timestamp": "2025-11-18T17:48:04.705000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440398168629051423"
         }
       ]
     },
     "dark_humor": {
-      "count": 65,
+      "count": 29,
+      "weighted_count": 47.57,
       "samples": [
         {
-          "author": "Sharkbirb (Kieran)",
-          "content": "Recommend it any day",
-          "timestamp": "2022-12-01T13:44:36.896000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1047870840592662728"
-        },
-        {
-          "author": "Zoë",
-          "content": "@everyone https://www.instagram.com/p/DBic0AtKys0/?igsh=MmYxaHg4NDZsNHBh",
-          "timestamp": "2024-10-25T09:17:45.366000+00:00",
-          "channel": "announcements",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1299300862094737489"
-        },
-        {
-          "author": "Naoise",
-          "content": "they send it 1 week after you register but our registration for cit was delayed",
-          "timestamp": "2022-09-23T17:33:34.453000+00:00",
+          "author": "akaryano (Ryan)",
+          "content": "End it all",
+          "timestamp": "2026-04-13T11:09:14.054000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1022923697356550215"
-        },
-        {
-          "author": "Jad Fuhr",
-          "content": "Kms",
-          "timestamp": "2022-11-16T09:55:03.702000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1042377253645987943"
-        },
-        {
-          "author": "Devi",
-          "content": "That code will work great! I listed a few things to look out for because they can cost you marks in an exam, but the important thing is that your code is correct and runs fine 👍  \n\n> remember to use c",
-          "timestamp": "2022-12-18T16:22:18.105000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054071117494628372"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "I couldnt get a bus tomorrow, can someone get notes on the work placement lecture ans send it through here please?",
-          "timestamp": "2024-10-02T22:09:54.944000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1291160261520265296"
-        },
-        {
-          "author": "Scaldy Panda (Emily)",
-          "content": "<@208585478713114634> yeah course send it on I'll take a look and help out!",
-          "timestamp": "2025-08-30T06:43:14.420000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1411239827398987817"
-        },
-        {
-          "author": "Croissant (Jonathan)",
-          "content": "any chance you could send it on <:SkullBruuh:1149945004089937943>",
-          "timestamp": "2025-09-13T13:50:00.685000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1416420657977102488"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "if im not wrong, in the end its meant to look like this with the numbers and heatmaps for both cost field and integration field?",
-          "timestamp": "2025-11-01T15:38:05.284000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434204861771153560"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "I have built up a check for the obstacles, and if they are there it cannot do a diagonal, i can send it over if you would like",
-          "timestamp": "2025-11-01T15:38:41.637000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434205014246559765"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Time to end it all",
-          "timestamp": "2025-11-02T16:54:10.056000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434586395678212220"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493206424581570640"
         },
         {
           "author": "Dunnesparce [Stephen]",
           "content": "I'm going to end it all",
-          "timestamp": "2025-11-15T14:08:18.878000+00:00",
+          "timestamp": "2026-01-12T09:28:28.731000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1439255699665195079"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1460203772889530400"
+        },
+        {
+          "author": "akaryano (Ryan)",
+          "content": "https://tenor.com/view/intruder-lowtiergod-kys-gif-6701652745585782902",
+          "timestamp": "2025-12-11T20:17:07.717000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1448770599248990228"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "Kms",
+          "timestamp": "2025-12-08T10:03:10.853000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447528930646163560"
         },
         {
           "author": "Dunnesparce [Stephen]",
@@ -605,22 +553,79 @@
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Kms",
-          "timestamp": "2025-12-08T10:03:10.853000+00:00",
+          "content": "I'm going to end it all",
+          "timestamp": "2025-11-15T14:08:18.878000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447528930646163560"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1439255699665195079"
         },
         {
-          "author": "akaryano (Ryan)",
-          "content": "https://tenor.com/view/intruder-lowtiergod-kys-gif-6701652745585782902",
-          "timestamp": "2025-12-11T20:17:07.717000+00:00",
+          "author": "Dunnesparce [Stephen]",
+          "content": "Time to end it all",
+          "timestamp": "2025-11-02T16:54:10.056000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1448770599248990228"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1434586395678212220"
+        },
+        {
+          "author": "Devi",
+          "content": "That code will work great! I listed a few things to look out for because they can cost you marks in an exam, but the important thing is that your code is correct and runs fine 👍  \n\n> remember to use c",
+          "timestamp": "2022-12-18T16:22:18.105000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054071117494628372"
+        },
+        {
+          "author": "Jad Fuhr",
+          "content": "Kms",
+          "timestamp": "2022-11-16T09:55:03.702000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1042377253645987943"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "If you haven't started yet for the love of god avoid the first link I'm about to kms",
+          "timestamp": "2026-02-02T14:04:48.399000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1467883458234683483"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "that and he also never seemed to know how much certain things were worth in terms of grade percentages, Like that MS Paint thing we had to do using RayLib was fun and I put a shit tonne of effort into",
+          "timestamp": "2025-08-17T19:12:36.283000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1406717368868016189"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "I'm going to actually kill myself",
+          "timestamp": "2023-09-27T21:03:19.420000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1156697604940378222"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "This figma video shit makes me want to end it all",
+          "timestamp": "2023-02-26T12:26:32.263000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1079378936124932176"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "Right well I'm just about ready to fucking kill myself with this git assignment",
+          "timestamp": "2022-10-23T12:12:34.742000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1033714552241655839"
+        },
+        {
+          "author": "Nathan_Not_Hater",
+          "content": "I am gonna kms",
+          "timestamp": "2025-11-10T12:36:12.598000+00:00",
+          "channel": "idad-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1158145294144385198/1437420581439017100"
         }
       ]
     },
     "violence_jokes": {
-      "count": 20,
+      "count": 8,
+      "weighted_count": 9.66,
       "samples": [
         {
           "author": "Masked Insanity",
@@ -637,11 +642,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1027361987795091517"
         },
         {
-          "author": "wisp",
-          "content": "she kept smacking her mouth it was driving me crazy",
-          "timestamp": "2022-09-23T17:57:42.864000+00:00",
+          "author": "(Edward) DishonoredSkull",
+          "content": "Smack your hand",
+          "timestamp": "2026-04-12T00:13:04.230000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1022929772432605377"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678907705426071"
         },
         {
           "author": "wisp",
@@ -651,32 +656,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1025178172439932988"
         },
         {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Smack your hand",
-          "timestamp": "2026-04-12T00:13:04.230000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678907705426071"
-        },
-        {
-          "author": "Jad Fuhr",
-          "content": "then recallling (with extreme precision) the amount of times Roxanne smacks her lips in one sitting",
-          "timestamp": "2022-11-25T01:57:56.108000+00:00",
-          "channel": "game-dev-assignments",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1045518671604355072"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "We're all gonna fight me thinks",
-          "timestamp": "2022-10-14T12:47:12.743000+00:00",
+          "author": "Wavesan",
+          "content": "I'm gonna fight it out, all you can do really",
+          "timestamp": "2023-10-09T12:44:37.750000+00:00",
           "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1030461777219166262"
-        },
-        {
-          "author": "wisp",
-          "content": "if roxanne keeps smacking her mouth again later idk if i can take it anymore",
-          "timestamp": "2022-10-19T10:37:24.904000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1032241051982901318"
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1160920758747406456"
         },
         {
           "author": "Adam Prendergast-Ryan",
@@ -686,39 +670,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1050050152750141481"
         },
         {
-          "author": "Wavesan",
-          "content": "I'm gonna fight it out, all you can do really",
-          "timestamp": "2023-10-09T12:44:37.750000+00:00",
+          "author": "Sharkbirb (Kieran)",
+          "content": "We're all gonna fight me thinks",
+          "timestamp": "2022-10-14T12:47:12.743000+00:00",
           "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1160920758747406456"
-        },
-        {
-          "author": "Steven Kelly",
-          "content": "Does anyone know of any decent phone repair shops around Carlow? Have to get a battery replacement for my iphone and the only apple stores are in Dublin",
-          "timestamp": "2024-06-02T22:14:06.104000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1246949995358326826"
-        },
-        {
-          "author": "Scaldy Panda (Emily)",
-          "content": "Ahhhh okay it's like 25 euro on amazon for a replacement battery, only saying is I actually self taught myself how to fix phones, tablets etc and what phone shops charge is extortionate",
-          "timestamp": "2024-06-03T11:36:31.464000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1247151931634352231"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "It’s turned out really well when the vehicle intersects with the fire it applys a burn effect on the battery draining it for a short time and adds more risk when a giant plane appears on the map you m",
-          "timestamp": "2025-04-08T20:27:03.145000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1359263293851832321"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "https://tenor.com/view/credit-card-smacking-credit-card-on-table-gif-21340324",
-          "timestamp": "2025-11-23T19:18:37.449000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1442232894536814673"
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1030461777219166262"
         },
         {
           "author": "Zoë",
@@ -730,21 +686,15 @@
       ]
     },
     "cope_messages": {
-      "count": 20,
+      "count": 17,
+      "weighted_count": 23.78,
       "samples": [
         {
-          "author": "TheDanox (Daniel M)",
-          "content": "I think this would've gone in vent but its fine",
-          "timestamp": "2024-04-08T08:04:10.077000+00:00",
+          "author": "(Edward) DishonoredSkull",
+          "content": "Yeah like and even then the blueball if you \"get caught\" when multiple of the supervisors said its fine to use 🤷‍♂️",
+          "timestamp": "2026-04-12T00:12:41.940000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1226804769910161491"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "Dying light one was peak at it's finest, the following was really well done",
-          "timestamp": "2025-09-28T14:58:00.767000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1421873589065617409"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678814214656000"
         },
         {
           "author": "Dunnesparce [Stephen]",
@@ -754,11 +704,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1484190194222764136"
         },
         {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Yeah like and even then the blueball if you \"get caught\" when multiple of the supervisors said its fine to use 🤷‍♂️",
-          "timestamp": "2026-04-12T00:12:41.940000+00:00",
+          "author": "TheDanox (Daniel M)",
+          "content": "I think this would've gone in vent but its fine",
+          "timestamp": "2024-04-08T08:04:10.077000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678814214656000"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1226804769910161491"
         },
         {
           "author": "Dunnesparce [Stephen]",
@@ -775,25 +725,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1158145344832552960/1434822747934167221"
         },
         {
-          "author": "Devi",
-          "content": ">Tells Pete I misunderstood that we were supposed to upload 5 countries in one commit for the first 10\n>Ask him if I should re-do the first 5\n>He says it's fine and to just do it correctly for the las",
-          "timestamp": "2022-11-04T13:03:40.373000+00:00",
+          "author": "Croissant (Jonathan)",
+          "content": "Yeah I did click the Select your school yk and tried to log in but it didnt redirect me to the outlook login the first time. Now it did its fine 👍",
+          "timestamp": "2025-07-01T12:47:27.930000+00:00",
           "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1038076064817221693"
-        },
-        {
-          "author": "[Nick] colocota",
-          "content": "if you did that its fine he just didnt check the sheet since thursday",
-          "timestamp": "2023-09-16T12:32:52.810000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1152582881105936484"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "Wait it's fine now my brain decided to catch up, thank you jad 🫶",
-          "timestamp": "2023-11-09T07:56:36.400000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1172082299345567784"
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1389588215727394917"
         },
         {
           "author": "✨Mr Dinkles✨ -  (Hubi)",
@@ -803,25 +739,32 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1181102959292055565"
         },
         {
-          "author": "Croissant (Jonathan)",
-          "content": "Yeah I did click the Select your school yk and tried to log in but it didnt redirect me to the outlook login the first time. Now it did its fine 👍",
-          "timestamp": "2025-07-01T12:47:27.930000+00:00",
+          "author": "CraicMeister (Kyle D)",
+          "content": "Wait it's fine now my brain decided to catch up, thank you jad 🫶",
+          "timestamp": "2023-11-09T07:56:36.400000+00:00",
           "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1389588215727394917"
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1172082299345567784"
         },
         {
-          "author": "Zoë",
-          "content": "That’s cruelty at its finest",
-          "timestamp": "2022-10-05T21:24:51.080000+00:00",
-          "channel": "vent",
-          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1027330554535882862"
+          "author": "[Nick] colocota",
+          "content": "if you did that its fine he just didnt check the sheet since thursday",
+          "timestamp": "2023-09-16T12:32:52.810000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1152582881105936484"
         },
         {
-          "author": "wisp",
-          "content": "yeah everything is green everything is fine",
-          "timestamp": "2022-10-24T15:07:49.583000+00:00",
+          "author": "Devi",
+          "content": ">Tells Pete I misunderstood that we were supposed to upload 5 countries in one commit for the first 10\n>Ask him if I should re-do the first 5\n>He says it's fine and to just do it correctly for the las",
+          "timestamp": "2022-11-04T13:03:40.373000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1038076064817221693"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "Luckily no everything is fine, room is cold as shit though",
+          "timestamp": "2023-12-17T17:20:13.759000+00:00",
           "channel": "vent",
-          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1034121042546917496"
+          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1185994878522499143"
         },
         {
           "author": "Sharkbirb (Kieran)",
@@ -831,30 +774,45 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1082809646814859447"
         },
         {
-          "author": "Steven Kelly",
-          "content": "Luckily no everything is fine, room is cold as shit though",
-          "timestamp": "2023-12-17T17:20:13.759000+00:00",
+          "author": "wisp",
+          "content": "yeah everything is green everything is fine",
+          "timestamp": "2022-10-24T15:07:49.583000+00:00",
           "channel": "vent",
-          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1185994878522499143"
+          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1034121042546917496"
+        },
+        {
+          "author": "Naoise",
+          "content": "I think its fine I wont talk about spoilers since in case anyone doesn't want to see it but I hope the games go in the same direction",
+          "timestamp": "2022-11-12T20:15:34.346000+00:00",
+          "channel": "video-games",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804086625407018/1041083858822635540"
+        },
+        {
+          "author": "Dragon",
+          "content": "I get home at 8.30 so I'm fine with that",
+          "timestamp": "2022-10-04T06:02:24.286000+00:00",
+          "channel": "video-games",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804086625407018/1026736025390809108"
         }
       ]
     },
     "classic_excuses": {
       "count": 3,
+      "weighted_count": 4.66,
       "samples": [
-        {
-          "author": "[Nick] colocota",
-          "content": "otherwise try to download it again from blackboard and replace in case it got corrupted somehow",
-          "timestamp": "2023-02-05T22:01:34.611000+00:00",
-          "channel": "game-dev-assignments",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1071913504283570226"
-        },
         {
           "author": "d.crim02",
           "content": "he didnt upload lab2.h or uploaded the wrong file by accident",
           "timestamp": "2024-09-18T11:07:44.934000+00:00",
           "channel": "game-dev-assignments",
           "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1285920191661871125"
+        },
+        {
+          "author": "[Nick] colocota",
+          "content": "otherwise try to download it again from blackboard and replace in case it got corrupted somehow",
+          "timestamp": "2023-02-05T22:01:34.611000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1071913504283570226"
         },
         {
           "author": "Dunnesparce [Stephen]",
@@ -866,49 +824,15 @@
       ]
     },
     "swear_words": {
-      "count": 4214,
+      "count": 3545,
+      "weighted_count": 4959.55,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
-          "content": "Stupid ass camera tryna ruin the quality of this sky",
-          "timestamp": "2022-10-07T17:58:02.321000+00:00",
+          "content": "Wexford’s signature shit river",
+          "timestamp": "2023-02-03T15:20:10.932000+00:00",
           "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1028003284159565825"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "Classic Activision not knowing how to condense their files",
-          "timestamp": "2022-11-16T14:08:34.293000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441051488657459"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "I know and they said oh yeah pre load was yesterday so you could download this shite yesterday but nooooo",
-          "timestamp": "2022-11-16T14:11:19.860000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441745926983680"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "“Hello there passer by could you perhaps help me find my lost chicken Margret”",
-          "timestamp": "2022-11-22T21:33:42.529000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1044727401143349368"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "That's a fuckin wild venue",
-          "timestamp": "2022-12-01T13:44:29.155000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1047870808124559360"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "He's fuckin blasted",
-          "timestamp": "2022-12-01T18:50:46.083000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1047947886547185754"
+          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1071087714281209856"
         },
         {
           "author": "Pastor Fred",
@@ -918,25 +842,32 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1050821853968597022"
         },
         {
-          "author": "Adam Prendergast-Ryan",
-          "content": "Wexford’s signature shit river",
-          "timestamp": "2023-02-03T15:20:10.932000+00:00",
+          "author": "Pastor Fred",
+          "content": "“Hello there passer by could you perhaps help me find my lost chicken Margret”",
+          "timestamp": "2022-11-22T21:33:42.529000+00:00",
           "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1071087714281209856"
+          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1044727401143349368"
         },
         {
-          "author": "wisp",
-          "content": "deadass writing the recipe on word rn it’s too long to type out",
-          "timestamp": "2022-10-04T14:57:02.387000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1026870570698162266"
+          "author": "Pastor Fred",
+          "content": "I know and they said oh yeah pre load was yesterday so you could download this shite yesterday but nooooo",
+          "timestamp": "2022-11-16T14:11:19.860000+00:00",
+          "channel": "photography",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441745926983680"
         },
         {
-          "author": "wisp",
-          "content": "holy shittt",
-          "timestamp": "2022-10-26T18:43:53.208000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1034900191662309426"
+          "author": "Sharkbirb (Kieran)",
+          "content": "Classic Activision not knowing how to condense their files",
+          "timestamp": "2022-11-16T14:08:34.293000+00:00",
+          "channel": "photography",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441051488657459"
+        },
+        {
+          "author": "Adam Prendergast-Ryan",
+          "content": "Stupid ass camera tryna ruin the quality of this sky",
+          "timestamp": "2022-10-07T17:58:02.321000+00:00",
+          "channel": "photography",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1028003284159565825"
         },
         {
           "author": "Luke_Lake",
@@ -946,25 +877,53 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1086041555414028299"
         },
         {
-          "author": "Oli",
-          "content": "Get your roles assigned ma boi",
-          "timestamp": "2022-09-23T18:47:02.281000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1022942185127149599"
+          "author": "wisp",
+          "content": "holy shittt",
+          "timestamp": "2022-10-26T18:43:53.208000+00:00",
+          "channel": "cooking",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1034900191662309426"
         },
         {
-          "author": "Dragon",
-          "content": "AH INTERNET CONNECTION IS ASS",
-          "timestamp": "2022-09-27T14:25:16.907000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1024325863476564050"
+          "author": "wisp",
+          "content": "deadass writing the recipe on word rn it’s too long to type out",
+          "timestamp": "2022-10-04T14:57:02.387000+00:00",
+          "channel": "cooking",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1026870570698162266"
         },
         {
-          "author": "Dragon",
-          "content": "My internet is so ass rn holy shit",
-          "timestamp": "2022-09-27T14:25:21.313000+00:00",
+          "author": "(Edward) DishonoredSkull",
+          "content": "Fuck it, gonna watch",
+          "timestamp": "2023-12-01T12:10:20.670000+00:00",
           "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1024325881956679790"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1180118687605342269"
+        },
+        {
+          "author": "Zoë",
+          "content": "Hey <@399139829264416768> what’s that anime you’re watching in Bernie’s class",
+          "timestamp": "2023-02-08T14:32:30.678000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1072887656834408538"
+        },
+        {
+          "author": "Adam Prendergast-Ryan",
+          "content": "I mostly just watch the classics now",
+          "timestamp": "2022-10-11T19:58:13.075000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1029483079716311133"
+        },
+        {
+          "author": "Jad Fuhr",
+          "content": "What shit ?",
+          "timestamp": "2022-10-10T07:27:08.165000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1028931675918434354"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Fell asleep at 3:42am from this shit.",
+          "timestamp": "2022-10-10T07:23:30.074000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1028930761178501180"
         },
         {
           "author": "(Edward) DishonoredSkull",
@@ -977,6 +936,7 @@
     },
     "procrastination": {
       "count": 5,
+      "weighted_count": 7.05,
       "samples": [
         {
           "author": "Devi",
@@ -1016,7 +976,8 @@
       ]
     },
     "ai_mentions": {
-      "count": 32,
+      "count": 30,
+      "weighted_count": 49.31,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -1026,46 +987,46 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1073551364367597589"
         },
         {
-          "author": "Harv",
-          "content": "Copy those question directly into chatGPT and it'll give you clear answers. Easiest way I could find full answers to some of her awkward questions",
-          "timestamp": "2022-12-18T11:54:09.283000+00:00",
+          "author": "Dunnesparce [Stephen]",
+          "content": "Ah no honestly I think overall it was fine. I started with gameplay, showed the differences between before Easter and now, then it was questions from all of them. Omer, Ben, Libor and Martin all asked",
+          "timestamp": "2026-04-14T11:15:56.221000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054003636084166746"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493570499257569330"
         },
         {
-          "author": "Harv",
-          "content": "If you can't find a clear answer to one of the sample questions on Google, paste it into chatgpt and it'll give you a better answer",
-          "timestamp": "2022-12-19T11:40:16.415000+00:00",
+          "author": "Jakefitz",
+          "content": "Amr literally asked me to come to his office on monday to look over the code and he'll point out if anything looks AI generated",
+          "timestamp": "2026-03-19T15:04:33.815000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054362530648174592"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1484205950511616191"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "I uploaded all my files into Gemini and got it to make a quiz specifically on the structure and flow of the project just to make sure I have everything down, which I 95% did thankfully",
+          "timestamp": "2026-01-28T22:13:20.271000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466194461808660564"
+        },
+        {
+          "author": "Scaldy Panda (Emily)",
+          "content": "Ed...its exactly that if you cant figure it out they just chatgpt or Claude it honest to god",
+          "timestamp": "2026-01-23T16:00:34.209000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1464288712417607826"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "He actually explained it pretty nicely in the lecture yesterday, and even said he understands it's not easy to immediately wrap our heads around it, to bombard him with questions about it it's better ",
-          "timestamp": "2023-10-04T10:56:14.154000+00:00",
+          "content": "Claude trying to gaslight me into further impostor syndrome",
+          "timestamp": "2025-12-16T19:02:43.959000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1159081541360685086"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "Noel is asking chatgpt for \"good dates to give an exam in\" and reloading the page",
-          "timestamp": "2024-09-25T10:30:08.962000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1288447444488687666"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "Chatgpt screamed at me 😭",
-          "timestamp": "2025-04-10T21:02:47.899000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359997065333051574"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1450563816218820671"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Ask Claude to do something hyper specific, then ask why it gave that answer",
-          "timestamp": "2025-04-10T21:44:03.404000+00:00",
+          "content": "Might just fire Omer's slides into Claude for some comparison with the exams",
+          "timestamp": "2025-12-16T17:41:47.384000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1360007448353837069"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1450543446266745084"
         },
         {
           "author": "Steven Kelly",
@@ -1076,45 +1037,38 @@
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Might just fire Omer's slides into Claude for some comparison with the exams",
-          "timestamp": "2025-12-16T17:41:47.384000+00:00",
+          "content": "Ask Claude to do something hyper specific, then ask why it gave that answer",
+          "timestamp": "2025-04-10T21:44:03.404000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1450543446266745084"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1360007448353837069"
         },
         {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Claude trying to gaslight me into further impostor syndrome",
-          "timestamp": "2025-12-16T19:02:43.959000+00:00",
+          "author": "TheDanox (Daniel M)",
+          "content": "Chatgpt screamed at me 😭",
+          "timestamp": "2025-04-10T21:02:47.899000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1450563816218820671"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359997065333051574"
         },
         {
-          "author": "Scaldy Panda (Emily)",
-          "content": "Ed...its exactly that if you cant figure it out they just chatgpt or Claude it honest to god",
-          "timestamp": "2026-01-23T16:00:34.209000+00:00",
+          "author": "TheDanox (Daniel M)",
+          "content": "Noel is asking chatgpt for \"good dates to give an exam in\" and reloading the page",
+          "timestamp": "2024-09-25T10:30:08.962000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1464288712417607826"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1288447444488687666"
         },
         {
-          "author": "Steven Kelly",
-          "content": "I uploaded all my files into Gemini and got it to make a quiz specifically on the structure and flow of the project just to make sure I have everything down, which I 95% did thankfully",
-          "timestamp": "2026-01-28T22:13:20.271000+00:00",
+          "author": "Harv",
+          "content": "If you can't find a clear answer to one of the sample questions on Google, paste it into chatgpt and it'll give you a better answer",
+          "timestamp": "2022-12-19T11:40:16.415000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466194461808660564"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054362530648174592"
         },
         {
-          "author": "Jakefitz",
-          "content": "Amr literally asked me to come to his office on monday to look over the code and he'll point out if anything looks AI generated",
-          "timestamp": "2026-03-19T15:04:33.815000+00:00",
+          "author": "Harv",
+          "content": "Copy those question directly into chatGPT and it'll give you clear answers. Easiest way I could find full answers to some of her awkward questions",
+          "timestamp": "2022-12-18T11:54:09.283000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1484205950511616191"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "Ah no honestly I think overall it was fine. I started with gameplay, showed the differences between before Easter and now, then it was questions from all of them. Omer, Ben, Libor and Martin all asked",
-          "timestamp": "2026-04-14T11:15:56.221000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493570499257569330"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1054003636084166746"
         },
         {
           "author": "(Cyprian) SlippyCyppy",
@@ -1122,102 +1076,33 @@
           "timestamp": "2023-11-28T12:10:11.534000+00:00",
           "channel": "game-dev-assignments",
           "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1179031485689384990"
+        },
+        {
+          "author": "Nathan_Hater69",
+          "content": "listen, if you're really struggling i'll allow you to use chatgpt for 100 words",
+          "timestamp": "2026-01-16T16:11:15.141000+00:00",
+          "channel": "civil-war",
+          "jump_url": "https://discord.com/channels/976854702278975529/1461740078811451514/1461754685621928081"
         }
       ]
     },
     "stress_indicators": {
-      "count": 83,
+      "count": 65,
+      "weighted_count": 94.06,
       "samples": [
         {
-          "author": "TheDanox (Daniel M)",
-          "content": "he seem fairly distressed",
-          "timestamp": "2023-11-09T12:34:10.509000+00:00",
+          "author": "MEABEAB(Alex)",
+          "content": "https://tenor.com/view/stressed-stressed-out-it-is-what-it-is-meme-gif-1807874383562258451",
+          "timestamp": "2026-04-15T00:20:48.673000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1172152151741575258"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "Well lads, same as last year, couldnt do anything, had to be brought back to hospital on easter and when i arrived home i was so mentally exhausted from evrything i couldn't put myself to do code (not",
-          "timestamp": "2024-04-08T06:55:38.504000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1226787524723081277"
-        },
-        {
-          "author": "BlueBaron(Jordan)",
-          "content": "Unmentioned also.. so thats needless stress...",
-          "timestamp": "2024-10-23T12:06:54.674000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1298618655646552097"
-        },
-        {
-          "author": "Jad Fuhr",
-          "content": "got this in the bag. no need to stress it",
-          "timestamp": "2025-04-10T15:51:05.251000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359918620741996695"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "I'M SO STRESSED OUT NO EMAIL YET 😭",
-          "timestamp": "2025-09-25T18:55:15.230000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420846129133650010"
-        },
-        {
-          "author": "Croissant (Jonathan)",
-          "content": "Stressed^2",
-          "timestamp": "2025-09-25T19:00:03.698000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420847339056271483"
-        },
-        {
-          "author": "Croissant (Jonathan)",
-          "content": "No game curing this stress 💔",
-          "timestamp": "2025-09-25T19:06:19.219000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420848914105499709"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Bro is waiting on stress here <@262988551048658945>",
-          "timestamp": "2025-09-25T19:07:50.136000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420849295438909511"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "That's why I was so stressed out 🤣",
-          "timestamp": "2025-11-13T19:25:15.870000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1438610686979870720"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "my-srl-project/\n├── packages/\n│   └── stress-timer/\n│       ├── src/\n│       │   ├── StressTimer.svelte\n│       │   └── index.ts\n│       ├── package.json\n│       └── README.md\n├── demo/               ",
-          "timestamp": "2025-12-07T16:26:45.362000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447263072627593296"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "im using apis and ill be honest im so exhausted i couldnt be arsed",
-          "timestamp": "2025-12-07T19:48:52.861000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447313939045023756"
-        },
-        {
-          "author": "akaryano (Ryan)",
-          "content": "I mean regardless then you should be okay. 6/40 is definitely easily doable for the exam. I do get tho that it would take a lot of the stress off with getting more grades back",
-          "timestamp": "2025-12-09T20:39:40.049000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1448051495609172092"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493768019317489805"
         },
         {
           "author": "Steven Kelly",
-          "content": "this shit has me anxious as fuck and I did 95% of mine myself besides the json parser file",
-          "timestamp": "2026-01-22T18:34:36.755000+00:00",
+          "content": "no honestly like we should be excited to show off our work and we’re all just anxious",
+          "timestamp": "2026-04-14T18:11:31.108000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1463965090599407739"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493675083753848954"
         },
         {
           "author": "Steven Kelly",
@@ -1227,100 +1112,178 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1466179484158791722"
         },
         {
-          "author": "Dunnesparce [Stephen]",
-          "content": "We shouldn't have to be stressing over this while doing all the work we need to be doing",
-          "timestamp": "2026-03-19T15:03:00.786000+00:00",
+          "author": "Steven Kelly",
+          "content": "this shit has me anxious as fuck and I did 95% of mine myself besides the json parser file",
+          "timestamp": "2026-01-22T18:34:36.755000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1484205560319447263"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1463965090599407739"
+        },
+        {
+          "author": "akaryano (Ryan)",
+          "content": "I mean regardless then you should be okay. 6/40 is definitely easily doable for the exam. I do get tho that it would take a lot of the stress off with getting more grades back",
+          "timestamp": "2025-12-09T20:39:40.049000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1448051495609172092"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "im using apis and ill be honest im so exhausted i couldnt be arsed",
+          "timestamp": "2025-12-07T19:48:52.861000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447313939045023756"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "my-srl-project/\n├── packages/\n│   └── stress-timer/\n│       ├── src/\n│       │   ├── StressTimer.svelte\n│       │   └── index.ts\n│       ├── package.json\n│       └── README.md\n├── demo/               ",
+          "timestamp": "2025-12-07T16:26:45.362000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1447263072627593296"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "That's why I was so stressed out 🤣",
+          "timestamp": "2025-11-13T19:25:15.870000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1438610686979870720"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Bro is waiting on stress here <@262988551048658945>",
+          "timestamp": "2025-09-25T19:07:50.136000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420849295438909511"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "No game curing this stress 💔",
+          "timestamp": "2025-09-25T19:06:19.219000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420848914105499709"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "Stressed^2",
+          "timestamp": "2025-09-25T19:00:03.698000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420847339056271483"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "I'M SO STRESSED OUT NO EMAIL YET 😭",
+          "timestamp": "2025-09-25T18:55:15.230000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1420846129133650010"
+        },
+        {
+          "author": "Jad Fuhr",
+          "content": "got this in the bag. no need to stress it",
+          "timestamp": "2025-04-10T15:51:05.251000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1359918620741996695"
+        },
+        {
+          "author": "BlueBaron(Jordan)",
+          "content": "Unmentioned also.. so thats needless stress...",
+          "timestamp": "2024-10-23T12:06:54.674000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1298618655646552097"
+        },
+        {
+          "author": "TheDanox (Daniel M)",
+          "content": "Well lads, same as last year, couldnt do anything, had to be brought back to hospital on easter and when i arrived home i was so mentally exhausted from evrything i couldn't put myself to do code (not",
+          "timestamp": "2024-04-08T06:55:38.504000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1226787524723081277"
         }
       ]
     },
     "party_time": {
-      "count": 723,
+      "count": 42,
+      "weighted_count": 51.46,
       "samples": [
         {
-          "author": "Adam Prendergast-Ryan",
-          "content": "Stupid ass camera tryna ruin the quality of this sky",
-          "timestamp": "2022-10-07T17:58:02.321000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1028003284159565825"
-        },
-        {
-          "author": "Aqua",
-          "content": "Tiny little guess waiting at my door",
-          "timestamp": "2022-11-11T18:53:40.410000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1040700860415614996"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "If you're brave enough",
-          "timestamp": "2022-12-25T17:01:36.505000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1056617724400373810"
-        },
-        {
-          "author": "ErrorComplex",
-          "content": "It’s literally black",
-          "timestamp": "2023-03-16T21:40:04.503000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1086041219936813127"
-        },
-        {
-          "author": "Jad Fuhr",
-          "content": "Bro I literally was going to",
-          "timestamp": "2022-09-23T18:19:53.867000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1022935355063799858"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "Yes but rock is amongst those so still kinda counts. I mean you like Citizen Soldier so that's neat.\n\nMost of my playlist has songs that are depressing or have a dark theme.\n\nOne artist you might like",
-          "timestamp": "2022-09-27T19:35:40.154000+00:00",
-          "channel": "music",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1024403975035945003"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Literally found out about him a few hours ago due to looking up the Mass Effect ost. Surprised me he worked on COD and of course the spooky coincidence that he's in conversation right when I learn abo",
-          "timestamp": "2023-01-24T16:23:26.528000+00:00",
-          "channel": "music",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1067479755508691005"
-        },
-        {
-          "author": "wisp",
-          "content": "might be interested mine is literally on its last breath but can’t afford anything brand new rn",
-          "timestamp": "2022-11-10T17:16:59.686000+00:00",
-          "channel": "the-market-place",
-          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1040314142550130688"
-        },
-        {
-          "author": "Oli",
-          "content": "Yo, just letting y'all know ya boi's hosting an among us session tomorrow evening after school. Turn up cuz I want you to. I'll be streaming it to one of the video channels",
-          "timestamp": "2022-09-22T12:06:01.140000+00:00",
+          "author": "BlueBaron(Jordan)",
+          "content": "I am now realizing I never gave a time for the party, and I know its last minute but its 8:30pm at Morrissey's to anyone interested",
+          "timestamp": "2022-12-16T11:35:19.729000+00:00",
           "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1022478877521612860"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1053274122660093982"
         },
         {
           "author": "BlueBaron(Jordan)",
-          "content": "Im just saying if I haven't slept in that day it's not enough of a party",
-          "timestamp": "2022-09-23T17:52:18.113000+00:00",
+          "content": "Hey guys just an update on the party, Bog Road cancelled our reservation so going to move to EJ Morrissey's next to Coppers",
+          "timestamp": "2022-11-30T21:10:45.722000+00:00",
           "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1022928410328191056"
-        },
-        {
-          "author": "✨Mr Dinkles✨ -  (Hubi)",
-          "content": "So whos supplying accomodation for party xD",
-          "timestamp": "2022-09-23T18:09:18.267000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1022932689164177418"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1047620729321050182"
         },
         {
           "author": "wisp",
-          "content": "anyone going out tomorrow or wednesday to freshers?",
-          "timestamp": "2022-10-03T19:03:09.831000+00:00",
+          "content": "is anyone going out to that foundry christmas thing ?",
+          "timestamp": "2022-11-22T17:31:59.135000+00:00",
           "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026570121982005308"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1044666569499869254"
+        },
+        {
+          "author": "BlueBaron(Jordan)",
+          "content": "Hey might be a little early but my birthday is coming up there in December having a party on the 16th in The Bog Road in portlaoise, if anyone wants to come you are more than welcome to",
+          "timestamp": "2022-10-29T10:36:57.086000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1035864813961752576"
+        },
+        {
+          "author": "Masked Insanity",
+          "content": "Yo who going out tonight",
+          "timestamp": "2022-10-26T17:42:19.200000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1034884697869783140"
+        },
+        {
+          "author": "EchoGeko93",
+          "content": "thats party night so",
+          "timestamp": "2022-10-16T17:36:42.265000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1031259406005973084"
+        },
+        {
+          "author": "Masked Insanity",
+          "content": "I dunno that's why I'm asking peeps whenever majority going out I'll follow",
+          "timestamp": "2022-10-16T13:02:25.202000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1031190380080812072"
+        },
+        {
+          "author": "Masked Insanity",
+          "content": "Yo are people going out Halloween timeframe if so is it this week or next week",
+          "timestamp": "2022-10-16T08:57:03.290000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1031128631906418708"
+        },
+        {
+          "author": "Shugger",
+          "content": "it was lit",
+          "timestamp": "2022-10-06T18:55:03.582000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1027655246102667355"
+        },
+        {
+          "author": "Jad Fuhr",
+          "content": "People going out today?",
+          "timestamp": "2022-10-05T13:05:07.388000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1027204793816580116"
+        },
+        {
+          "author": "Masked Insanity",
+          "content": "Lauren party today then",
+          "timestamp": "2022-10-03T19:46:18.826000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026580981014081606"
+        },
+        {
+          "author": "wisp",
+          "content": "i will party any day",
+          "timestamp": "2022-10-03T19:45:02.864000+00:00",
+          "channel": "parties",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026580662406357003"
         },
         {
           "author": "Oli",
@@ -1331,30 +1294,24 @@
         },
         {
           "author": "wisp",
-          "content": "i will party any day",
-          "timestamp": "2022-10-03T19:45:02.864000+00:00",
+          "content": "anyone going out tomorrow or wednesday to freshers?",
+          "timestamp": "2022-10-03T19:03:09.831000+00:00",
           "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026580662406357003"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026570121982005308"
         },
         {
-          "author": "Masked Insanity",
-          "content": "Lauren party today then",
-          "timestamp": "2022-10-03T19:46:18.826000+00:00",
+          "author": "✨Mr Dinkles✨ -  (Hubi)",
+          "content": "So whos supplying accomodation for party xD",
+          "timestamp": "2022-09-23T18:09:18.267000+00:00",
           "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026580981014081606"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1022932689164177418"
         }
       ]
     },
     "drink_mentions": {
-      "count": 503,
+      "count": 22,
+      "weighted_count": 27.02,
       "samples": [
-        {
-          "author": "wisp",
-          "content": "moments before my gingerbread man drowned :(",
-          "timestamp": "2022-12-05T13:44:13.078000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1049320292155146291"
-        },
         {
           "author": "wisp",
           "content": "- drunk wisp",
@@ -1363,100 +1320,108 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1056044518891343982"
         },
         {
-          "author": "wisp",
-          "content": "never had tofu but that looks bangin",
-          "timestamp": "2022-10-12T06:51:24.286000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1029647459569369120"
+          "author": "veronika",
+          "content": "Hi guys, I decided to finish with level 7  and not continue w this year. Today we are going to Tullies so feel free to join. I have a bit of alcohol left (some slovak herbal liquer and wine) so we can",
+          "timestamp": "2025-09-22T08:59:16.445000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1419608982322151484"
         },
         {
-          "author": "Bunder",
-          "content": "your an engineer too 😮",
-          "timestamp": "2022-10-22T14:24:22.687000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1033385332701405194"
+          "author": "TheDanox (Daniel M)",
+          "content": "<@734346157534478377> \nAs much as i need that test, i wont make it to the test, im too drunk",
+          "timestamp": "2023-10-05T00:53:57.489000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1159292361067737192"
         },
         {
           "author": "wisp",
-          "content": "bangin",
-          "timestamp": "2023-01-19T18:38:10.421000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1065701722485444678"
+          "content": "harvey love i’m too drunk to read that rn but i appreciate it very much",
+          "timestamp": "2023-01-01T02:09:35.890000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1058929957729996880"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "Root beer",
+          "timestamp": "2025-11-13T17:39:25.499000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1438584051593384137"
+        },
+        {
+          "author": "wisp",
+          "content": "like a wine gum",
+          "timestamp": "2023-02-16T18:11:39.716000+00:00",
+          "channel": "game-dev-assignments",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1075841910821883904"
+        },
+        {
+          "author": "zara",
+          "content": "U should’ve got him drunk n asked him to drop the quiz and recorded the response to hold against him",
+          "timestamp": "2025-12-07T12:17:22.744000+00:00",
+          "channel": "idad-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1158145294144385198/1447200314859192495"
+        },
+        {
+          "author": "BlueBaron(Jordan)",
+          "content": "Damn yall got pretty drunk to get him to do that ahaha",
+          "timestamp": "2023-04-28T16:08:25.141000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1101540434183999548"
+        },
+        {
+          "author": "Aqua",
+          "content": "Come on, a shot of vodka is the best, how can it makes you sick",
+          "timestamp": "2022-12-19T23:42:05.589000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1054544182489919498"
+        },
+        {
+          "author": "wisp",
+          "content": "i didn’t want to drink coffee but i was rlly tired so i just did a shot of straight vodka thinking it would do the same thing",
+          "timestamp": "2022-12-19T23:40:09.799000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1054543696831455282"
+        },
+        {
+          "author": "Deleted User",
+          "content": "When we get drunk, we fall asleep. When we fall asleep, we commit no sin. When we commit no sin, we go to Heaven. So, let's all get drunk and go to heaven",
+          "timestamp": "2022-11-21T11:43:25.261000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1044216462488911912"
+        },
+        {
+          "author": "dan the man",
+          "content": "Honestly so far down the gay hole no way my drunk ass remembering this weekend",
+          "timestamp": "2022-11-18T23:16:57.047000+00:00",
+          "channel": "general",
+          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1043303831372570655"
+        },
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "Unless you're too drunk to remove them",
+          "timestamp": "2022-11-15T23:42:37.555000+00:00",
+          "channel": "vent",
+          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1042223129134645298"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "Everyone loves Blood and Wine with good reason. However Heart of Stone has my favourite quest in the game",
+          "timestamp": "2022-11-15T21:21:36.976000+00:00",
+          "channel": "game-industry-news",
+          "jump_url": "https://discord.com/channels/976854702278975529/978804034699939860/1042187642894295130"
         },
         {
           "author": "Dunnesparce [Stephen]",
-          "content": "Oh sick Bear McCreary doing the soundtrack? He does all the original score stuff for Walking Dead his stuff is amazing",
-          "timestamp": "2022-11-09T23:25:39.790000+00:00",
-          "channel": "music",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1040044533125238894"
-        },
-        {
-          "author": "Harv",
-          "content": "I've got an acoustic guitar I'm selling. It's quite good for beginner's, easy to play. Dm me if you're interested. Got some new strings for it too",
-          "timestamp": "2023-04-27T21:10:04.874000+00:00",
-          "channel": "the-market-place",
-          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1101253962100916244"
-        },
-        {
-          "author": "EchoGeko93",
-          "content": "no i have somewhere, but couple lads i know are just winging it",
-          "timestamp": "2022-10-03T20:03:40.360000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1026585349524299796"
-        },
-        {
-          "author": "Adam Prendergast-Ryan",
-          "content": "I think I’ve gone before, was it originally called GamerCon?",
-          "timestamp": "2022-10-15T21:23:49.252000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1030954173866455040"
-        },
-        {
-          "author": "Devi",
-          "content": "Hi all, \n\nHope you're all keeping well and had a good Freshers' Week and are recovering well. \n\n⚠️We are leading a Student Walkout of Lectures this Thursday October 13th at 11.30am to highlight the ur",
-          "timestamp": "2022-10-10T07:13:00.521000+00:00",
-          "channel": "school-news",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798811457658900/1028928120641822720"
-        },
-        {
-          "author": "Zoë",
-          "content": "I’ll wouldn’t wear actual pjs just comfy lounging clothes probs",
-          "timestamp": "2022-10-17T20:02:52.808000+00:00",
-          "channel": "school-news",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798811457658900/1031658580195168427"
-        },
-        {
-          "author": "Zoë",
-          "content": "@everyone heads up they’re changing the school emails over the summer but once they change you lose access to your old email including access to your current OneDrive/office 365 etc, and I would recom",
-          "timestamp": "2023-05-19T11:01:19.336000+00:00",
-          "channel": "announcements",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1109073295933976698"
-        },
-        {
-          "author": "Zoë",
-          "content": "@everyone Just a reminder that the school emails will be changing so remember to add a secondary email to your GitHub so you can still have access",
-          "timestamp": "2023-08-14T22:22:29.342000+00:00",
-          "channel": "announcements",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1140772461470810112"
-        },
-        {
-          "author": "Oli",
-          "content": "<@&978215914023571507> <@&978258655201857576> \n\nAfter careful consideration and review, I've come to the decision to revert back to the original status quo of the server as there was nothing fundament",
-          "timestamp": "2026-01-19T12:11:02.694000+00:00",
-          "channel": "announcements",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798301765857330/1462781399034495099"
-        },
-        {
-          "author": "NinjaDeluxe (Jakub)",
-          "content": "for the most played games instead of like pinging everyone or whatever",
-          "timestamp": "2022-10-04T19:00:33.783000+00:00",
-          "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1026931855334842369"
+          "content": "It was definitely a more enjoyable experience with all the teenagers drunk on irony cheering and clapping at every reference, I think it probably would've been completely miserable without that",
+          "timestamp": "2025-04-09T09:30:27.497000+00:00",
+          "channel": "movies-and-tv",
+          "jump_url": "https://discord.com/channels/976854702278975529/978803320481263657/1359460444393177129"
         }
       ]
     },
     "gaming_references": {
-      "count": 207,
+      "count": 186,
+      "weighted_count": 248.11,
       "samples": [
         {
           "author": "Aqua",
@@ -1467,10 +1432,10 @@
         },
         {
           "author": "✨Mr Dinkles✨ -  (Hubi)",
-          "content": "Anyone wanna buy a old gaming pc haha",
-          "timestamp": "2022-11-10T18:30:07.819000+00:00",
+          "content": "then again last time i played fortnite was 2017 or 18",
+          "timestamp": "2022-11-10T18:31:54.096000+00:00",
           "channel": "the-market-place",
-          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1040332547713945741"
+          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1040332993471991910"
         },
         {
           "author": "✨Mr Dinkles✨ -  (Hubi)",
@@ -1481,10 +1446,10 @@
         },
         {
           "author": "✨Mr Dinkles✨ -  (Hubi)",
-          "content": "then again last time i played fortnite was 2017 or 18",
-          "timestamp": "2022-11-10T18:31:54.096000+00:00",
+          "content": "Anyone wanna buy a old gaming pc haha",
+          "timestamp": "2022-11-10T18:30:07.819000+00:00",
           "channel": "the-market-place",
-          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1040332993471991910"
+          "jump_url": "https://discord.com/channels/976854702278975529/1028406770382680136/1040332547713945741"
         },
         {
           "author": "Oli",
@@ -1494,25 +1459,11 @@
           "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1022478877521612860"
         },
         {
-          "author": "Oli",
-          "content": "Anyone wanna go to Gamerfest?",
-          "timestamp": "2022-10-15T21:21:12.435000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1030953516128284753"
-        },
-        {
-          "author": "Adam Prendergast-Ryan",
-          "content": "I think I’ve gone before, was it originally called GamerCon?",
-          "timestamp": "2022-10-15T21:23:49.252000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1030954173866455040"
-        },
-        {
-          "author": "CraicMeister (Kyle D)",
-          "content": "Went to gamercon a few years ago and it was absolutely terrible",
-          "timestamp": "2022-10-15T22:17:00.232000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1030967557806624778"
+          "author": "BlueBaron(Jordan)",
+          "content": "Suggestion:\n\nRework the Nerd Stuff channels to be either hyper specific or hyper generic and all encompassing.\n\nUpdate LFG to be either a  call to arms for X game(cry for help) with an additional chan",
+          "timestamp": "2026-01-19T12:41:33.301000+00:00",
+          "channel": "suggestions",
+          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1462789077156892811"
         },
         {
           "author": "NinjaDeluxe (Jakub)",
@@ -1522,46 +1473,60 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1022943868699820042"
         },
         {
+          "author": "Dunnesparce [Stephen]",
+          "content": "I've been playing through RE1 remake on Steam after completing Requiem! Some of the challenge runs for achievements are great, REmake is an easy 10/10 game",
+          "timestamp": "2026-04-10T17:47:25.938000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492219470809403513"
+        },
+        {
+          "author": "MEABEAB(Alex)",
+          "content": "Hey guys one of my mates left a charger at the back near the partition wall it’s for a steam deck if you see it lmk and I get it off yall to give back to my mate please and thanks",
+          "timestamp": "2026-02-01T23:44:55.714000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1467667062829744372"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "I would like to formally apologise for posting an incorrect / false list of upcoming epic games free games games , a Chinese tik toker has led me astray",
+          "timestamp": "2025-12-18T16:35:39.748000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1451251580526661712"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "<@&978215914023571507> free epic games for Christmas this years good ngl",
+          "timestamp": "2025-12-15T18:00:33.196000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1450185780398915735"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "epic games games free games games",
+          "timestamp": "2025-12-12T18:50:01.999000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1449111068864413727"
+        },
+        {
+          "author": "Steven Kelly",
+          "content": "wait i might only have 1 exam next Summer lol, Game Analytics is 100% project, and only Online Gaming Technologies has an exam",
+          "timestamp": "2025-11-18T21:51:28.509000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440459421422715001"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "https://tenor.com/view/happy-steam-steamhappy-gif-11912067498964962572",
+          "timestamp": "2025-11-18T18:12:57.736000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440404430854819941"
+        },
+        {
           "author": "BlueBaron(Jordan)",
-          "content": "Suggestion:\n\nRework the Nerd Stuff channels to be either hyper specific or hyper generic and all encompassing.\n\nUpdate LFG to be either a  call to arms for X game(cry for help) with an additional chan",
-          "timestamp": "2026-01-19T12:41:33.301000+00:00",
-          "channel": "suggestions",
-          "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1462789077156892811"
-        },
-        {
-          "author": "Naoise",
-          "content": "Is that the gamer browser youtubers were advertising?",
-          "timestamp": "2022-09-23T17:39:16.213000+00:00",
+          "content": "I am so interested in it, ive seen some negative reviews but after getting borderlands 4 and seeing the reviews on that im more inclined to believe the overviews than the steam reviews",
+          "timestamp": "2025-09-28T10:05:23.987000+00:00",
           "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1022925130801877133"
-        },
-        {
-          "author": "✨Mr Dinkles✨ -  (Hubi)",
-          "content": "but minecraft shaders are something else",
-          "timestamp": "2022-09-23T21:18:35.286000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1022980323954401401"
-        },
-        {
-          "author": "BlueBaron(Jordan)",
-          "content": "Minecraft Realm on bedrock with the gang? Actually wait no student debts... Nvm",
-          "timestamp": "2022-09-23T21:19:03.401000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1022980441877254155"
-        },
-        {
-          "author": "Oli",
-          "content": "True survival experience in the Mojave.... I should play the game.... Or wait in the hope Xbox and Bethesda would develop and release a remaster",
-          "timestamp": "2022-09-25T18:53:34.990000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1023668607999299745"
-        },
-        {
-          "author": "Oli",
-          "content": "Riiight... I forgot Obsidian developed NV (best RPG studio under Xbox imo)",
-          "timestamp": "2022-09-25T18:56:02.414000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1023669226340368564"
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1421799950592901130"
         }
       ]
     }
@@ -1581,7 +1546,7 @@
     "11": 2581,
     "12": 3658,
     "13": 3104,
-    "14": 3273,
+    "14": 3281,
     "15": 3452,
     "16": 3600,
     "17": 3887,
@@ -1596,7 +1561,7 @@
     "Monday": 7377,
     "Tuesday": 8205,
     "Wednesday": 7822,
-    "Thursday": 9187,
+    "Thursday": 9195,
     "Friday": 8408,
     "Saturday": 3501,
     "Sunday": 6275
@@ -1645,7 +1610,7 @@
     "2026-01": 1537,
     "2026-02": 434,
     "2026-03": 566,
-    "2026-04": 963
+    "2026-04": 971
   },
   "midnight_zone": {
     "start": 1,
@@ -1657,6 +1622,6 @@
       "missing_permissions": 3,
       "excluded_by_name": 8
     },
-    "duration_seconds": 562.36
+    "duration_seconds": 554.46
   }
 }
