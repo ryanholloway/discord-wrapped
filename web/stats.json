@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-04-16T01:00:53.921836+01:00",
+  "generated_at": "2026-04-16T14:05:44.477892+01:00",
   "server_name": "Game Dev & IDAD at SETU",
   "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2022-09-01",
     "to": "2026-04-16"
   },
-  "total_messages": 50297,
+  "total_messages": 50775,
   "active_members": 77,
   "midnight_questions": 136,
   "top_senders": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 3203
+      "count": 3276
     },
     {
       "name": "Steven Kelly",
-      "count": 3118
+      "count": 3177
     },
     {
       "name": "wisp",
@@ -24,11 +24,11 @@
     },
     {
       "name": "Pastor Fred",
-      "count": 2570
+      "count": 2594
     },
     {
       "name": "(Edward) DishonoredSkull",
-      "count": 2401
+      "count": 2446
     },
     {
       "name": "Adam Prendergast-Ryan",
@@ -48,29 +48,29 @@
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 1577
+      "count": 1624
     }
   ],
   "top_emojis": [
     {
       "emoji": "✅",
-      "count": 6125
+      "count": 6127
     },
     {
       "emoji": "❤️",
-      "count": 1330
+      "count": 1374
     },
     {
       "emoji": "😭",
-      "count": 1187
+      "count": 1219
     },
     {
       "emoji": "😂",
-      "count": 726
+      "count": 735
     },
     {
       "emoji": "👍",
-      "count": 608
+      "count": 613
     },
     {
       "emoji": "☑️",
@@ -86,11 +86,11 @@
     },
     {
       "emoji": "🤣",
-      "count": 417
+      "count": 430
     },
     {
       "emoji": "🔥",
-      "count": 318
+      "count": 330
     }
   ],
   "top_channels": [
@@ -100,11 +100,11 @@
     },
     {
       "name": "game-dev-class-info",
-      "count": 8831
+      "count": 8882
     },
     {
       "name": "counting",
-      "count": 7271
+      "count": 7272
     },
     {
       "name": "game-dev-assignments",
@@ -138,23 +138,23 @@
   "top_mentioned": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 572
+      "count": 583
     },
     {
       "name": "Pastor Fred",
-      "count": 383
+      "count": 386
     },
     {
       "name": "Steven Kelly",
-      "count": 375
+      "count": 383
+    },
+    {
+      "name": "(Edward) DishonoredSkull",
+      "count": 288
     },
     {
       "name": "wisp",
       "count": 286
-    },
-    {
-      "name": "(Edward) DishonoredSkull",
-      "count": 280
     },
     {
       "name": "Devi",
@@ -162,25 +162,25 @@
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 234
+      "count": 243
     },
     {
       "name": "Jad Fuhr",
-      "count": 209
+      "count": 213
     },
     {
       "name": "Naoise",
       "count": 187
     },
     {
-      "name": "akaryano (Ryan)",
-      "count": 162
+      "name": "Scaldy Panda (Emily)",
+      "count": 168
     }
   ],
   "spotlight_mentions": [],
   "keyword_buckets": {
     "panic_deadline": {
-      "count": 172,
+      "count": 177,
       "samples": [
         {
           "author": "Pastor Fred",
@@ -290,7 +290,7 @@
       ]
     },
     "noel_mentions": {
-      "count": 473,
+      "count": 480,
       "samples": [
         {
           "author": "Jemstone",
@@ -400,7 +400,7 @@
       ]
     },
     "phil_mentions": {
-      "count": 598,
+      "count": 602,
       "samples": [
         {
           "author": "Zoë",
@@ -510,7 +510,7 @@
       ]
     },
     "dark_humor": {
-      "count": 64,
+      "count": 65,
       "samples": [
         {
           "author": "Sharkbirb (Kieran)",
@@ -840,7 +840,7 @@
       ]
     },
     "classic_excuses": {
-      "count": 2,
+      "count": 3,
       "samples": [
         {
           "author": "[Nick] colocota",
@@ -855,11 +855,18 @@
           "timestamp": "2024-09-18T11:07:44.934000+00:00",
           "channel": "game-dev-assignments",
           "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1285920191661871125"
+        },
+        {
+          "author": "Dunnesparce [Stephen]",
+          "content": "For Lab 8 btw, I thought it was due today",
+          "timestamp": "2026-03-20T12:48:01.893000+00:00",
+          "channel": "cloud",
+          "jump_url": "https://discord.com/channels/976854702278975529/1461312052571275274/1484533978965737503"
         }
       ]
     },
     "swear_words": {
-      "count": 4161,
+      "count": 4214,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -1009,7 +1016,7 @@
       ]
     },
     "ai_mentions": {
-      "count": 31,
+      "count": 32,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -1229,7 +1236,7 @@
       ]
     },
     "party_time": {
-      "count": 719,
+      "count": 723,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -1339,7 +1346,7 @@
       ]
     },
     "drink_mentions": {
-      "count": 498,
+      "count": 503,
       "samples": [
         {
           "author": "wisp",
@@ -1560,39 +1567,39 @@
     }
   },
   "hourly_activity": {
-    "0": 1899,
-    "1": 727,
-    "2": 386,
+    "0": 1900,
+    "1": 732,
+    "2": 387,
     "3": 129,
     "4": 85,
     "5": 117,
     "6": 86,
-    "7": 576,
-    "8": 1178,
-    "9": 1418,
-    "10": 2165,
-    "11": 2488,
-    "12": 3599,
-    "13": 3069,
-    "14": 3208,
-    "15": 3416,
-    "16": 3569,
-    "17": 3880,
-    "18": 3295,
-    "19": 3479,
-    "20": 2885,
-    "21": 3392,
-    "22": 2714,
-    "23": 2537
+    "7": 579,
+    "8": 1186,
+    "9": 1421,
+    "10": 2195,
+    "11": 2581,
+    "12": 3658,
+    "13": 3104,
+    "14": 3273,
+    "15": 3452,
+    "16": 3600,
+    "17": 3887,
+    "18": 3306,
+    "19": 3502,
+    "20": 2906,
+    "21": 3421,
+    "22": 2726,
+    "23": 2542
   },
   "weekday_activity": {
-    "Monday": 7362,
-    "Tuesday": 8157,
-    "Wednesday": 7744,
-    "Thursday": 9085,
-    "Friday": 8244,
-    "Saturday": 3456,
-    "Sunday": 6249
+    "Monday": 7377,
+    "Tuesday": 8205,
+    "Wednesday": 7822,
+    "Thursday": 9187,
+    "Friday": 8408,
+    "Saturday": 3501,
+    "Sunday": 6275
   },
   "monthly_activity": {
     "2022-09": 2453,
@@ -1635,21 +1642,21 @@
     "2025-10": 886,
     "2025-11": 1402,
     "2025-12": 1093,
-    "2026-01": 1395,
-    "2026-02": 314,
-    "2026-03": 434,
-    "2026-04": 879
+    "2026-01": 1537,
+    "2026-02": 434,
+    "2026-03": 566,
+    "2026-04": 963
   },
   "midnight_zone": {
     "start": 1,
     "end": 6
   },
   "scrape_meta": {
-    "channels_scraped": 41,
+    "channels_scraped": 47,
     "channels_skipped": {
-      "missing_permissions": 9,
+      "missing_permissions": 3,
       "excluded_by_name": 8
     },
-    "duration_seconds": 540.95
+    "duration_seconds": 562.36
   }
 }
