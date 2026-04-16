@@ -87,6 +87,41 @@ QUESTION_RE     = re.compile(r"\?")
 SCRAPE_LOCK     = asyncio.Lock()
 
 
+def _build_keyword_matchers() -> dict[str, list[dict]]:
+    """Precompile keyword matchers for fast per-message checks."""
+    substring_ok = {
+        kw.strip().lower()
+        for kw in CONFIG.get("KEYWORD_SUBSTRING_MATCH", ["shit"])
+        if isinstance(kw, str) and kw.strip()
+    }
+
+    matchers: dict[str, list[dict]] = {}
+    for bucket, keywords in CONFIG["KEYWORD_BUCKETS"].items():
+        bucket_matchers: list[dict] = []
+        for kw in keywords:
+            if not isinstance(kw, str):
+                continue
+            norm_kw = kw.strip().lower()
+            if not norm_kw:
+                continue
+
+            if norm_kw in substring_ok:
+                bucket_matchers.append({"type": "substring", "value": norm_kw})
+                continue
+
+            escaped = re.escape(norm_kw).replace(r"\ ", r"\s+")
+            # Default behavior: match only as a whole token/phrase (word boundaries).
+            pattern = re.compile(rf"(?<![a-z0-9']){escaped}(?![a-z0-9'])", re.IGNORECASE)
+            bucket_matchers.append({"type": "regex", "value": pattern})
+
+        matchers[bucket] = bucket_matchers
+
+    return matchers
+
+
+KEYWORD_MATCHERS = _build_keyword_matchers()
+
+
 def extract_emojis(text: str) -> list[str]:
     found = []
     # Unicode emojis
@@ -100,9 +135,27 @@ def extract_emojis(text: str) -> list[str]:
     return found
 
 
-def matches_bucket(text: str, keywords: list[str]) -> bool:
+def matches_bucket(text: str, bucket: str) -> bool:
+    """Check if text matches any keyword pattern in a bucket."""
     lower = text.lower()
-    return any(kw in lower for kw in keywords)
+    for matcher in KEYWORD_MATCHERS.get(bucket, []):
+        if matcher["type"] == "substring":
+            if matcher["value"] in lower:
+                return True
+            continue
+        if matcher["type"] == "regex" and matcher["value"].search(lower):
+            return True
+    return False
+
+
+def recency_weight(message_dt: datetime, start_dt: datetime, end_dt: datetime) -> float:
+    """Return a weight in [1.0, 2.0] so newer messages count more."""
+    total_window = (end_dt - start_dt).total_seconds()
+    if total_window <= 0:
+        return 1.0
+    elapsed = (message_dt - start_dt).total_seconds()
+    ratio = max(0.0, min(1.0, elapsed / total_window))
+    return 1.0 + ratio
 
 
 def safe_message_preview(msg: discord.Message, max_len: int = 200) -> dict:
@@ -205,11 +258,15 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
     monthly_counts      = defaultdict(int)    # "YYYY-MM" → count
     midnight_questions  = 0
     bucket_counts       = {k: 0 for k in CONFIG["KEYWORD_BUCKETS"]}
+    bucket_weighted     = {k: 0.0 for k in CONFIG["KEYWORD_BUCKETS"]}
     bucket_samples      = {k: [] for k in CONFIG["KEYWORD_BUCKETS"]}
     mention_counts      = defaultdict(int)    # member_id → count (who got mentioned)
 
     channels_to_scrape, skipped_channels = _classify_channels(guild)
     log.info(f"Channels to scrape: {[c.name for c in channels_to_scrape]}")
+
+    range_start_dt = DATE_FROM or TZ.localize(datetime(2000, 1, 1))
+    range_end_dt = DATE_TO or datetime.now(TZ)
 
     for idx, channel in enumerate(channels_to_scrape):
         log.info(f"  [{idx+1}/{len(channels_to_scrape)}] #{channel.name}")
@@ -227,7 +284,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
                 limit=None,
                 after=DATE_FROM,
                 before=DATE_TO,
-                oldest_first=True,
+                oldest_first=False,
             ):
                 if msg.author.bot:
                     continue
@@ -269,8 +326,9 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
 
                 # ── Keyword buckets ─────────────────────────────────────────
                 for bucket, keywords in CONFIG["KEYWORD_BUCKETS"].items():
-                    if matches_bucket(msg.content, keywords):
+                    if matches_bucket(msg.content, bucket):
                         bucket_counts[bucket] += 1
+                        bucket_weighted[bucket] += recency_weight(local_dt, range_start_dt, range_end_dt)
                         if len(bucket_samples[bucket]) < CONFIG["SAMPLE_MESSAGES"]:
                             bucket_samples[bucket].append(safe_message_preview(msg))
 
@@ -328,6 +386,7 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
         "keyword_buckets": {
             bucket: {
                 "count":   bucket_counts[bucket],
+                "weighted_count": round(bucket_weighted[bucket], 2),
                 "samples": bucket_samples[bucket],
             }
             for bucket in CONFIG["KEYWORD_BUCKETS"]

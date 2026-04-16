@@ -115,7 +115,8 @@
     .bucket-card.orange{border-left:3px solid var(--orange);}
     .bucket-card.blurple{border-left:3px solid var(--blurple);}
     .b-title{font-weight:700;font-size:var(--lg);margin-bottom:var(--sp2);}
-    .b-count{font-family:'Space Mono',monospace;font-size:var(--2xl);font-weight:700;color:var(--blurple);margin-bottom:var(--sp4);}
+    .b-count{font-family:'Space Mono',monospace;font-size:var(--2xl);font-weight:700;color:var(--blurple);margin-bottom:var(--sp1);}
+    .b-sub{font-size:var(--xs);color:var(--muted);margin-bottom:var(--sp4);font-family:'Space Mono',monospace;}
     .b-samples{display:flex;flex-direction:column;gap:var(--sp3);}
     .b-msg{background:rgba(0,0,0,.2);border-radius:var(--rl);padding:var(--sp3) var(--sp4);}
     .b-msg-head{display:flex;gap:var(--sp2);align-items:center;margin-bottom:var(--sp1);}
@@ -232,7 +233,7 @@
       <div class="chart-bars" id="hourly-bars"></div>
       <div class="chart-legend">
         <span><span class="legend-dot" style="background:var(--blurple)"></span>Normal hours</span>
-        <span><span class="legend-dot" style="background:var(--fuchsia)"></span>Midnight zone (2am–6am)</span>
+        <span><span class="legend-dot" style="background:var(--fuchsia)"></span><span id="midnight-legend">Midnight zone</span></span>
       </div>
     </div>
   </div>
@@ -350,15 +351,25 @@ function render(S) {
   document.getElementById("footer-meta").textContent =
     `Generated ${fmtTime(S.generated_at)} · Server Wrapped`;
 
+  const mzStart = S.midnight_zone?.start ?? 1;
+  const mzEnd   = S.midnight_zone?.end ?? 6;
+  document.getElementById("midnight-legend").textContent = `Midnight zone (${mzStart}:00-${mzEnd}:00)`;
+
+  const bucketEntries = Object.entries(S.keyword_buckets || {});
+  const sortedBuckets = bucketEntries.sort((a, b) => {
+    const aScore = a[1]?.weighted_count ?? a[1]?.count ?? 0;
+    const bScore = b[1]?.weighted_count ?? b[1]?.count ?? 0;
+    return bScore - aScore;
+  });
+  const topBucket = sortedBuckets[0];
+
   // Stats row
-  const noelBucket = S.keyword_buckets?.noel_mentions;
-  const darkBucket = S.keyword_buckets?.dark_humor;
   const statsData = [
     { val: fmtN(S.total_messages),       lbl:"Total Messages",           cls:"" },
     { val: fmtN(S.active_members),       lbl:"Active Members",           cls:"accent-green" },
-    { val: fmtN(S.midnight_questions),   lbl:`Midnight Zone Questions (${S.midnight_zone?.start}am–${S.midnight_zone?.end}am)`, cls:"accent-fuchsia" },
-    { val: fmtN(noelBucket?.count),      lbl:"Noel Mentions",            cls:"accent-yellow" },
-    { val: fmtN(darkBucket?.count),      lbl:"Dark Humour Messages",     cls:"accent-red" },
+    { val: fmtN(S.midnight_questions),   lbl:`Midnight Questions (${mzStart}:00-${mzEnd}:00)`, cls:"accent-fuchsia" },
+    { val: fmtN(S.scrape_meta?.channels_scraped), lbl:"Channels Scraped", cls:"accent-yellow" },
+    { val: topBucket ? fmtN(Math.round(topBucket[1]?.weighted_count ?? topBucket[1]?.count ?? 0)) : "—", lbl: topBucket ? `Hottest Topic: ${bucketStyle(topBucket[0]).label}` : "Hottest Topic", cls:"accent-red" },
   ];
   const statsRow = document.getElementById("stats-row");
   statsData.forEach(d => {
@@ -409,9 +420,12 @@ function render(S) {
   // Keyword buckets
   const bg = document.getElementById("bucket-grid");
   const buckets = S.keyword_buckets || {};
-  Object.entries(buckets).forEach(([key, data]) => {
+  sortedBuckets.forEach(([key, data]) => {
     const st = bucketStyle(key);
-    const samples = (data.samples || []).slice(0,3);
+    const samples = [...(data.samples || [])]
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+      .slice(0,3);
+    const weighted = data.weighted_count ?? data.count;
     const samplesHtml = samples.map(m => `
       <div class="b-msg">
         <div class="b-msg-head">
@@ -424,7 +438,8 @@ function render(S) {
 
       bg.innerHTML += `<div class="bucket-card ${esc(st.color)}">
         <div class="b-title">${esc(st.icon)} ${esc(st.label)}</div>
-      <div class="b-count">${fmtN(data.count)}</div>
+      <div class="b-count">${fmtN(Math.round(weighted))}</div>
+      <div class="b-sub">raw: ${fmtN(data.count)} · recent-weighted: ${fmtN(weighted)}</div>
       ${samplesHtml ? `<div class="b-samples">${samplesHtml}</div>` : ""}
     </div>`;
   });
@@ -435,8 +450,6 @@ function render(S) {
   // Hourly chart
   const hb = document.getElementById("hourly-bars");
   const hourly = S.hourly_activity || {};
-  const mzStart = S.midnight_zone?.start ?? 2;
-  const mzEnd   = S.midnight_zone?.end ?? 6;
   const maxH = Math.max(...Object.values(hourly), 1);
   for (let h=0; h<24; h++) {
     const count = hourly[h] || 0;

@@ -36,6 +36,13 @@ CONFIG = {
     # ── KEYWORD BUCKETS ───────────────────────────────────────────
     # Each bucket gets its own counter + example messages on the recap page
     # Keys become section titles (formatted automatically)
+    # Matching is whole-word/phrase by default (to avoid false positives).
+    # Add terms to KEYWORD_SUBSTRING_MATCH below to match them inside larger words.
+    "KEYWORD_SUBSTRING_MATCH": [
+        "shit",     # Acceptable inside: bullshit, shitty, etc.
+        " ass ",    # Match 'ass' with spaces to avoid class, pass, mass, etc.
+    ],
+
     "KEYWORD_BUCKETS": {
 
         "panic_deadline": [
