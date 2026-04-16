@@ -11,7 +11,7 @@ CONFIG = {
     "CHANNEL_IDS": [],
 
     # Channels to always skip (by name fragment, lowercase)
-    "EXCLUDE_CHANNELS": ["rules", "welcome", "bot-commands", "hello-there", "test", "log", "stuff", "transcripts", "roles", "who-are-you", "ticket-creation"],
+    "EXCLUDE_CHANNELS": ["counting", "rules", "welcome", "bot-commands", "hello-there", "test", "log", "stuff", "transcripts", "roles", "who-are-you", "ticket-creation"],
 
     # Date range to analyse (ISO format "YYYY-MM-DD", or None for no limit)
     "DATE_FROM": "2022-09-01",
