@@ -368,7 +368,6 @@ function render(S) {
     { val: fmtN(S.total_messages),       lbl:"Total Messages",           cls:"" },
     { val: fmtN(S.active_members),       lbl:"Active Members",           cls:"accent-green" },
     { val: fmtN(S.midnight_questions),   lbl:`Midnight Questions (${mzStart}:00-${mzEnd}:00)`, cls:"accent-fuchsia" },
-    { val: fmtN(S.scrape_meta?.channels_scraped), lbl:"Channels Scraped", cls:"accent-yellow" },
     { val: topBucket ? fmtN(Math.round(topBucket[1]?.weighted_count ?? topBucket[1]?.count ?? 0)) : "—", lbl: topBucket ? `Hottest Topic: ${bucketStyle(topBucket[0]).label}` : "Hottest Topic", cls:"accent-red" },
   ];
   const statsRow = document.getElementById("stats-row");
@@ -477,12 +476,6 @@ function render(S) {
     </div>`;
   });
 
-  if (S.scrape_meta?.duration_seconds) {
-    statsRow.innerHTML += `<div class="stat-card">
-      <div class="stat-val">${fmtN(Math.round(S.scrape_meta.duration_seconds))}s</div>
-      <div class="stat-lbl">Scrape Duration</div>
-    </div>`;
-  }
   const monthly = S.monthly_activity || {};
   const months = Object.entries(monthly).sort(([a],[b])=>a.localeCompare(b));
   const maxM = Math.max(...months.map(([,v])=>v), 1);
