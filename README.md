@@ -62,6 +62,7 @@ In Discord, type:
 ```
 !wrapped status   ← see which channels will be scraped
 !wrapped          ← full scrape (can take 5–15 mins for large servers)
+!wrapped vote     ← open the interactive voting panel
 !wrapped vote categories  ← list configured vote buckets
 !wrapped vote <category> @person  ← cast a vote for that category
 !wrapped vote results     ← see current winners

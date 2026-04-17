@@ -289,6 +289,131 @@ def build_spotlight_mentions(mention_counts: dict[str, int]) -> list[dict]:
     return spotlight
 
 
+def _vote_categories_for_menu() -> list[discord.SelectOption]:
+    options: list[discord.SelectOption] = []
+    for key, meta in list(VOTE_CATEGORIES.items())[:25]:
+        options.append(
+            discord.SelectOption(
+                label=(meta.get("label") or key.replace("_", " ").title())[:100],
+                value=key,
+                emoji=meta.get("emoji") or "🗳️",
+                description=(meta.get("description") or "")[:100] or None,
+            )
+        )
+    return options
+
+
+class VotePanelView(discord.ui.View):
+    def __init__(self, guild: discord.Guild):
+        super().__init__(timeout=900)
+        self.guild = guild
+        self.selected_category: str | None = None
+        self.selected_target: discord.abc.User | None = None
+
+        self.category_select = VoteCategorySelect()
+        self.person_select = VotePersonSelect()
+        self.submit_button = VoteSubmitButton()
+
+        self.add_item(self.category_select)
+        self.add_item(self.person_select)
+        self.add_item(self.submit_button)
+
+    def summary_text(self) -> str:
+        category_text = "None selected"
+        if self.selected_category and self.selected_category in VOTE_CATEGORIES:
+            category_text = VOTE_CATEGORIES[self.selected_category]["label"]
+
+        person_text = "None selected"
+        if self.selected_target is not None:
+            person_text = getattr(self.selected_target, "display_name", None) or getattr(self.selected_target, "name", "Unknown")
+
+        return (
+            "🗳️ **Voting panel**\n"
+            "Pick a category and a person, then press **Submit vote**.\n\n"
+            f"**Category:** {category_text}\n"
+            f"**Person:** {person_text}"
+        )
+
+    async def submit_vote(self, interaction: discord.Interaction) -> None:
+        if not self.selected_category:
+            await interaction.response.send_message("Choose a category first.", ephemeral=True)
+            return
+
+        if self.selected_target is None:
+            await interaction.response.send_message("Choose a person first.", ephemeral=True)
+            return
+
+        if interaction.guild is None:
+            await interaction.response.send_message("Voting only works in a server.", ephemeral=True)
+            return
+
+        target_member = interaction.guild.get_member(self.selected_target.id)
+        if target_member is None:
+            await interaction.response.send_message("That person is not in this server.", ephemeral=True)
+            return
+
+        confirmation = await _save_vote(interaction.guild, interaction.user, self.selected_category, target_member)
+        await interaction.response.send_message(confirmation, ephemeral=True)
+
+        try:
+            await interaction.message.edit(content=self.summary_text(), view=self)
+        except Exception:
+            pass
+
+
+class VoteCategorySelect(discord.ui.Select):
+    def __init__(self):
+        options = _vote_categories_for_menu()
+        placeholder = "Choose a category"
+        if not options:
+            options = [discord.SelectOption(label="No categories configured", value="none")]
+            placeholder = "No categories configured"
+
+        super().__init__(
+            placeholder=placeholder,
+            min_values=1,
+            max_values=1,
+            options=options,
+            row=0,
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+        view = self.view
+        if not isinstance(view, VotePanelView):
+            return
+
+        if self.values[0] == "none":
+            await interaction.response.defer()
+            return
+
+        view.selected_category = self.values[0]
+        await interaction.response.edit_message(content=view.summary_text(), view=view)
+
+
+class VotePersonSelect(discord.ui.UserSelect):
+    def __init__(self):
+        super().__init__(placeholder="Choose a person", min_values=1, max_values=1, row=1)
+
+    async def callback(self, interaction: discord.Interaction):
+        view = self.view
+        if not isinstance(view, VotePanelView):
+            return
+
+        view.selected_target = self.values[0]
+        await interaction.response.edit_message(content=view.summary_text(), view=view)
+
+
+class VoteSubmitButton(discord.ui.Button):
+    def __init__(self):
+        super().__init__(label="Submit vote", style=discord.ButtonStyle.primary, emoji="✅", row=2)
+
+    async def callback(self, interaction: discord.Interaction):
+        view = self.view
+        if not isinstance(view, VotePanelView):
+            return
+        await view.submit_vote(interaction)
+
+
 def _empty_vote_store() -> dict:
     return {"guilds": {}}
 
@@ -421,6 +546,41 @@ def _write_current_vote_results_to_stats(guild: discord.Guild) -> str | None:
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
     return json.dumps(stats, ensure_ascii=False, indent=2)
+
+
+async def _save_vote(
+    guild: discord.Guild,
+    voter: discord.abc.User,
+    category_key: str,
+    target_member: discord.Member,
+) -> str:
+    store = load_vote_store()
+    guild_state = _get_guild_vote_state(store, guild.id)
+    ballots = guild_state["ballots"].setdefault(category_key, {})
+    ballots[str(voter.id)] = _member_vote_payload(target_member)
+    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save_vote_store(store)
+
+    await push_file_via_api(
+        "web/votes.json",
+        json.dumps(store, ensure_ascii=False, indent=2),
+        "chore: update wrapped votes",
+        "✅ Vote tally saved to GitHub.",
+    )
+
+    stats_json = _write_current_vote_results_to_stats(guild)
+    if stats_json:
+        await push_stats_via_api(stats_json)
+
+    results = build_vote_results(guild, store)
+    current = next((item for item in results if item["key"] == category_key), None)
+    label = VOTE_CATEGORIES[category_key]["label"]
+    winner_text = ""
+    if current and current["winners"]:
+        winner = current["winners"][0]
+        winner_text = f" Current leader: **{winner['name']}** with {winner['votes']} votes."
+
+    return f"✅ Vote saved for **{label}**.{winner_text}"
 
 
 async def push_file_via_api(file_path: str, file_content: str, commit_message: str, success_message: str) -> str:
@@ -786,9 +946,9 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     await ctx.send(msg)
 
 
-@wrapped_cmd.group(name="vote", invoke_without_command=True)
+@wrapped_cmd.command(name="vote")
 @commands.guild_only()
-async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.Member = None):
+async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Member = None):
     """
     !wrapped vote <category> @member   → cast a vote
     !wrapped vote categories           → list available categories
@@ -799,11 +959,27 @@ async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.
         await ctx.send("⚠️ No vote categories are configured yet.")
         return
 
-    if not category:
-        await _send_vote_help(ctx)
+    if not action:
+        view = VotePanelView(ctx.guild)
+        await ctx.send(view.summary_text(), view=view)
         return
 
-    resolved = _resolve_vote_category(category)
+    action_key = _slugify(action)
+
+    if action_key in {"categories", "category", "list"}:
+        await vote_categories_cmd(ctx)
+        return
+
+    if action_key in {"results", "result", "winners"}:
+        await vote_results_cmd(ctx)
+        return
+
+    if action_key in {"menu", "panel", "gui"}:
+        view = VotePanelView(ctx.guild)
+        await ctx.send(view.summary_text(), view=view)
+        return
+
+    resolved = _resolve_vote_category(action)
     if not resolved:
         await ctx.send(
             "❌ Unknown vote category. Use `!wrapped vote categories` to see the available options."
@@ -811,39 +987,15 @@ async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.
         return
 
     if member is None:
-        await ctx.send("❌ Mention a server member to vote for, e.g. `!wrapped vote late @name`.")
+        view = VotePanelView(ctx.guild)
+        view.selected_category = resolved
+        await ctx.send(view.summary_text(), view=view)
         return
 
-    store = load_vote_store()
-    guild_state = _get_guild_vote_state(store, ctx.guild.id)
-    ballots = guild_state["ballots"].setdefault(resolved, {})
-    ballots[str(ctx.author.id)] = _member_vote_payload(member)
-    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
-    save_vote_store(store)
-
-    await push_file_via_api(
-        "web/votes.json",
-        json.dumps(store, ensure_ascii=False, indent=2),
-        "chore: update wrapped votes",
-        "✅ Vote tally saved to GitHub.",
-    )
-
-    stats_json = _write_current_vote_results_to_stats(ctx.guild)
-    if stats_json:
-        await push_stats_via_api(stats_json)
-
-    results = build_vote_results(ctx.guild, store)
-    current = next((item for item in results if item["key"] == resolved), None)
-    label = VOTE_CATEGORIES[resolved]["label"]
-    winner_text = ""
-    if current and current["winners"]:
-        winner = current["winners"][0]
-        winner_text = f" Current leader: **{winner['name']}** with {winner['votes']} votes."
-
-    await ctx.send(f"✅ Vote saved for **{label}**.{winner_text}")
+    confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
+    await ctx.send(confirmation)
 
 
-@vote_cmd.command(name="categories")
 @commands.guild_only()
 async def vote_categories_cmd(ctx: commands.Context):
     if not VOTE_CATEGORIES:
@@ -856,11 +1008,12 @@ async def vote_categories_cmd(ctx: commands.Context):
         label = meta.get("label") or key.replace("_", " ").title()
         desc = meta.get("description") or ""
         lines.append(f"• {emoji} `{key}` — {label}{f' · {desc}' if desc else ''}")
+    if len(VOTE_CATEGORIES) > 25:
+        lines.append("\n⚠️ The interactive menu only shows the first 25 categories. Use the text form for the rest.")
     lines.append("\nUse: `!wrapped vote <category_key> @member`")
     await ctx.send("\n".join(lines))
 
 
-@vote_cmd.command(name="results")
 @commands.guild_only()
 async def vote_results_cmd(ctx: commands.Context):
     store = load_vote_store()
@@ -888,7 +1041,8 @@ async def vote_results_cmd(ctx: commands.Context):
 
 async def _send_vote_help(ctx: commands.Context):
     lines = ["🗳️ **How voting works**"]
-    lines.append("• Cast a vote with `!wrapped vote <category_key> @member`")
+    lines.append("• Run `!wrapped vote` to open the interactive voting panel")
+    lines.append("• Or use `!wrapped vote <category_key> @member` for text voting")
     lines.append("• List categories with `!wrapped vote categories`")
     lines.append("• View current winners with `!wrapped vote results`")
     if VOTE_CATEGORIES:

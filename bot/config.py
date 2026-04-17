@@ -27,7 +27,7 @@ CONFIG = {
     ],
 
     # ── VOTING CATEGORIES ─────────────────────────────────────────
-    # Used by the !wrapped vote commands.
+    # Used by the !vote commands.
     # Key = command slug, value = display label + optional emoji/description.
     "VOTE_CATEGORIES": {
         "most_likely_to_be_late": {
@@ -54,6 +54,16 @@ CONFIG = {
             "label": "Most Likely to Be Drunk During a Group Meeting",
             "emoji": "🍻",
             "description": "Vote for the person who is most likely to be drunk during a group meeting.",
+        },
+        "most_likely_to_be_a_pedo": {
+            "label": "Most Likely to be a Pedo",
+            "emoji": "👶",
+            "description": "Vote for the person who is most likely to be a pedo. (idk man, Kyle Requested this one, ask him)",
+        },
+        "most_likely_to_be_AI": {
+            "label": "Most Likely to be an AI",
+            "emoji": "🤖",
+            "description": "Vote for the person who is most likely to be an AI.",
         },
     },
 
