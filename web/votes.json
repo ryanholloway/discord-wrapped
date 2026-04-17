@@ -46,6 +46,12 @@
             "target_name": "Oli",
             "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
             "voted_at": "2026-04-17T13:50:49.616691+00:00"
+          },
+          "429693409934966786": {
+            "target_id": "429693409934966786",
+            "target_name": "Steven Kelly",
+            "target_avatar": "https://cdn.discordapp.com/avatars/429693409934966786/fbc172bc9ad8d0c1d505e8d5d26480bb.png?size=1024",
+            "voted_at": "2026-04-17T13:53:18.685601+00:00"
           }
         },
         "most_likely_to_carry_the_group": {
@@ -169,7 +175,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T13:53:13.820846+00:00",
+      "updated_at": "2026-04-17T13:53:18.685614+00:00",
       "banned_voters": []
     }
   }
