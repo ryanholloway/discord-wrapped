@@ -34,6 +34,12 @@
             "target_name": "Jad Fuhr",
             "target_avatar": "https://cdn.discordapp.com/avatars/410147117793804288/be5fe37c2d9399d78f0ef8655083bdd9.png?size=1024",
             "voted_at": "2026-04-17T13:48:10.732477+00:00"
+          },
+          "1150706181883564062": {
+            "target_id": "734346157534478377",
+            "target_name": "Oli",
+            "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
+            "voted_at": "2026-04-17T13:50:49.616691+00:00"
           }
         },
         "most_likely_to_carry_the_group": {
@@ -121,7 +127,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T13:50:42.076878+00:00",
+      "updated_at": "2026-04-17T13:50:49.616703+00:00",
       "banned_voters": []
     }
   }
