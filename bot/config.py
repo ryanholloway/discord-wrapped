@@ -1,24 +1,13 @@
-# ╔══════════════════════════════════════════════════════════════╗
-# ║              SERVER WRAPPED — BOT CONFIGURATION             ║
-# ║  Edit everything in this file. Nothing else needs changing. ║
-# ╚══════════════════════════════════════════════════════════════╝
 
 CONFIG = {
 
-    # ── SERVER / CHANNEL SETTINGS ──────────────────────────────────
-    # Leave CHANNEL_IDS empty [] to scrape ALL channels
-    # Or add specific channel IDs as strings: ["123456789", "987654321"]
     "CHANNEL_IDS": [],
 
-    # Channels to always skip (by name fragment, lowercase)
     "EXCLUDE_CHANNELS": ["counting", "rules", "welcome", "bot-commands", "hello-there", "test", "log", "stuff", "transcripts", "roles", "who-are-you", "ticket-creation"],
 
-    # Date range to analyse (ISO format "YYYY-MM-DD", or None for no limit)
     "DATE_FROM": "2022-09-01",
-    "DATE_TO":   None,   # None = up to today
+    "DATE_TO":   None,
 
-    # ── PEOPLE TO SPOTLIGHT ────────────────────────────────────────
-    # These get their own mention counter on the recap page
     "SPOTLIGHT_NAMES": [
         "noel",
         "dr noel",
@@ -26,9 +15,6 @@ CONFIG = {
         "o'hara"
     ],
 
-    # ── VOTING CATEGORIES ─────────────────────────────────────────
-    # Used by the !vote commands.
-    # Key = command slug, value = display label + optional emoji/description.
     "VOTE_CATEGORIES": {
         "most_likely_to_be_late": {
             "label": "Most Likely to Be Late",
@@ -94,23 +80,25 @@ CONFIG = {
             "label": "Most Likely to Slime Out a Lecturer",
             "emoji": "🤢",
             "description": "Vote for the person who is most likely to slime out a lecturer.",
+        },
+        "most_likely_to_try_fuck_the_wrapped_discord_bot": {
+            "label": "Most Likely to Try to Fuck the Wrapped Discord Bot",
+            "emoji": "🍆",
+            "description": "Vote for the person who is most likely to try to fuck the Wrapped Discord bot.",
+        },
+        "most_likely_to_cry_during_a_demo": {
+            "label": "Most Likely to Cry During a Demo",
+            "emoji": "😢",
+            "description": "Vote for the person who is most likely to cry during a demo.",
         }
     },
 
-    # ── MIDNIGHT ZONE ─────────────────────────────────────────────
-    # Questions or messages sent in this hour range get counted separately
-    # Uses the server timezone (UTC by default — adjust TIMEZONE below)
-    "MIDNIGHT_ZONE_START": 1,   # 1am
-    "MIDNIGHT_ZONE_END":   6,   # 6am
+    "MIDNIGHT_ZONE_START": 1,
+    "MIDNIGHT_ZONE_END":   6,
     "TIMEZONE": "Europe/Dublin",
 
-    # ── KEYWORD BUCKETS ───────────────────────────────────────────
-    # Each bucket gets its own counter + example messages on the recap page
-    # Keys become section titles (formatted automatically)
-    # Matching is whole-word/phrase by default (to avoid false positives).
-    # Add terms to KEYWORD_SUBSTRING_MATCH below to match them inside larger words.
     "KEYWORD_SUBSTRING_MATCH": [
-        "shit",     # Acceptable inside: bullshit, shitty, etc.
+        "shit",
     ],
 
     "KEYWORD_BUCKETS": {
@@ -185,15 +173,11 @@ CONFIG = {
         ],
     },
 
-    # ── TOP N LIMITS ──────────────────────────────────────────────
     "TOP_SENDERS_COUNT":  10,
     "TOP_EMOJIS_COUNT":   10,
     "TOP_CHANNELS_COUNT": 10,
-    "SAMPLE_MESSAGES":    15,   # How many example messages to save per bucket
+    "SAMPLE_MESSAGES":    15,
 
-    # ── OUTPUT ────────────────────────────────────────────────────
-    # Path to write stats.json (relative to bot.py location)
-    # Point this at your web/ folder so Vercel picks it up automatically
     "OUTPUT_PATH": "../web/stats.json",
 
 }
