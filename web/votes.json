@@ -80,6 +80,12 @@
             "target_name": "Dylan",
             "target_avatar": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
             "voted_at": "2026-04-17T13:13:19.481635+00:00"
+          },
+          "619574267318763550": {
+            "target_id": "1150706181883564062",
+            "target_name": "C00286125 (Danny Delaney)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+            "voted_at": "2026-04-17T13:43:04.441476+00:00"
           }
         },
         "most_likely_to_have_a_breakdown": {
@@ -151,7 +157,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T13:42:37.536957+00:00",
+      "updated_at": "2026-04-17T13:43:04.441489+00:00",
       "banned_voters": []
     }
   }
