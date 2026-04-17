@@ -304,9 +304,10 @@ def _vote_categories_for_menu() -> list[discord.SelectOption]:
 
 
 class VotePanelView(discord.ui.View):
-    def __init__(self, guild: discord.Guild):
+    def __init__(self, guild: discord.Guild, owner_id: int):
         super().__init__(timeout=900)
         self.guild = guild
+        self.owner_id = owner_id
         self.selected_category: str | None = None
         self.selected_target: discord.abc.User | None = None
 
@@ -319,20 +320,17 @@ class VotePanelView(discord.ui.View):
         self.add_item(self.submit_button)
 
     def summary_text(self) -> str:
-        category_text = "None selected"
-        if self.selected_category and self.selected_category in VOTE_CATEGORIES:
-            category_text = VOTE_CATEGORIES[self.selected_category]["label"]
-
-        person_text = "None selected"
-        if self.selected_target is not None:
-            person_text = getattr(self.selected_target, "display_name", None) or getattr(self.selected_target, "name", "Unknown")
-
         return (
             "🗳️ **Voting panel**\n"
-            "Pick a category and a person, then press **Submit vote**.\n\n"
-            f"**Category:** {category_text}\n"
-            f"**Person:** {person_text}"
+            "Pick a category and a person, then press **Submit vote**.\n"
+            "Your selections and confirmation are private."
         )
+
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id != self.owner_id:
+            await interaction.response.send_message("This voting panel belongs to someone else.", ephemeral=True)
+            return False
+        return True
 
     async def submit_vote(self, interaction: discord.Interaction) -> None:
         if not self.selected_category:
@@ -354,11 +352,6 @@ class VotePanelView(discord.ui.View):
 
         confirmation = await _save_vote(interaction.guild, interaction.user, self.selected_category, target_member)
         await interaction.response.send_message(confirmation, ephemeral=True)
-
-        try:
-            await interaction.message.edit(content=self.summary_text(), view=self)
-        except Exception:
-            pass
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -383,11 +376,12 @@ class VoteCategorySelect(discord.ui.Select):
             return
 
         if self.values[0] == "none":
-            await interaction.response.defer()
+            await interaction.response.send_message("No categories are configured.", ephemeral=True)
             return
 
         view.selected_category = self.values[0]
-        await interaction.response.edit_message(content=view.summary_text(), view=view)
+        label = VOTE_CATEGORIES.get(view.selected_category, {}).get("label") or "category"
+        await interaction.response.send_message(f"Selected category: **{label}**", ephemeral=True)
 
 
 class VotePersonSelect(discord.ui.UserSelect):
@@ -400,7 +394,8 @@ class VotePersonSelect(discord.ui.UserSelect):
             return
 
         view.selected_target = self.values[0]
-        await interaction.response.edit_message(content=view.summary_text(), view=view)
+        selected_name = getattr(view.selected_target, "display_name", None) or getattr(view.selected_target, "name", "Unknown")
+        await interaction.response.send_message(f"Selected person: **{selected_name}**", ephemeral=True)
 
 
 class VoteSubmitButton(discord.ui.Button):
@@ -581,6 +576,16 @@ async def _save_vote(
         winner_text = f" Current leader: **{winner['name']}** with {winner['votes']} votes."
 
     return f"✅ Vote saved for **{label}**.{winner_text}"
+
+
+async def _send_private_vote_ack(ctx: commands.Context, message: str) -> None:
+    try:
+        await ctx.author.send(message)
+    except discord.Forbidden:
+        await ctx.send(
+            "✅ Vote saved. I couldn't DM you, so this confirmation will disappear shortly.",
+            delete_after=8,
+        )
 
 
 async def push_file_via_api(file_path: str, file_content: str, commit_message: str, success_message: str) -> str:
@@ -960,7 +965,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if not action:
-        view = VotePanelView(ctx.guild)
+        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
         await ctx.send(view.summary_text(), view=view)
         return
 
@@ -975,7 +980,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if action_key in {"menu", "panel", "gui"}:
-        view = VotePanelView(ctx.guild)
+        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
         await ctx.send(view.summary_text(), view=view)
         return
 
@@ -987,13 +992,15 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if member is None:
-        view = VotePanelView(ctx.guild)
+        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
         view.selected_category = resolved
         await ctx.send(view.summary_text(), view=view)
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
-    await ctx.send(confirmation)
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await ctx.message.delete()
+    await _send_private_vote_ack(ctx, confirmation)
 
 
 @commands.guild_only()
@@ -1043,6 +1050,7 @@ async def _send_vote_help(ctx: commands.Context):
     lines = ["🗳️ **How voting works**"]
     lines.append("• Run `!wrapped vote` to open the interactive voting panel")
     lines.append("• Or use `!wrapped vote <category_key> @member` for text voting")
+    lines.append("• Vote choices and confirmations are private")
     lines.append("• List categories with `!wrapped vote categories`")
     lines.append("• View current winners with `!wrapped vote results`")
     if VOTE_CATEGORIES:
