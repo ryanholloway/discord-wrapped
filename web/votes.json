@@ -556,6 +556,12 @@
             "target_name": "dan the man",
             "target_avatar": "https://cdn.discordapp.com/avatars/762285672656273418/ad5820e5019b00367cfba5df0774b249.png?size=1024",
             "voted_at": "2026-04-17T14:13:14.765890+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "1150706181883564062",
+            "target_name": "C00286125 (Danny Delaney)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+            "voted_at": "2026-04-17T14:48:38.245253+00:00"
           }
         },
         "most_likely_to_cry_during_a_demo": {
@@ -585,7 +591,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:48:27.876818+00:00",
+      "updated_at": "2026-04-17T14:48:38.245263+00:00",
       "banned_voters": []
     }
   }
