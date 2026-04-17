@@ -33,9 +33,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/392945874076172289/9e60f0402dde62641064697bf679e4e2.png?size=1024",
             "voted_at": "2026-04-17T13:46:23.473596+00:00"
           }
+        },
+        "most_likely_to_be_drunk_during_a_group_meeting": {
+          "619574267318763550": {
+            "target_id": "273590153606332418",
+            "target_name": "Dylan",
+            "target_avatar": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
+            "voted_at": "2026-04-17T13:46:33.854685+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T13:46:23.473607+00:00",
+      "updated_at": "2026-04-17T13:46:33.854698+00:00",
       "banned_voters": []
     }
   }
