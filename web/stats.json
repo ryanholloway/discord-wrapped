@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-04-16T14:59:16.286229+01:00",
+  "generated_at": "2026-04-17T12:22:47.702902+01:00",
   "server_name": "Game Dev & IDAD at SETU",
   "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2022-09-01",
-    "to": "2026-04-16"
+    "to": "2026-04-17"
   },
-  "total_messages": 43512,
+  "total_messages": 43673,
   "active_members": 77,
   "midnight_questions": 136,
   "top_senders": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 3267
+      "count": 3287
     },
     {
       "name": "Steven Kelly",
-      "count": 3122
+      "count": 3164
     },
     {
       "name": "wisp",
@@ -24,11 +24,11 @@
     },
     {
       "name": "Pastor Fred",
-      "count": 2505
+      "count": 2515
     },
     {
       "name": "(Edward) DishonoredSkull",
-      "count": 2005
+      "count": 2023
     },
     {
       "name": "Devi",
@@ -36,15 +36,15 @@
     },
     {
       "name": "Adam Prendergast-Ryan",
-      "count": 1841
+      "count": 1843
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 1589
+      "count": 1599
     },
     {
       "name": "BlueBaron(Jordan)",
-      "count": 1391
+      "count": 1395
     },
     {
       "name": "TheDanox (Daniel M)",
@@ -54,15 +54,15 @@
   "top_emojis": [
     {
       "emoji": "❤️",
-      "count": 1374
+      "count": 1383
     },
     {
       "emoji": "😭",
-      "count": 1212
+      "count": 1223
     },
     {
       "emoji": "😂",
-      "count": 734
+      "count": 739
     },
     {
       "emoji": "👍",
@@ -70,11 +70,11 @@
     },
     {
       "emoji": "💀",
-      "count": 474
+      "count": 475
     },
     {
       "emoji": "🤣",
-      "count": 431
+      "count": 434
     },
     {
       "emoji": "🟨",
@@ -82,7 +82,7 @@
     },
     {
       "emoji": "🔥",
-      "count": 330
+      "count": 334
     },
     {
       "emoji": "🇼",
@@ -90,17 +90,17 @@
     },
     {
       "emoji": "🙏",
-      "count": 248
+      "count": 255
     }
   ],
   "top_channels": [
     {
       "name": "general",
-      "count": 13182
+      "count": 13202
     },
     {
       "name": "game-dev-class-info",
-      "count": 8882
+      "count": 8914
     },
     {
       "name": "game-dev-assignments",
@@ -108,7 +108,7 @@
     },
     {
       "name": "video-games",
-      "count": 2921
+      "count": 2931
     },
     {
       "name": "vent",
@@ -138,19 +138,19 @@
   "top_mentioned": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 584
+      "count": 587
     },
     {
       "name": "Pastor Fred",
-      "count": 386
+      "count": 390
     },
     {
       "name": "Steven Kelly",
-      "count": 383
+      "count": 387
     },
     {
       "name": "(Edward) DishonoredSkull",
-      "count": 287
+      "count": 290
     },
     {
       "name": "wisp",
@@ -162,7 +162,7 @@
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 243
+      "count": 245
     },
     {
       "name": "Jad Fuhr",
@@ -174,14 +174,14 @@
     },
     {
       "name": "Scaldy Panda (Emily)",
-      "count": 168
+      "count": 169
     }
   ],
   "spotlight_mentions": [],
   "keyword_buckets": {
     "panic_deadline": {
-      "count": 162,
-      "weighted_count": 228.59,
+      "count": 163,
+      "weighted_count": 230.55,
       "samples": [
         {
           "author": "Pastor Fred",
@@ -292,7 +292,7 @@
     },
     "noel_mentions": {
       "count": 375,
-      "weighted_count": 633.08,
+      "weighted_count": 632.9,
       "samples": [
         {
           "author": "Dunnesparce [Stephen]",
@@ -403,7 +403,7 @@
     },
     "phil_mentions": {
       "count": 417,
-      "weighted_count": 608.17,
+      "weighted_count": 608.04,
       "samples": [
         {
           "author": "Zoë",
@@ -514,7 +514,7 @@
     },
     "dark_humor": {
       "count": 29,
-      "weighted_count": 47.57,
+      "weighted_count": 47.55,
       "samples": [
         {
           "author": "akaryano (Ryan)",
@@ -824,8 +824,8 @@
       ]
     },
     "swear_words": {
-      "count": 3516,
-      "weighted_count": 4927.58,
+      "count": 3531,
+      "weighted_count": 4956.62,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -977,7 +977,7 @@
     },
     "ai_mentions": {
       "count": 30,
-      "weighted_count": 49.31,
+      "weighted_count": 49.3,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -1088,7 +1088,7 @@
     },
     "stress_indicators": {
       "count": 65,
-      "weighted_count": 94.06,
+      "weighted_count": 94.04,
       "samples": [
         {
           "author": "MEABEAB(Alex)",
@@ -1198,8 +1198,8 @@
       ]
     },
     "party_time": {
-      "count": 42,
-      "weighted_count": 51.46,
+      "count": 43,
+      "weighted_count": 53.45,
       "samples": [
         {
           "author": "BlueBaron(Jordan)",
@@ -1420,8 +1420,8 @@
       ]
     },
     "gaming_references": {
-      "count": 185,
-      "weighted_count": 247.08,
+      "count": 186,
+      "weighted_count": 249.04,
       "samples": [
         {
           "author": "Aqua",
@@ -1532,8 +1532,8 @@
     }
   },
   "hourly_activity": {
-    "0": 1592,
-    "1": 689,
+    "0": 1604,
+    "1": 691,
     "2": 275,
     "3": 124,
     "4": 78,
@@ -1541,28 +1541,28 @@
     "6": 83,
     "7": 444,
     "8": 883,
-    "9": 1206,
-    "10": 1911,
-    "11": 2243,
+    "9": 1210,
+    "10": 1915,
+    "11": 2255,
     "12": 2784,
     "13": 2830,
     "14": 2909,
-    "15": 3065,
-    "16": 3000,
+    "15": 3076,
+    "16": 3002,
     "17": 2976,
     "18": 2926,
-    "19": 3041,
-    "20": 2732,
-    "21": 2769,
-    "22": 2539,
-    "23": 2297
+    "19": 3044,
+    "20": 2762,
+    "21": 2803,
+    "22": 2560,
+    "23": 2323
   },
   "weekday_activity": {
     "Monday": 6712,
     "Tuesday": 7505,
     "Wednesday": 7065,
-    "Thursday": 8004,
-    "Friday": 6941,
+    "Thursday": 8130,
+    "Friday": 6976,
     "Saturday": 2697,
     "Sunday": 4588
   },
@@ -1610,7 +1610,7 @@
     "2026-01": 1493,
     "2026-02": 434,
     "2026-03": 566,
-    "2026-04": 969
+    "2026-04": 1130
   },
   "midnight_zone": {
     "start": 1,
@@ -1622,6 +1622,6 @@
       "missing_permissions": 3,
       "excluded_by_name": 9
     },
-    "duration_seconds": 479.77
+    "duration_seconds": 464.14
   }
 }
