@@ -524,6 +524,12 @@
             "target_name": "BlueBaron(Jordan)",
             "target_avatar": "https://cdn.discordapp.com/avatars/865668325508644894/bcdfc7a2e8658e41f105f149b59f23f8.png?size=1024",
             "voted_at": "2026-04-17T14:13:06.055130+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "474630870146220083",
+            "target_name": "Pastor Fred",
+            "target_avatar": "https://cdn.discordapp.com/avatars/474630870146220083/3ba76069d442230d8efc16f888c0a99d.png?size=1024",
+            "voted_at": "2026-04-17T14:48:27.876805+00:00"
           }
         },
         "most_likely_to_try_fuck_the_wrapped_discord_bot": {
@@ -579,7 +585,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:44:32.362934+00:00",
+      "updated_at": "2026-04-17T14:48:27.876818+00:00",
       "banned_voters": []
     }
   }
