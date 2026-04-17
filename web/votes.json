@@ -150,6 +150,12 @@
             "target_name": "akaryano (Ryan)",
             "target_avatar": "https://cdn.discordapp.com/avatars/619574267318763550/5fecdde76018e2754df919e53635c611.png?size=1024",
             "voted_at": "2026-04-17T13:51:32.478653+00:00"
+          },
+          "429693409934966786": {
+            "target_id": "619574267318763550",
+            "target_name": "akaryano (Ryan)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/619574267318763550/5fecdde76018e2754df919e53635c611.png?size=1024",
+            "voted_at": "2026-04-17T13:56:34.021284+00:00"
           }
         },
         "most_likely_to_be_ai": {
@@ -233,7 +239,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T13:56:21.094478+00:00",
+      "updated_at": "2026-04-17T13:56:34.021294+00:00",
       "banned_voters": []
     }
   }
