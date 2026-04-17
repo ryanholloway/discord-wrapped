@@ -420,10 +420,16 @@
             "target_name": "MonikaNusi",
             "target_avatar": "https://cdn.discordapp.com/avatars/353509000903393280/cb0916b127880edde506cd0452a351ff.png?size=1024",
             "voted_at": "2026-04-17T14:04:42.918326+00:00"
+          },
+          "369893020658696194": {
+            "target_id": "369893020658696194",
+            "target_name": "CraicMeister (Kyle D)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+            "voted_at": "2026-04-17T14:07:21.645324+00:00"
           }
         }
       },
-      "updated_at": "2026-04-17T14:07:18.055472+00:00",
+      "updated_at": "2026-04-17T14:07:21.645336+00:00",
       "banned_voters": []
     }
   }
