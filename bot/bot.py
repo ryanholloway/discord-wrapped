@@ -46,6 +46,7 @@ if not TOKEN:
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_REPO = os.getenv("GITHUB_REPO")
 VOTES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "web", "votes.json"))
+WATCH_USER_ID = 1150706181883564062
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -304,10 +305,9 @@ def _vote_categories_for_menu() -> list[discord.SelectOption]:
 
 
 class VotePanelView(discord.ui.View):
-    def __init__(self, guild: discord.Guild, owner_id: int):
+    def __init__(self, guild: discord.Guild):
         super().__init__(timeout=900)
         self.guild = guild
-        self.owner_id = owner_id
         self.selected_category: str | None = None
         self.selected_target: discord.abc.User | None = None
         self.panel_message: discord.Message | None = None
@@ -320,18 +320,20 @@ class VotePanelView(discord.ui.View):
         self.add_item(self.person_select)
         self.add_item(self.submit_button)
 
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        await _notify_watch_user(
+            actor=interaction.user,
+            action="vote_panel_interaction",
+            guild=interaction.guild,
+        )
+        return True
+
     def summary_text(self) -> str:
         return (
             "🗳️ **Voting panel**\n"
             "Pick a category and a person, then press **Submit vote**.\n"
             "Your selections and confirmation are private."
         )
-
-    async def interaction_check(self, interaction: discord.Interaction) -> bool:
-        if interaction.user.id != self.owner_id:
-            await interaction.response.send_message("This voting panel belongs to someone else.", ephemeral=True)
-            return False
-        return True
 
     async def submit_vote(self, interaction: discord.Interaction) -> None:
         if not self.selected_category:
@@ -697,6 +699,25 @@ async def _send_watching_dm(ctx: commands.Context) -> None:
         await ctx.author.send("im watching 👀")
 
 
+async def _notify_watch_user(
+    actor: discord.abc.User,
+    action: str,
+    guild: discord.Guild | None,
+) -> None:
+    watch_user = bot.get_user(WATCH_USER_ID)
+    if watch_user is None:
+        with suppress(Exception):
+            watch_user = await bot.fetch_user(WATCH_USER_ID)
+    if watch_user is None:
+        return
+
+    guild_name = guild.name if guild else "DM"
+    actor_name = getattr(actor, "display_name", None) or getattr(actor, "name", "Unknown")
+    message = f"Hey Danny, I am watching you. Be careful what you do."
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await watch_user.send(message)
+
+
 async def _delete_invoking_message(ctx: commands.Context) -> None:
     with suppress(discord.Forbidden, discord.HTTPException):
         await ctx.message.delete()
@@ -711,7 +732,7 @@ async def _respond_private_interaction(interaction: discord.Interaction, message
 
 
 async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category: str | None = None) -> bool:
-    view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
+    view = VotePanelView(ctx.guild)
     if preselected_category:
         view.selected_category = preselected_category
 
@@ -1022,6 +1043,15 @@ async def on_ready():
         type=discord.ActivityType.watching,
         name="your memories 👀"
     ))
+
+
+@bot.event
+async def on_command(ctx: commands.Context):
+    await _notify_watch_user(
+        actor=ctx.author,
+        action=f"command:{ctx.command.qualified_name if ctx.command else 'unknown'}",
+        guild=ctx.guild,
+    )
 
 
 @bot.group(name="wrapped", invoke_without_command=True)
