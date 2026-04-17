@@ -70,6 +70,31 @@ CONFIG = {
             "emoji": "🏝️",
             "description": "Vote for the person who is most likely to go to Epstein's Island but for the Snorkeling and not the other stuff.",
         },
+        "most_likely_to_die_to_a_chatGPT_generated_message": {
+            "label": "Most Likely to Die to a ChatGPT-Generated Message",
+            "emoji": "💀",
+            "description": "Vote for the person who is most likely to die to a ChatGPT-generated message.",
+        },
+        "most_likely_to_be_caught_using_chatGPT_on_an_assignment": {
+            "label": "Most Likely to be Caught Using ChatGPT on an Assignment",
+            "emoji": "👀",
+            "description": "Vote for the person who is most likely to be caught using ChatGPT on an assignment.",
+        },
+        "most_likely_to_be_a_russian_spy": {
+            "label": "Most Likely to be a Russian Spy",
+            "emoji": "🇷🇺",
+            "description": "Vote for the person who is most likely to be a Russian spy.",
+        },
+        "most_likely_to_develop_a_crush_on_the_lecturer": {
+            "label": "Most Likely to Develop a Crush on the Lecturer",
+            "emoji": "😍",
+            "description": "Vote for the person who is most likely to develop a crush on the lecturer.",
+        },
+        "most_likely_to_slime_out_a_lecturer": {
+            "label": "Most Likely to Slime Out a Lecturer",
+            "emoji": "🤢",
+            "description": "Vote for the person who is most likely to slime out a lecturer.",
+        }
     },
 
     # ── MIDNIGHT ZONE ─────────────────────────────────────────────
