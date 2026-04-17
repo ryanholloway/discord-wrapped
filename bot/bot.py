@@ -559,6 +559,17 @@ async def _save_vote(
     store = load_vote_store()
     guild_state = _get_guild_vote_state(store, guild.id)
     ballots = guild_state["ballots"].setdefault(category_key, {})
+    voter_key = str(voter.id)
+    label = VOTE_CATEGORIES[category_key]["label"]
+
+    if voter_key in ballots:
+        existing_vote = ballots[voter_key]
+        existing_target = existing_vote.get("target_name") or "someone"
+        return (
+            f"⚠️ You already voted in **{label}** for **{existing_target}**. "
+            "Only one vote per person per category is allowed."
+        )
+
     ballots[str(voter.id)] = _member_vote_payload(target_member)
     guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
     save_vote_store(store)
@@ -576,7 +587,6 @@ async def _save_vote(
 
     results = build_vote_results(guild, store)
     current = next((item for item in results if item["key"] == category_key), None)
-    label = VOTE_CATEGORIES[category_key]["label"]
     winner_text = ""
     if current and current["winners"]:
         winner = current["winners"][0]
