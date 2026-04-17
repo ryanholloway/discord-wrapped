@@ -311,6 +311,7 @@ class VotePanelView(discord.ui.View):
         self.selected_category: str | None = None
         self.selected_target: discord.abc.User | None = None
         self.panel_message: discord.Message | None = None
+        self.temp_channel: discord.TextChannel | None = None
 
         self.category_select = VoteCategorySelect()
         self.person_select = VotePersonSelect()
@@ -355,12 +356,22 @@ class VotePanelView(discord.ui.View):
         if self.panel_message is not None:
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.panel_message.delete()
+
+        if self.temp_channel is not None:
+            await asyncio.sleep(2)
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await self.temp_channel.delete(reason="Wrapped vote submitted")
+
         self.stop()
 
     async def on_timeout(self) -> None:
         if self.panel_message is not None:
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.panel_message.delete()
+
+        if self.temp_channel is not None:
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await self.temp_channel.delete(reason="Wrapped vote panel expired")
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -732,12 +743,63 @@ async def _respond_private_interaction(interaction: discord.Interaction, message
 
 
 async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category: str | None = None) -> bool:
-    view = VotePanelView(ctx.guild)
+    guild = ctx.guild
+    if guild is None:
+        await ctx.send("❌ Voting panel can only be opened in a server.", delete_after=8)
+        return False
+
+    bot_member = guild.me or guild.get_member(bot.user.id)
+    if bot_member is None:
+        with suppress(discord.NotFound, discord.Forbidden, discord.HTTPException):
+            bot_member = await guild.fetch_member(bot.user.id)
+    if bot_member is None:
+        await ctx.send("❌ I couldn't resolve bot permissions in this server.", delete_after=8)
+        return False
+
+    channel_name = f"wrapped-vote-{_slugify(ctx.author.display_name)[:32]}-{str(ctx.author.id)[-4:]}"
+    overwrites = {
+        guild.default_role: discord.PermissionOverwrite(view_channel=False),
+        ctx.author: discord.PermissionOverwrite(
+            view_channel=True,
+            send_messages=True,
+            read_message_history=True,
+        ),
+        bot_member: discord.PermissionOverwrite(
+            view_channel=True,
+            send_messages=True,
+            read_message_history=True,
+            manage_channels=True,
+            manage_messages=True,
+        ),
+    }
+
+    parent_category = ctx.channel.category if isinstance(ctx.channel, discord.TextChannel) else None
+    try:
+        temp_channel = await guild.create_text_channel(
+            name=channel_name,
+            overwrites=overwrites,
+            category=parent_category,
+            topic=f"Temporary wrapped vote channel for {ctx.author} ({ctx.author.id})",
+            reason="Wrapped vote temporary private channel",
+        )
+    except discord.Forbidden:
+        await ctx.send("❌ I need Manage Channels permission to create the temporary vote channel.", delete_after=10)
+        return False
+    except discord.HTTPException:
+        await ctx.send("❌ I couldn't create the temporary vote channel right now.", delete_after=10)
+        return False
+
+    view = VotePanelView(guild)
     if preselected_category:
         view.selected_category = preselected_category
 
-    panel_message = await ctx.send(view.summary_text(), view=view)
+    panel_message = await temp_channel.send(view.summary_text(), view=view)
     view.panel_message = panel_message
+    view.temp_channel = temp_channel
+
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await temp_channel.send(f"{ctx.author.mention} this is your temporary private voting channel.")
+
     return True
 
 
