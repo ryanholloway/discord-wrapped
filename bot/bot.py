@@ -84,7 +84,41 @@ UNICODE_EMOJI_RE = re.compile(
 )
 CUSTOM_EMOJI_RE = re.compile(r"<a?:[a-zA-Z0-9_]+:\d+>")
 QUESTION_RE     = re.compile(r"\?")
+TOKEN_RE        = re.compile(r"[a-z0-9'-]+", re.IGNORECASE)
 SCRAPE_LOCK     = asyncio.Lock()
+
+SWEAR_WORDS = {
+    "fuck", "shit", "bitch", "asshole", "dick", "bastard", "slut",
+    "retard", "cunt", "fucker", "cock",
+}
+
+# Common ass-ending swear forms, including hyphenated variants.
+ASS_SWEAR_FORMS = {
+    "ass",
+    "badass", "bad-ass",
+    "smartass", "smart-ass",
+    "dumbass", "dumb-ass",
+    "jackass", "jack-ass",
+    "kickass", "kick-ass",
+    "hardass", "hard-ass",
+    "deadass", "dead-ass",
+    "realass", "real-ass",
+    "crazyass", "crazy-ass",
+    "oldass", "old-ass",
+    "lazyass", "lazy-ass",
+    "bigass", "big-ass",
+    "fatass", "fat-ass",
+    "uglyass", "ugly-ass",
+    "stupidass", "stupid-ass",
+    "shitass", "shit-ass",
+    "asshat", "asswipe", "assface", "assbag", "assclown", "asslick",
+}
+
+ASS_SWEAR_PREFIXES = {
+    "bad", "smart", "dumb", "jack", "kick", "hard", "dead", "real",
+    "crazy", "old", "lazy", "big", "fat", "ugly", "stupid", "shit",
+    "mad", "wild",
+}
 
 
 def _build_keyword_matchers() -> dict[str, list[dict]]:
@@ -135,8 +169,35 @@ def extract_emojis(text: str) -> list[str]:
     return found
 
 
+def contains_swear(text: str) -> bool:
+    """Return True if text contains a tracked swear term."""
+    lowered = text.lower().replace("’", "'")
+
+    for token in TOKEN_RE.findall(lowered):
+        clean = token.strip("'\"")
+        if not clean:
+            continue
+
+        compact = clean.replace("-", "")
+        if compact in SWEAR_WORDS:
+            return True
+
+        if compact in ASS_SWEAR_FORMS:
+            return True
+
+        if compact.endswith("ass") and len(compact) > 3:
+            prefix = compact[:-3]
+            if prefix in ASS_SWEAR_PREFIXES:
+                return True
+
+    return False
+
+
 def matches_bucket(text: str, bucket: str) -> bool:
     """Check if text matches any keyword pattern in a bucket."""
+    if bucket == "swear_words":
+        return contains_swear(text)
+
     lower = text.lower()
     for matcher in KEYWORD_MATCHERS.get(bucket, []):
         if matcher["type"] == "substring":
@@ -250,6 +311,9 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
 
     total_messages      = 0
     sender_counts       = Counter()     # display_name → count
+    sender_message_counts = Counter()   # member_id → count
+    sender_swear_counts = Counter()     # member_id → swear-message count
+    sender_meta         = {}            # member_id → {name, avatar_url}
     active_member_ids   = set()
     emoji_counts        = Counter()
     channel_counts      = Counter()
@@ -294,7 +358,15 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
 
                 # ── Sender ──────────────────────────────────────────────────
                 sender_counts[msg.author.display_name] += 1
+                sender_message_counts[msg.author.id] += 1
+                sender_meta[msg.author.id] = {
+                    "name": msg.author.display_name,
+                    "avatar_url": str(msg.author.display_avatar.url),
+                }
                 active_member_ids.add(msg.author.id)
+
+                if contains_swear(msg.content):
+                    sender_swear_counts[msg.author.id] += 1
 
                 # ── Channel ─────────────────────────────────────────────────
                 channel_counts[channel.name] += 1
@@ -347,6 +419,25 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
     top_chan  = CONFIG["TOP_CHANNELS_COUNT"]
     duration_seconds = round((datetime.now(timezone.utc) - started_at).total_seconds(), 2)
 
+    top_swearers = []
+    for member_id, swear_count in sender_swear_counts.items():
+        total_count = sender_message_counts.get(member_id, 0)
+        if total_count <= 0:
+            continue
+        meta = sender_meta.get(member_id, {})
+        rate = round((swear_count / total_count) * 100, 2)
+        top_swearers.append({
+            "id": str(member_id),
+            "name": meta.get("name", "Unknown"),
+            "avatar_url": meta.get("avatar_url"),
+            "swear_messages": swear_count,
+            "message_count": total_count,
+            "swear_rate": rate,
+        })
+
+    top_swearers.sort(key=lambda item: (item["swear_rate"], item["swear_messages"], item["message_count"]), reverse=True)
+    top_swearers = top_swearers[:top_n]
+
     stats = {
         "generated_at":  datetime.now(TZ).isoformat(),
         "server_name":   guild.name,
@@ -380,6 +471,8 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
                 mention_counts.items(), key=lambda x: x[1], reverse=True
             )[:top_n]
         ],
+
+        "top_swearers": top_swearers,
 
         "spotlight_mentions": build_spotlight_mentions(mention_counts),
 
@@ -536,6 +629,14 @@ def _build_summary_embed(stats: dict) -> discord.Embed:
     )
     embed.add_field(name="📨 Total Messages",     value=f"{stats['total_messages']:,}",     inline=True)
     embed.add_field(name="🌙 Midnight Questions", value=f"{stats['midnight_questions']:,}", inline=True)
+
+    if stats.get("top_swearers"):
+        top_swearer = stats["top_swearers"][0]
+        embed.add_field(
+            name="😈 Top Swearer",
+            value=f"**{top_swearer['name']}** — {top_swearer['swear_rate']:.1f}% of messages",
+            inline=False,
+        )
 
     top3 = ", ".join(
         f"**{s['name']}** ({s['count']:,})"

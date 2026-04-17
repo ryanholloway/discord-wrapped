@@ -40,7 +40,6 @@ CONFIG = {
     # Add terms to KEYWORD_SUBSTRING_MATCH below to match them inside larger words.
     "KEYWORD_SUBSTRING_MATCH": [
         "shit",     # Acceptable inside: bullshit, shitty, etc.
-        " ass ",    # Match 'ass' with spaces to avoid class, pass, mass, etc.
     ],
 
     "KEYWORD_BUCKETS": {
@@ -68,24 +67,10 @@ CONFIG = {
             "unalive", "off myself", 
         ],
 
-        "violence_jokes": [
-            "beat him up", "beat her up", "beat them up",
-            "fight him", "fight her", "want to fight",
-            "gonna fight", "going to fight", "smack", "batter",
-            "lamp him", "lamp her", "clatter", 
-        ],
-
         "cope_messages": [
             "i'm fine", "im fine", "everything is fine",
             "its fine", "it's fine", "don't panic", "dont panic",
             "totally fine", "completely fine", "absolutely fine", "fine actually"
-        ],
-
-        "classic_excuses": [
-            "the wifi was down", "my laptop died",
-            "thought it was due", "thought it was next week",
-            "wrong branch", "wrong file", "corrupted",
-            "github ate my", "lost my work", "computer ate my", "computer ate it"
         ],
         
         "swear_words": [
