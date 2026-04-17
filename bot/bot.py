@@ -49,6 +49,7 @@ VOTES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "web"
 WATCH_USER_ID = 1150706181883564062
 DM_FORWARD_USER_ID = 619574267318763550
 OPEN_VOTE_CHANNELS: dict[tuple[int, int], int] = {}
+OPEN_VOTE_PANEL_MESSAGES: dict[tuple[int, int], int] = {}
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -333,9 +334,22 @@ class VotePanelView(discord.ui.View):
         return True
 
     def summary_text(self) -> str:
+        category_lines = []
+        for key, meta in VOTE_CATEGORIES.items():
+            emoji = meta.get("emoji") or "🗳️"
+            label = meta.get("label") or key.replace("_", " ").title()
+            desc = meta.get("description") or ""
+            if desc:
+                category_lines.append(f"• {emoji} **{label}** — {desc}")
+            else:
+                category_lines.append(f"• {emoji} **{label}**")
+
+        categories_text = "\n".join(category_lines) if category_lines else "• No categories configured"
         return (
             "🗳️ **Voting panel**\n"
-            "Pick a category and a person, then press **Submit vote**.\n"
+            "Pick a category and a person, then press **Submit vote**.\n\n"
+            "**Categories**\n"
+            f"{categories_text}\n\n"
             "Your selections and confirmation are private."
         )
 
@@ -360,12 +374,7 @@ class VotePanelView(discord.ui.View):
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.panel_message.delete()
 
-        if self.temp_channel is not None:
-            await asyncio.sleep(2)
-            with suppress(discord.Forbidden, discord.HTTPException):
-                await self.temp_channel.delete(reason="Wrapped vote submitted")
-
-        _clear_open_vote_channel(self.guild.id, self.owner_id)
+        _clear_open_vote_panel(self.guild.id, self.owner_id)
 
         self.stop()
 
@@ -374,11 +383,7 @@ class VotePanelView(discord.ui.View):
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.panel_message.delete()
 
-        if self.temp_channel is not None:
-            with suppress(discord.Forbidden, discord.HTTPException):
-                await self.temp_channel.delete(reason="Wrapped vote panel expired")
-
-        _clear_open_vote_channel(self.guild.id, self.owner_id)
+        _clear_open_vote_panel(self.guild.id, self.owner_id)
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -493,6 +498,36 @@ async def _ban_user_from_voting(guild_id: int, user_id: int) -> tuple[bool, dict
     return True, store
 
 
+async def _unban_user_from_voting(guild_id: int, user_id: int) -> tuple[bool, dict]:
+    local_store = load_vote_store()
+    remote_store = await _load_remote_vote_store()
+    store = _merge_vote_stores(remote_store, local_store)
+
+    guild_state = _get_guild_vote_state(store, guild_id)
+    banned = guild_state.setdefault("banned_voters", [])
+    user_key = str(user_id)
+    normalized = [str(item) for item in banned]
+    if user_key not in normalized:
+        return False, store
+
+    guild_state["banned_voters"] = [item for item in banned if str(item) != user_key]
+    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save_vote_store(store)
+    return True, store
+
+
+async def _clear_all_votes_for_guild(guild_id: int) -> dict:
+    local_store = load_vote_store()
+    remote_store = await _load_remote_vote_store()
+    store = _merge_vote_stores(remote_store, local_store)
+
+    guild_state = _get_guild_vote_state(store, guild_id)
+    guild_state["ballots"] = {}
+    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save_vote_store(store)
+    return store
+
+
 def _open_vote_channel_key(guild_id: int, user_id: int) -> tuple[int, int]:
     return (guild_id, user_id)
 
@@ -507,6 +542,18 @@ def _set_open_vote_channel(guild_id: int, user_id: int, channel_id: int) -> None
 
 def _clear_open_vote_channel(guild_id: int, user_id: int) -> None:
     OPEN_VOTE_CHANNELS.pop(_open_vote_channel_key(guild_id, user_id), None)
+
+
+def _get_open_vote_panel_message_id(guild_id: int, user_id: int) -> int | None:
+    return OPEN_VOTE_PANEL_MESSAGES.get(_open_vote_channel_key(guild_id, user_id))
+
+
+def _set_open_vote_panel_message(guild_id: int, user_id: int, message_id: int) -> None:
+    OPEN_VOTE_PANEL_MESSAGES[_open_vote_channel_key(guild_id, user_id)] = message_id
+
+
+def _clear_open_vote_panel(guild_id: int, user_id: int) -> None:
+    OPEN_VOTE_PANEL_MESSAGES.pop(_open_vote_channel_key(guild_id, user_id), None)
 
 
 def _parse_vote_timestamp(ballot: dict) -> datetime:
@@ -799,62 +846,75 @@ async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category
         return False
 
     existing_channel_id = _get_open_vote_channel_id(guild.id, ctx.author.id)
-    if existing_channel_id is not None:
-        existing_channel = guild.get_channel(existing_channel_id)
-        if existing_channel is not None:
-            await ctx.send(f"⚠️ You already have an open vote channel: {existing_channel.mention}", delete_after=8)
-            return False
+    existing_channel = guild.get_channel(existing_channel_id) if existing_channel_id is not None else None
+    if existing_channel_id is not None and existing_channel is None:
         _clear_open_vote_channel(guild.id, ctx.author.id)
 
-    bot_member = guild.me or guild.get_member(bot.user.id)
-    if bot_member is None:
-        with suppress(discord.NotFound, discord.Forbidden, discord.HTTPException):
-            bot_member = await guild.fetch_member(bot.user.id)
-    if bot_member is None:
-        await ctx.send("❌ I couldn't resolve bot permissions in this server.", delete_after=8)
-        return False
+    if existing_channel is not None:
+        temp_channel = existing_channel
+    else:
+        bot_member = guild.me or guild.get_member(bot.user.id)
+        if bot_member is None:
+            with suppress(discord.NotFound, discord.Forbidden, discord.HTTPException):
+                bot_member = await guild.fetch_member(bot.user.id)
+        if bot_member is None:
+            await ctx.send("❌ I couldn't resolve bot permissions in this server.", delete_after=8)
+            return False
 
-    channel_name = f"wrapped-vote-{_slugify(ctx.author.display_name)[:32]}-{str(ctx.author.id)[-4:]}"
-    overwrites = {
-        guild.default_role: discord.PermissionOverwrite(view_channel=False),
-        ctx.author: discord.PermissionOverwrite(
-            view_channel=True,
-            send_messages=True,
-            read_message_history=True,
-        ),
-        bot_member: discord.PermissionOverwrite(
-            view_channel=True,
-            send_messages=True,
-            read_message_history=True,
-            manage_channels=True,
-            manage_messages=True,
-        ),
-    }
+        channel_name = f"wrapped-vote-{_slugify(ctx.author.display_name)[:32]}-{str(ctx.author.id)[-4:]}"
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(view_channel=False),
+            ctx.author: discord.PermissionOverwrite(
+                view_channel=True,
+                send_messages=True,
+                read_message_history=True,
+            ),
+            bot_member: discord.PermissionOverwrite(
+                view_channel=True,
+                send_messages=True,
+                read_message_history=True,
+                manage_channels=True,
+                manage_messages=True,
+            ),
+        }
 
-    parent_category = ctx.channel.category if isinstance(ctx.channel, discord.TextChannel) else None
-    try:
-        temp_channel = await guild.create_text_channel(
-            name=channel_name,
-            overwrites=overwrites,
-            category=parent_category,
-            topic=f"Temporary wrapped vote channel for {ctx.author} ({ctx.author.id})",
-            reason="Wrapped vote temporary private channel",
-        )
-    except discord.Forbidden:
-        await ctx.send("❌ I need Manage Channels permission to create the temporary vote channel.", delete_after=10)
-        return False
-    except discord.HTTPException:
-        await ctx.send("❌ I couldn't create the temporary vote channel right now.", delete_after=10)
-        return False
+        parent_category = ctx.channel.category if isinstance(ctx.channel, discord.TextChannel) else None
+        try:
+            temp_channel = await guild.create_text_channel(
+                name=channel_name,
+                overwrites=overwrites,
+                category=parent_category,
+                topic=f"Temporary wrapped vote channel for {ctx.author} ({ctx.author.id})",
+                reason="Wrapped vote temporary private channel",
+            )
+        except discord.Forbidden:
+            await ctx.send("❌ I need Manage Channels permission to create the temporary vote channel.", delete_after=10)
+            return False
+        except discord.HTTPException:
+            await ctx.send("❌ I couldn't create the temporary vote channel right now.", delete_after=10)
+            return False
+
+        _set_open_vote_channel(guild.id, ctx.author.id, temp_channel.id)
 
     view = VotePanelView(guild, owner_id=ctx.author.id)
     if preselected_category:
         view.selected_category = preselected_category
 
+    panel_message_id = _get_open_vote_panel_message_id(guild.id, ctx.author.id)
+    if panel_message_id is not None:
+        previous_message = None
+        with suppress(discord.NotFound, discord.Forbidden, discord.HTTPException):
+            previous_message = await temp_channel.fetch_message(panel_message_id)
+        if previous_message is not None:
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await previous_message.delete()
+        else:
+            _clear_open_vote_panel(guild.id, ctx.author.id)
+
     panel_message = await temp_channel.send(view.summary_text(), view=view)
     view.panel_message = panel_message
     view.temp_channel = temp_channel
-    _set_open_vote_channel(guild.id, ctx.author.id, temp_channel.id)
+    _set_open_vote_panel_message(guild.id, ctx.author.id, panel_message.id)
 
     return True
 
@@ -1341,6 +1401,72 @@ async def vote_ban_cmd(ctx: commands.Context, member: discord.Member = None):
     await ctx.send(f"✅ **{member.display_name}** is now banned from voting.", delete_after=8)
 
 
+@wrapped_cmd.command(name="unban")
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def vote_unban_cmd(ctx: commands.Context, member: discord.Member = None):
+    await _delete_invoking_message(ctx)
+
+    if member is None:
+        await ctx.send("Usage: `!wrapped unban @user`", delete_after=8)
+        return
+
+    removed, latest_store = await _unban_user_from_voting(ctx.guild.id, member.id)
+    if not removed:
+        await ctx.send(f"⚠️ **{member.display_name}** is not currently vote-banned.", delete_after=8)
+        return
+
+    await push_file_via_api(
+        "web/votes.json",
+        json.dumps(latest_store, ensure_ascii=False, indent=2),
+        "chore: remove wrapped vote ban",
+        "✅ Vote bans updated.",
+    )
+
+    await ctx.send(f"✅ **{member.display_name}** can vote again.", delete_after=8)
+
+
+@wrapped_cmd.group(name="votes", invoke_without_command=True)
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def wrapped_votes_cmd(ctx: commands.Context):
+    await _delete_invoking_message(ctx)
+    await ctx.send("Usage: `!wrapped votes clear`", delete_after=8)
+
+
+@wrapped_votes_cmd.command(name="clear")
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def wrapped_votes_clear_cmd(ctx: commands.Context):
+    await _delete_invoking_message(ctx)
+
+    latest_store = await _clear_all_votes_for_guild(ctx.guild.id)
+    await push_file_via_api(
+        "web/votes.json",
+        json.dumps(latest_store, ensure_ascii=False, indent=2),
+        "chore: clear wrapped votes",
+        "✅ Votes cleared.",
+    )
+
+    stats_json = _write_current_vote_results_to_stats(ctx.guild)
+    if stats_json:
+        await push_stats_via_api(stats_json)
+
+    await ctx.send("🧹 All votes have been cleared for this server.", delete_after=8)
+
+
+@wrapped_cmd.command(name="touch")
+@commands.guild_only()
+async def wrapped_touch_cmd(ctx: commands.Context, member: discord.Member = None):
+    await _delete_invoking_message(ctx)
+
+    if member is None:
+        await ctx.send("Usage: `!wrapped touch @user`", delete_after=8)
+        return
+
+    await ctx.send(f"⚠️ {ctx.author.mention} stfu please")
+
+
 @commands.guild_only()
 async def vote_categories_cmd(ctx: commands.Context):
     if not VOTE_CATEGORIES:
@@ -1391,6 +1517,7 @@ async def _send_vote_help(ctx: commands.Context):
     lines.append("• Vote choices and confirmations are private to you")
     lines.append("• List categories with `!wrapped vote categories`")
     lines.append("• View current winners with `!wrapped vote results`")
+    lines.append("• Run `!wrapped warn @user` to send a public warning")
     if VOTE_CATEGORIES:
         lines.append("\nCurrent categories:")
         for key, meta in VOTE_CATEGORIES.items():
