@@ -41,9 +41,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
             "voted_at": "2026-04-17T13:46:33.854685+00:00"
           }
+        },
+        "most_likely_to_be_a_pedo": {
+          "619574267318763550": {
+            "target_id": "369893020658696194",
+            "target_name": "CraicMeister (Kyle D)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+            "voted_at": "2026-04-17T13:46:40.662636+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T13:46:33.854698+00:00",
+      "updated_at": "2026-04-17T13:46:40.662649+00:00",
       "banned_voters": []
     }
   }
