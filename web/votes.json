@@ -448,6 +448,12 @@
             "target_name": "MonikaNusi",
             "target_avatar": "https://cdn.discordapp.com/avatars/353509000903393280/cb0916b127880edde506cd0452a351ff.png?size=1024",
             "voted_at": "2026-04-17T14:12:23.656869+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "1156928841990819931",
+            "target_name": "d.crim02",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1156928841990819931/85bca4c46ee4e5f3805eac0609afcbfa.png?size=1024",
+            "voted_at": "2026-04-17T14:44:20.973890+00:00"
           }
         },
         "most_likely_to_develop_a_crush_on_the_lecturer": {
@@ -567,7 +573,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:43:56.348535+00:00",
+      "updated_at": "2026-04-17T14:44:20.973901+00:00",
       "banned_voters": []
     }
   }
