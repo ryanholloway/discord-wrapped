@@ -310,6 +310,7 @@ class VotePanelView(discord.ui.View):
         self.owner_id = owner_id
         self.selected_category: str | None = None
         self.selected_target: discord.abc.User | None = None
+        self.panel_message: discord.Message | None = None
 
         self.category_select = VoteCategorySelect()
         self.person_select = VotePersonSelect()
@@ -348,6 +349,16 @@ class VotePanelView(discord.ui.View):
 
         confirmation = await _save_vote(self.guild, interaction.user, self.selected_category, target_member)
         await _respond_private_interaction(interaction, confirmation)
+
+        if self.panel_message is not None:
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await self.panel_message.delete()
+        self.stop()
+
+    async def on_timeout(self) -> None:
+        if self.panel_message is not None:
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await self.panel_message.delete()
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -589,6 +600,11 @@ async def _send_watching_dm(ctx: commands.Context) -> None:
         await ctx.author.send("im watching 👀")
 
 
+async def _delete_invoking_message(ctx: commands.Context) -> None:
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await ctx.message.delete()
+
+
 async def _respond_private_interaction(interaction: discord.Interaction, message: str) -> None:
     use_ephemeral = interaction.guild is not None
     if interaction.response.is_done():
@@ -602,10 +618,8 @@ async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category
     if preselected_category:
         view.selected_category = preselected_category
 
-    await ctx.send(view.summary_text(), view=view)
-
-    with suppress(discord.Forbidden, discord.HTTPException):
-        await ctx.message.delete()
+    panel_message = await ctx.send(view.summary_text(), view=view)
+    view.panel_message = panel_message
     return True
 
 
@@ -983,6 +997,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
     """
 
     await _send_watching_dm(ctx)
+    await _delete_invoking_message(ctx)
 
     if not VOTE_CATEGORIES:
         await ctx.send("⚠️ No vote categories are configured yet.")
@@ -1018,8 +1033,6 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
-    with suppress(discord.Forbidden, discord.HTTPException):
-        await ctx.message.delete()
     await _send_private_vote_ack(ctx, confirmation)
 
 
