@@ -9,9 +9,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
             "voted_at": "2026-04-17T13:45:59.621886+00:00"
           }
+        },
+        "most_likely_to_forget_the_deadline": {
+          "619574267318763550": {
+            "target_id": "410147117793804288",
+            "target_name": "Jad Fuhr",
+            "target_avatar": "https://cdn.discordapp.com/avatars/410147117793804288/be5fe37c2d9399d78f0ef8655083bdd9.png?size=1024",
+            "voted_at": "2026-04-17T13:46:06.848094+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T13:45:59.621898+00:00",
+      "updated_at": "2026-04-17T13:46:06.848110+00:00",
       "banned_voters": []
     }
   }
