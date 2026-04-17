@@ -341,17 +341,13 @@ class VotePanelView(discord.ui.View):
             await interaction.response.send_message("Choose a person first.", ephemeral=True)
             return
 
-        if interaction.guild is None:
-            await interaction.response.send_message("Voting only works in a server.", ephemeral=True)
-            return
-
-        target_member = interaction.guild.get_member(self.selected_target.id)
+        target_member = self.guild.get_member(self.selected_target.id)
         if target_member is None:
-            await interaction.response.send_message("That person is not in this server.", ephemeral=True)
+            await _respond_private_interaction(interaction, "That person is not in this server.")
             return
 
-        confirmation = await _save_vote(interaction.guild, interaction.user, self.selected_category, target_member)
-        await interaction.response.send_message(confirmation, ephemeral=True)
+        confirmation = await _save_vote(self.guild, interaction.user, self.selected_category, target_member)
+        await _respond_private_interaction(interaction, confirmation)
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -376,12 +372,12 @@ class VoteCategorySelect(discord.ui.Select):
             return
 
         if self.values[0] == "none":
-            await interaction.response.send_message("No categories are configured.", ephemeral=True)
+            await _respond_private_interaction(interaction, "No categories are configured.")
             return
 
         view.selected_category = self.values[0]
         label = VOTE_CATEGORIES.get(view.selected_category, {}).get("label") or "category"
-        await interaction.response.send_message(f"Selected category: **{label}**", ephemeral=True)
+        await _respond_private_interaction(interaction, f"Selected category: **{label}**")
 
 
 class VotePersonSelect(discord.ui.UserSelect):
@@ -395,7 +391,7 @@ class VotePersonSelect(discord.ui.UserSelect):
 
         view.selected_target = self.values[0]
         selected_name = getattr(view.selected_target, "display_name", None) or getattr(view.selected_target, "name", "Unknown")
-        await interaction.response.send_message(f"Selected person: **{selected_name}**", ephemeral=True)
+        await _respond_private_interaction(interaction, f"Selected person: **{selected_name}**")
 
 
 class VoteSubmitButton(discord.ui.Button):
@@ -586,6 +582,30 @@ async def _send_private_vote_ack(ctx: commands.Context, message: str) -> None:
             "✅ Vote saved. I couldn't DM you, so this confirmation will disappear shortly.",
             delete_after=8,
         )
+
+
+async def _respond_private_interaction(interaction: discord.Interaction, message: str) -> None:
+    use_ephemeral = interaction.guild is not None
+    if interaction.response.is_done():
+        await interaction.followup.send(message, ephemeral=use_ephemeral)
+    else:
+        await interaction.response.send_message(message, ephemeral=use_ephemeral)
+
+
+async def _send_vote_panel_dm(ctx: commands.Context, preselected_category: str | None = None) -> bool:
+    view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
+    if preselected_category:
+        view.selected_category = preselected_category
+
+    try:
+        await ctx.author.send(view.summary_text(), view=view)
+    except discord.Forbidden:
+        await ctx.send("❌ I can't DM you. Please enable DMs from server members and try again.", delete_after=10)
+        return False
+
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await ctx.message.delete()
+    return True
 
 
 async def push_file_via_api(file_path: str, file_content: str, commit_message: str, success_message: str) -> str:
@@ -965,8 +985,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if not action:
-        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
-        await ctx.send(view.summary_text(), view=view)
+        await _send_vote_panel_dm(ctx)
         return
 
     action_key = _slugify(action)
@@ -980,8 +999,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if action_key in {"menu", "panel", "gui"}:
-        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
-        await ctx.send(view.summary_text(), view=view)
+        await _send_vote_panel_dm(ctx)
         return
 
     resolved = _resolve_vote_category(action)
@@ -992,9 +1010,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if member is None:
-        view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
-        view.selected_category = resolved
-        await ctx.send(view.summary_text(), view=view)
+        await _send_vote_panel_dm(ctx, preselected_category=resolved)
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
