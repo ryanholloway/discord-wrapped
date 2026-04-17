@@ -53,9 +53,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
             "voted_at": "2026-04-17T12:45:04.729578+00:00"
           }
+        },
+        "most_likely_to_be_late": {
+          "1150706181883564062": {
+            "target_id": "429693409934966786",
+            "target_name": "Steven Kelly",
+            "target_avatar": "https://cdn.discordapp.com/avatars/429693409934966786/fbc172bc9ad8d0c1d505e8d5d26480bb.png?size=1024",
+            "voted_at": "2026-04-17T12:49:06.346394+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T12:45:04.729592+00:00"
+      "updated_at": "2026-04-17T12:49:06.346420+00:00"
     }
   }
 }
