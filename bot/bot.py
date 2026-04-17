@@ -449,6 +449,91 @@ def _get_guild_vote_state(store: dict, guild_id: int) -> dict:
     return guild_state
 
 
+def _parse_vote_timestamp(ballot: dict) -> datetime:
+    ts = ballot.get("voted_at") if isinstance(ballot, dict) else None
+    if not ts:
+        return datetime.fromtimestamp(0, tz=timezone.utc)
+    try:
+        parsed = datetime.fromisoformat(ts)
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed
+    except Exception:
+        return datetime.fromtimestamp(0, tz=timezone.utc)
+
+
+def _merge_vote_stores(primary: dict, secondary: dict) -> dict:
+    """Merge two vote stores, keeping newest ballot per guild/category/voter."""
+    merged = _empty_vote_store()
+
+    for source in (primary or {}, secondary or {}):
+        guilds = source.get("guilds", {}) if isinstance(source, dict) else {}
+        for guild_id, guild_state in guilds.items():
+            dest_guild = merged["guilds"].setdefault(guild_id, {"ballots": {}})
+            dest_ballots = dest_guild.setdefault("ballots", {})
+
+            ballots_by_category = guild_state.get("ballots", {}) if isinstance(guild_state, dict) else {}
+            for category_key, voter_map in ballots_by_category.items():
+                dest_voter_map = dest_ballots.setdefault(category_key, {})
+                if not isinstance(voter_map, dict):
+                    continue
+                for voter_id, ballot in voter_map.items():
+                    current = dest_voter_map.get(voter_id)
+                    if current is None:
+                        dest_voter_map[voter_id] = ballot
+                        continue
+                    if _parse_vote_timestamp(ballot) >= _parse_vote_timestamp(current):
+                        dest_voter_map[voter_id] = ballot
+
+            existing_updated = dest_guild.get("updated_at")
+            incoming_updated = guild_state.get("updated_at") if isinstance(guild_state, dict) else None
+            if incoming_updated and (
+                not existing_updated
+                or _parse_vote_timestamp({"voted_at": incoming_updated})
+                >= _parse_vote_timestamp({"voted_at": existing_updated})
+            ):
+                dest_guild["updated_at"] = incoming_updated
+
+    return merged
+
+
+async def _load_remote_vote_store() -> dict | None:
+    """Fetch current votes.json from GitHub so we don't overwrite newer remote votes."""
+    token = GITHUB_TOKEN
+    repo = GITHUB_REPO
+    if not token or not repo:
+        return None
+
+    api_url = f"https://api.github.com/repos/{repo}/contents/web/votes.json"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+
+    timeout = aiohttp.ClientTimeout(total=20)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(api_url, headers=headers) as resp:
+                if resp.status == 404:
+                    return None
+                if resp.status != 200:
+                    return None
+                payload = await resp.json()
+                encoded = payload.get("content")
+                if not encoded:
+                    return None
+                decoded = base64.b64decode(encoded).decode("utf-8")
+                parsed = json.loads(decoded)
+                if isinstance(parsed, dict):
+                    parsed.setdefault("guilds", {})
+                    return parsed
+    except Exception as exc:
+        log.warning(f"Could not fetch remote votes store: {exc}")
+
+    return None
+
+
 def _resolve_vote_category(raw: str | None) -> str | None:
     if not raw:
         return None
@@ -556,7 +641,9 @@ async def _save_vote(
     category_key: str,
     target_member: discord.Member,
 ) -> str:
-    store = load_vote_store()
+    local_store = load_vote_store()
+    remote_store = await _load_remote_vote_store()
+    store = _merge_vote_stores(remote_store, local_store)
     guild_state = _get_guild_vote_state(store, guild.id)
     ballots = guild_state["ballots"].setdefault(category_key, {})
     voter_key = str(voter.id)

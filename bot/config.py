@@ -65,6 +65,11 @@ CONFIG = {
             "emoji": "🤖",
             "description": "Vote for the person who is most likely to be an AI.",
         },
+        "most_likely_to_go_to_epsteins_island_but_for_the_snorkling_and_not_the_other_stuff": {
+            "label": "Most Likely to go to Epstein's Island but for the Snorkeling and not the other stuff",
+            "emoji": "🏝️",
+            "description": "Vote for the person who is most likely to go to Epstein's Island but for the Snorkeling and not the other stuff.",
+        },
     },
 
     # ── MIDNIGHT ZONE ─────────────────────────────────────────────
