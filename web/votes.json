@@ -410,6 +410,12 @@
             "target_name": "C00286125 (Danny Delaney)",
             "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
             "voted_at": "2026-04-17T14:12:15.943605+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "1150706181883564062",
+            "target_name": "C00286125 (Danny Delaney)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+            "voted_at": "2026-04-17T14:43:56.348524+00:00"
           }
         },
         "most_likely_to_be_a_russian_spy": {
@@ -561,7 +567,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:43:40.650911+00:00",
+      "updated_at": "2026-04-17T14:43:56.348535+00:00",
       "banned_voters": []
     }
   }
