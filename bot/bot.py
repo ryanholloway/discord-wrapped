@@ -584,6 +584,11 @@ async def _send_private_vote_ack(ctx: commands.Context, message: str) -> None:
         )
 
 
+async def _send_watching_dm(ctx: commands.Context) -> None:
+    with suppress(discord.Forbidden, discord.HTTPException):
+        await ctx.author.send("im watching 👀")
+
+
 async def _respond_private_interaction(interaction: discord.Interaction, message: str) -> None:
     use_ephemeral = interaction.guild is not None
     if interaction.response.is_done():
@@ -592,16 +597,12 @@ async def _respond_private_interaction(interaction: discord.Interaction, message
         await interaction.response.send_message(message, ephemeral=use_ephemeral)
 
 
-async def _send_vote_panel_dm(ctx: commands.Context, preselected_category: str | None = None) -> bool:
+async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category: str | None = None) -> bool:
     view = VotePanelView(ctx.guild, owner_id=ctx.author.id)
     if preselected_category:
         view.selected_category = preselected_category
 
-    try:
-        await ctx.author.send(view.summary_text(), view=view)
-    except discord.Forbidden:
-        await ctx.send("❌ I can't DM you. Please enable DMs from server members and try again.", delete_after=10)
-        return False
+    await ctx.send(view.summary_text(), view=view)
 
     with suppress(discord.Forbidden, discord.HTTPException):
         await ctx.message.delete()
@@ -921,6 +922,7 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     !wrapped preview  → scrape + post a summary embed (no file write)
     """
 
+    await _send_watching_dm(ctx)
     subcommand = (subcommand or "").strip().lower()
 
     if subcommand == "status":
@@ -980,12 +982,14 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
     !wrapped vote results              → show current winners
     """
 
+    await _send_watching_dm(ctx)
+
     if not VOTE_CATEGORIES:
         await ctx.send("⚠️ No vote categories are configured yet.")
         return
 
     if not action:
-        await _send_vote_panel_dm(ctx)
+        await _send_vote_panel_in_server(ctx)
         return
 
     action_key = _slugify(action)
@@ -999,7 +1003,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if action_key in {"menu", "panel", "gui"}:
-        await _send_vote_panel_dm(ctx)
+        await _send_vote_panel_in_server(ctx)
         return
 
     resolved = _resolve_vote_category(action)
@@ -1010,7 +1014,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if member is None:
-        await _send_vote_panel_dm(ctx, preselected_category=resolved)
+        await _send_vote_panel_in_server(ctx, preselected_category=resolved)
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
@@ -1064,9 +1068,9 @@ async def vote_results_cmd(ctx: commands.Context):
 
 async def _send_vote_help(ctx: commands.Context):
     lines = ["🗳️ **How voting works**"]
-    lines.append("• Run `!wrapped vote` to open the interactive voting panel")
+    lines.append("• Run `!wrapped vote` to open the interactive voting panel in this server")
     lines.append("• Or use `!wrapped vote <category_key> @member` for text voting")
-    lines.append("• Vote choices and confirmations are private")
+    lines.append("• Vote choices and confirmations are private to you")
     lines.append("• List categories with `!wrapped vote categories`")
     lines.append("• View current winners with `!wrapped vote results`")
     if VOTE_CATEGORIES:
