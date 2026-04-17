@@ -260,6 +260,12 @@
             "target_name": "C00286125 (Danny Delaney)",
             "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
             "voted_at": "2026-04-17T14:06:14.976708+00:00"
+          },
+          "353509000903393280": {
+            "target_id": "1150706181883564062",
+            "target_name": "C00286125 (Danny Delaney)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+            "voted_at": "2026-04-17T14:11:11.977815+00:00"
           }
         },
         "most_likely_to_go_to_epsteins_island_but_for_the_snorkling_and_not_the_other_stuff": {
@@ -465,7 +471,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:10:11.843741+00:00",
+      "updated_at": "2026-04-17T14:11:11.977826+00:00",
       "banned_voters": []
     }
   }
