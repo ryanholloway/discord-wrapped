@@ -99,6 +99,18 @@
     .pfp-sub{font-size:var(--xs);color:var(--muted);margin-top:2px;}
     .pfp-rate{font-family:'Space Mono',monospace;font-size:var(--lg);font-weight:700;color:var(--fuchsia);white-space:nowrap;}
 
+    /* Voting cards */
+    .vote-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:var(--sp4);}
+    .vote-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:var(--rxl);padding:var(--sp5);display:flex;flex-direction:column;gap:var(--sp4);}
+    .vote-head{display:flex;align-items:center;gap:var(--sp2);font-weight:700;font-size:var(--lg);}
+    .vote-emoji{font-size:1.2em;}
+    .vote-desc{color:var(--muted);font-size:var(--sm);line-height:1.5;}
+    .vote-winner{display:grid;grid-template-columns:auto 1fr;gap:var(--sp3);align-items:center;}
+    .vote-avatar{width:3.25rem;height:3.25rem;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--blurple),var(--fuchsia));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex-shrink:0;border:1px solid rgba(255,255,255,.12);}
+    .vote-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+    .vote-name{font-weight:700;font-size:var(--base);}
+    .vote-meta{font-family:'Space Mono',monospace;font-size:var(--xs);color:var(--muted);margin-top:2px;}
+
     .empty-note{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.2);border-radius:var(--rl);padding:var(--sp5);color:var(--muted);font-size:var(--sm);}
 
     .spotlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:var(--sp4);}
@@ -209,6 +221,13 @@
     <div class="sec-label">Messages</div>
     <h2 class="sec-title">Most Active Members 🏆</h2>
     <div class="lb-list" id="senders-list"></div>
+  </div>
+
+  <!-- VOTING -->
+  <div class="wrap section" id="s-votes">
+    <div class="sec-label">Community Votes</div>
+    <h2 class="sec-title">As Voted By You</h2>
+    <div class="vote-grid" id="vote-grid"></div>
   </div>
 
   <!-- SWEARERS -->
@@ -402,6 +421,9 @@ function render(S) {
 
   // Top Senders
   renderLeaderboard("senders-list", S.top_senders, "blurple");
+
+  // Voting winners
+  renderVoteCards("vote-grid", S.as_voted_by_you || []);
 
   // Top Swearers
   renderSwearers("swearers-list", S.top_swearers || []);
@@ -608,6 +630,36 @@ function renderSwearers(containerId, data) {
         <div class="pfp-sub">${fmtN(item.swear_messages)} swear messages · ${fmtN(item.message_count)} total messages</div>
       </div>
       <div class="pfp-rate">${(item.swear_rate ?? 0).toFixed(1)}%</div>
+    </div>`;
+  });
+}
+
+function renderVoteCards(containerId, data) {
+  const el = document.getElementById(containerId);
+  if (!data.length) {
+    document.getElementById("s-votes").style.display = "none";
+    return;
+  }
+
+  data.forEach((item) => {
+    const winner = item.winners?.[0];
+    const winnerAvatar = winner?.avatar_url
+      ? `<img src="${esc(winner.avatar_url)}" alt="${esc(winner.name)} avatar">`
+      : esc(initials(winner?.name || item.label || "?"));
+    const tiedNote = (item.winners?.length || 0) > 1
+      ? `Tied with ${item.winners.slice(1).map(w => w.name).join(", ")}`
+      : "";
+
+    el.innerHTML += `<div class="vote-card">
+      <div class="vote-head"><span class="vote-emoji">${esc(item.emoji || "🗳️")}</span> ${esc(item.label)}</div>
+      ${item.description ? `<div class="vote-desc">${esc(item.description)}</div>` : ""}
+      ${winner ? `<div class="vote-winner">
+        <div class="vote-avatar">${winnerAvatar}</div>
+        <div>
+          <div class="vote-name">${esc(winner.name)}</div>
+          <div class="vote-meta">${fmtN(item.vote_count)} vote${item.vote_count === 1 ? "" : "s"} · ${fmtN(item.total_ballots)} ballot${item.total_ballots === 1 ? "" : "s"}${tiedNote ? `<br>${esc(tiedNote)}` : ""}</div>
+        </div>
+      </div>` : `<div class="empty-note">No votes have been cast for this category yet.</div>`}
     </div>`;
   });
 }

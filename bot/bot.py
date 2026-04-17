@@ -5,6 +5,7 @@ Commands (run in any channel the bot can see):
   !wrapped          → scrape everything and write stats.json
   !wrapped status   → show a quick count without full scrape
   !wrapped preview  → print a summary to the channel
+    !vote             → cast or inspect category votes
 
 Needs:  DISCORD_TOKEN in .env
 Writes: OUTPUT_PATH from config.py  (default: ../web/stats.json)
@@ -44,6 +45,7 @@ if not TOKEN:
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_REPO = os.getenv("GITHUB_REPO")
+VOTES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "web", "votes.json"))
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -86,6 +88,41 @@ CUSTOM_EMOJI_RE = re.compile(r"<a?:[a-zA-Z0-9_]+:\d+>")
 QUESTION_RE     = re.compile(r"\?")
 TOKEN_RE        = re.compile(r"[a-z0-9'-]+", re.IGNORECASE)
 SCRAPE_LOCK     = asyncio.Lock()
+
+
+def _slugify(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+
+
+def _build_vote_categories() -> dict[str, dict]:
+    raw = CONFIG.get("VOTE_CATEGORIES", {})
+    categories: dict[str, dict] = {}
+
+    if not isinstance(raw, dict):
+        return categories
+
+    for key, data in raw.items():
+        slug = _slugify(str(key))
+        if not slug:
+            continue
+
+        if isinstance(data, str):
+            meta = {"label": data.strip() or slug.replace("_", " ").title(), "emoji": "🗳️", "description": ""}
+        elif isinstance(data, dict):
+            meta = {
+                "label": str(data.get("label") or slug.replace("_", " ").title()),
+                "emoji": str(data.get("emoji") or "🗳️"),
+                "description": str(data.get("description") or ""),
+            }
+        else:
+            continue
+
+        categories[slug] = meta
+
+    return categories
+
+
+VOTE_CATEGORIES = _build_vote_categories()
 
 SWEAR_WORDS = {
     "fuck", "shit", "bitch", "asshole", "dick", "bastard", "slut",
@@ -252,14 +289,147 @@ def build_spotlight_mentions(mention_counts: dict[str, int]) -> list[dict]:
     return spotlight
 
 
-async def push_stats_via_api(stats_json: str) -> str:
+def _empty_vote_store() -> dict:
+    return {"guilds": {}}
+
+
+def load_vote_store() -> dict:
+    if not os.path.exists(VOTES_PATH):
+        return _empty_vote_store()
+
+    try:
+        with open(VOTES_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            data.setdefault("guilds", {})
+            return data
+    except Exception as exc:
+        log.warning(f"Could not read votes store: {exc}")
+
+    return _empty_vote_store()
+
+
+def save_vote_store(store: dict) -> None:
+    os.makedirs(os.path.dirname(VOTES_PATH), exist_ok=True)
+    with open(VOTES_PATH, "w", encoding="utf-8") as f:
+        json.dump(store, f, ensure_ascii=False, indent=2)
+
+
+def _get_guild_vote_state(store: dict, guild_id: int) -> dict:
+    guilds = store.setdefault("guilds", {})
+    guild_state = guilds.setdefault(str(guild_id), {})
+    guild_state.setdefault("ballots", {})
+    return guild_state
+
+
+def _resolve_vote_category(raw: str | None) -> str | None:
+    if not raw:
+        return None
+
+    key = _slugify(raw)
+    if key in VOTE_CATEGORIES:
+        return key
+
+    for category_key, meta in VOTE_CATEGORIES.items():
+        if _slugify(meta.get("label", "")) == key:
+            return category_key
+
+    return None
+
+
+def _member_vote_payload(member: discord.Member) -> dict:
+    return {
+        "target_id": str(member.id),
+        "target_name": member.display_name,
+        "target_avatar": str(member.display_avatar.url),
+        "voted_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def build_vote_results(guild: discord.Guild, store: dict) -> list[dict]:
+    guild_state = store.get("guilds", {}).get(str(guild.id), {})
+    ballots_by_category = guild_state.get("ballots", {})
+
+    results: list[dict] = []
+    for category_key, meta in VOTE_CATEGORIES.items():
+        ballots = ballots_by_category.get(category_key, {}) or {}
+        tallies: Counter[str] = Counter()
+        target_meta: dict[str, dict] = {}
+
+        for ballot in ballots.values():
+            target_id = str(ballot.get("target_id") or "")
+            if not target_id:
+                continue
+            tallies[target_id] += 1
+            target_meta[target_id] = ballot
+
+        winners: list[dict] = []
+        if tallies:
+            max_votes = max(tallies.values())
+            winner_ids = [target_id for target_id, count in tallies.items() if count == max_votes]
+            winner_ids.sort(key=lambda target_id: target_meta.get(target_id, {}).get("target_name", "").lower())
+
+            for target_id in winner_ids:
+                ballot = target_meta.get(target_id, {})
+                member = guild.get_member(int(target_id)) if target_id.isdigit() else None
+                winners.append({
+                    "id": target_id,
+                    "name": (member.display_name if member else ballot.get("target_name") or "Unknown"),
+                    "avatar_url": (str(member.display_avatar.url) if member else ballot.get("target_avatar")),
+                    "votes": tallies[target_id],
+                })
+
+        results.append({
+            "key": category_key,
+            "label": meta.get("label") or category_key.replace("_", " ").title(),
+            "emoji": meta.get("emoji") or "🗳️",
+            "description": meta.get("description") or "",
+            "total_ballots": len(ballots),
+            "vote_count": (max(tallies.values()) if tallies else 0),
+            "winners": winners,
+        })
+
+    return results
+
+
+def apply_vote_results_to_stats(stats: dict, guild: discord.Guild) -> dict:
+    store = load_vote_store()
+    stats["vote_categories"] = [
+        {"key": key, **meta}
+        for key, meta in VOTE_CATEGORIES.items()
+    ]
+    stats["as_voted_by_you"] = build_vote_results(guild, store)
+    return stats
+
+
+def _write_current_vote_results_to_stats(guild: discord.Guild) -> str | None:
+    out_path = os.path.join(os.path.dirname(__file__), CONFIG["OUTPUT_PATH"])
+    if not os.path.exists(out_path):
+        return None
+
+    try:
+        with open(out_path, "r", encoding="utf-8") as f:
+            stats = json.load(f)
+        if not isinstance(stats, dict):
+            return None
+    except Exception as exc:
+        log.warning(f"Could not update stats.json with vote results: {exc}")
+        return None
+
+    apply_vote_results_to_stats(stats, guild)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(stats, f, ensure_ascii=False, indent=2)
+
+    return json.dumps(stats, ensure_ascii=False, indent=2)
+
+
+async def push_file_via_api(file_path: str, file_content: str, commit_message: str, success_message: str) -> str:
     token = GITHUB_TOKEN
     repo = GITHUB_REPO
 
     if not token or not repo:
         return "⚠️ GITHUB_TOKEN or GITHUB_REPO not set in env variables."
 
-    file_path = "web/stats.json"
     api_url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
     headers = {
         "Authorization": f"Bearer {token}",
@@ -281,9 +451,9 @@ async def push_stats_via_api(stats_json: str) -> str:
         except aiohttp.ClientError as exc:
             return f"⚠️ Could not contact GitHub API: {exc}"
 
-        encoded = base64.b64encode(stats_json.encode("utf-8")).decode("ascii")
+        encoded = base64.b64encode(file_content.encode("utf-8")).decode("ascii")
         payload = {
-            "message": "chore: update wrapped stats",
+            "message": commit_message,
             "content": encoded,
             "committer": {
                 "name": "Server Wrapped Bot",
@@ -296,11 +466,20 @@ async def push_stats_via_api(stats_json: str) -> str:
         try:
             async with session.put(api_url, headers=headers, json=payload) as resp:
                 if resp.status in (200, 201):
-                    return "✅ Stats pushed to GitHub — Vercel redeploying now!"
+                    return success_message
                 err = await resp.text()
                 return f"⚠️ GitHub API error {resp.status}: {err[:200]}"
         except aiohttp.ClientError as exc:
             return f"⚠️ Failed to push stats to GitHub: {exc}"
+
+
+async def push_stats_via_api(stats_json: str) -> str:
+    return await push_file_via_api(
+        "web/stats.json",
+        stats_json,
+        "chore: update wrapped stats",
+        "✅ Stats pushed to GitHub — Vercel redeploying now!",
+    )
 
 
 # ── Core scraper ─────────────────────────────────────────────────────────────
@@ -504,6 +683,8 @@ async def scrape_guild(guild: discord.Guild, status_msg: discord.Message | None 
         },
     }
 
+    apply_vote_results_to_stats(stats, guild)
+
     return stats
 
 
@@ -605,6 +786,120 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     await ctx.send(msg)
 
 
+@bot.group(name="vote", invoke_without_command=True)
+@commands.guild_only()
+async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.Member = None):
+    """
+    !vote <category> @member   → cast a vote
+    !vote categories           → list available categories
+    !vote results              → show current winners
+    """
+
+    if not VOTE_CATEGORIES:
+        await ctx.send("⚠️ No vote categories are configured yet.")
+        return
+
+    if not category:
+        await _send_vote_help(ctx)
+        return
+
+    resolved = _resolve_vote_category(category)
+    if not resolved:
+        await ctx.send(
+            "❌ Unknown vote category. Use `!vote categories` to see the available options."
+        )
+        return
+
+    if member is None:
+        await ctx.send("❌ Mention a server member to vote for, e.g. `!vote late @name`.")
+        return
+
+    store = load_vote_store()
+    guild_state = _get_guild_vote_state(store, ctx.guild.id)
+    ballots = guild_state["ballots"].setdefault(resolved, {})
+    ballots[str(ctx.author.id)] = _member_vote_payload(member)
+    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save_vote_store(store)
+
+    await push_file_via_api(
+        "web/votes.json",
+        json.dumps(store, ensure_ascii=False, indent=2),
+        "chore: update wrapped votes",
+        "✅ Vote tally saved to GitHub.",
+    )
+
+    stats_json = _write_current_vote_results_to_stats(ctx.guild)
+    if stats_json:
+        await push_stats_via_api(stats_json)
+
+    results = build_vote_results(ctx.guild, store)
+    current = next((item for item in results if item["key"] == resolved), None)
+    label = VOTE_CATEGORIES[resolved]["label"]
+    winner_text = ""
+    if current and current["winners"]:
+        winner = current["winners"][0]
+        winner_text = f" Current leader: **{winner['name']}** with {winner['votes']} votes."
+
+    await ctx.send(f"✅ Vote saved for **{label}**.{winner_text}")
+
+
+@vote_cmd.command(name="categories")
+@commands.guild_only()
+async def vote_categories_cmd(ctx: commands.Context):
+    if not VOTE_CATEGORIES:
+        await ctx.send("⚠️ No vote categories are configured yet.")
+        return
+
+    lines = ["🗳️ **Vote categories**"]
+    for key, meta in VOTE_CATEGORIES.items():
+        emoji = meta.get("emoji") or "🗳️"
+        label = meta.get("label") or key.replace("_", " ").title()
+        desc = meta.get("description") or ""
+        lines.append(f"• {emoji} `{key}` — {label}{f' · {desc}' if desc else ''}")
+    lines.append("\nUse: `!vote <category_key> @member`")
+    await ctx.send("\n".join(lines))
+
+
+@vote_cmd.command(name="results")
+@commands.guild_only()
+async def vote_results_cmd(ctx: commands.Context):
+    store = load_vote_store()
+    results = build_vote_results(ctx.guild, store)
+
+    if not results:
+        await ctx.send("No vote categories are configured yet.")
+        return
+
+    lines = ["📊 **Current vote results**"]
+    any_votes = False
+    for item in results:
+        if not item["winners"]:
+            lines.append(f"• {item['label']}: no votes yet")
+            continue
+        any_votes = True
+        winner_names = ", ".join(w["name"] for w in item["winners"])
+        lines.append(f"• {item['label']}: **{winner_names}** ({item['vote_count']} votes)")
+
+    if not any_votes:
+        lines.append("\nNo votes have been cast yet.")
+
+    await ctx.send("\n".join(lines))
+
+
+async def _send_vote_help(ctx: commands.Context):
+    lines = ["🗳️ **How voting works**"]
+    lines.append("• Cast a vote with `!vote <category_key> @member`")
+    lines.append("• List categories with `!vote categories`")
+    lines.append("• View current winners with `!vote results`")
+    if VOTE_CATEGORIES:
+        lines.append("\nCurrent categories:")
+        for key, meta in VOTE_CATEGORIES.items():
+            emoji = meta.get("emoji") or "🗳️"
+            label = meta.get("label") or key.replace("_", " ").title()
+            lines.append(f"• {emoji} `{key}` — {label}")
+    await ctx.send("\n".join(lines))
+
+
 async def _cmd_status(ctx: commands.Context):
     channels, skipped = _classify_channels(ctx.guild)
     lines = [f"📡 **{len(channels)} channels** will be scraped:\n"]
@@ -646,6 +941,14 @@ def _build_summary_embed(stats: dict) -> discord.Embed:
 
     top3e = "  ".join(s["emoji"] for s in stats["top_emojis"][:5])
     embed.add_field(name="🔥 Top Emojis",  value=top3e or "—", inline=False)
+
+    vote_results = [item for item in stats.get("as_voted_by_you", []) if item.get("winners")]
+    if vote_results:
+        vote_lines = []
+        for item in vote_results[:3]:
+            winner = item["winners"][0]
+            vote_lines.append(f"**{item['label']}** → {winner['name']}")
+        embed.add_field(name="🗳️ Votes", value="\n".join(vote_lines), inline=False)
 
     for bucket, data in stats["keyword_buckets"].items():
         label = bucket.replace("_", " ").title()

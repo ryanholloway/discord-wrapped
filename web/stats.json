@@ -177,6 +177,85 @@
       "count": 169
     }
   ],
+  "vote_categories": [
+    {
+      "key": "most_likely_to_be_late",
+      "label": "Most Likely to Be Late",
+      "emoji": "⏰",
+      "description": "Vote for the person who is always cutting it close."
+    },
+    {
+      "key": "most_likely_to_forget_the_deadline",
+      "label": "Most Likely to Forget the Deadline",
+      "emoji": "📚",
+      "description": "Vote for the person who would absolutely miss a due date."
+    },
+    {
+      "key": "most_likely_to_carry_the_group",
+      "label": "Most Likely to Carry the Group",
+      "emoji": "🏋️",
+      "description": "Vote for the person doing the most lifting."
+    },
+    {
+      "key": "most_likely_to_have_a_breakdown",
+      "label": "Most Likely to Have a Breakdown",
+      "emoji": "💥",
+      "description": "Vote for the person who is most likely to have a breakdown."
+    },
+    {
+      "key": "most_likely_to_be_drunk_during_a_group_meeting",
+      "label": "Most Likely to Be Drunk During a Group Meeting",
+      "emoji": "🍻",
+      "description": "Vote for the person who is most likely to be drunk during a group meeting."
+    }
+  ],
+  "as_voted_by_you": [
+    {
+      "key": "most_likely_to_be_late",
+      "label": "Most Likely to Be Late",
+      "emoji": "⏰",
+      "description": "Vote for the person who is always cutting it close.",
+      "total_ballots": 0,
+      "vote_count": 0,
+      "winners": []
+    },
+    {
+      "key": "most_likely_to_forget_the_deadline",
+      "label": "Most Likely to Forget the Deadline",
+      "emoji": "📚",
+      "description": "Vote for the person who would absolutely miss a due date.",
+      "total_ballots": 0,
+      "vote_count": 0,
+      "winners": []
+    },
+    {
+      "key": "most_likely_to_carry_the_group",
+      "label": "Most Likely to Carry the Group",
+      "emoji": "🏋️",
+      "description": "Vote for the person doing the most lifting.",
+      "total_ballots": 0,
+      "vote_count": 0,
+      "winners": []
+    },
+    {
+      "key": "most_likely_to_have_a_breakdown",
+      "label": "Most Likely to Have a Breakdown",
+      "emoji": "💥",
+      "description": "Vote for the person who is most likely to have a breakdown.",
+      "total_ballots": 0,
+      "vote_count": 0,
+      "winners": []
+    },
+    {
+      "key": "most_likely_to_be_drunk_during_a_group_meeting",
+      "label": "Most Likely to Be Drunk During a Group Meeting",
+      "emoji": "🍻",
+      "description": "Vote for the person who is most likely to be drunk during a group meeting.",
+      "total_ballots": 0,
+      "vote_count": 0,
+      "winners": []
+    }
+  ],
   "spotlight_mentions": [],
   "keyword_buckets": {
     "panic_deadline": {

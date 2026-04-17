@@ -26,6 +26,37 @@ CONFIG = {
         "o'hara"
     ],
 
+    # ── VOTING CATEGORIES ─────────────────────────────────────────
+    # Used by the !vote commands.
+    # Key = command slug, value = display label + optional emoji/description.
+    "VOTE_CATEGORIES": {
+        "most_likely_to_be_late": {
+            "label": "Most Likely to Be Late",
+            "emoji": "⏰",
+            "description": "Vote for the person who is always cutting it close.",
+        },
+        "most_likely_to_forget_the_deadline": {
+            "label": "Most Likely to Forget the Deadline",
+            "emoji": "📚",
+            "description": "Vote for the person who would absolutely miss a due date.",
+        },
+        "most_likely_to_carry_the_group": {
+            "label": "Most Likely to Carry the Group",
+            "emoji": "🏋️",
+            "description": "Vote for the person doing the most lifting.",
+        },
+        "most_likely_to_have_a_breakdown": {
+            "label": "Most Likely to Have a Breakdown",
+            "emoji": "💥",
+            "description": "Vote for the person who is most likely to have a breakdown.",
+        },
+        "most_likely_to_be_drunk_during_a_group_meeting": {
+            "label": "Most Likely to Be Drunk During a Group Meeting",
+            "emoji": "🍻",
+            "description": "Vote for the person who is most likely to be drunk during a group meeting.",
+        },
+    },
+
     # ── MIDNIGHT ZONE ─────────────────────────────────────────────
     # Questions or messages sent in this hour range get counted separately
     # Uses the server timezone (UTC by default — adjust TIMEZONE below)

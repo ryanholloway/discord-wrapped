@@ -45,6 +45,7 @@ Edit `bot/config.py`:
 - Customise `KEYWORD_BUCKETS` — add/remove keywords as needed
 - Add `EXCLUDE_CHANNELS` you don't want scraped
 - Update `SPOTLIGHT_NAMES` with names relevant to your server
+- Configure `VOTE_CATEGORIES` to define your "most likely to" style voting buckets
 
 ### 3. Set Up Locally (to run the bot once)
 
@@ -61,6 +62,9 @@ In Discord, type:
 ```
 !wrapped status   ← see which channels will be scraped
 !wrapped          ← full scrape (can take 5–15 mins for large servers)
+!vote categories  ← list configured vote buckets
+!vote <category> @person  ← cast a vote for that category
+!vote results     ← see current winners
 ```
 
 The bot writes `web/stats.json` when done.
