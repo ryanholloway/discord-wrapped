@@ -293,37 +293,17 @@ def build_spotlight_mentions(mention_counts: dict[str, int]) -> list[dict]:
     return spotlight
 
 
-def _vote_categories_for_menu() -> list[discord.SelectOption]:
-    options: list[discord.SelectOption] = []
-    for key, meta in list(VOTE_CATEGORIES.items())[:25]:
-        options.append(
-            discord.SelectOption(
-                label=(meta.get("label") or key.replace("_", " ").title())[:100],
-                value=key,
-                emoji=meta.get("emoji") or "🗳️",
-                description=(meta.get("description") or "")[:100] or None,
-            )
-        )
-    return options
-
-
 class VotePanelView(discord.ui.View):
     def __init__(self, guild: discord.Guild, owner_id: int):
         super().__init__(timeout=900)
         self.guild = guild
         self.owner_id = owner_id
-        self.selected_category: str | None = None
-        self.selected_target: discord.abc.User | None = None
         self.panel_message: discord.Message | None = None
         self.temp_channel: discord.TextChannel | None = None
-
-        self.category_select = VoteCategorySelect()
-        self.person_select = VotePersonSelect()
-        self.submit_button = VoteSubmitButton()
-
-        self.add_item(self.category_select)
-        self.add_item(self.person_select)
-        self.add_item(self.submit_button)
+        self.page_size = 4
+        self.page = 0
+        self.category_keys = list(VOTE_CATEGORIES.keys())
+        self._rebuild_components()
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         await _notify_watch_user(
@@ -334,111 +314,99 @@ class VotePanelView(discord.ui.View):
         return True
 
     def summary_text(self) -> str:
-        category_lines = []
-        for key, meta in VOTE_CATEGORIES.items():
-            emoji = meta.get("emoji") or "🗳️"
-            label = meta.get("label") or key.replace("_", " ").title()
-            desc = meta.get("description") or ""
-            if desc:
-                category_lines.append(f"• {emoji} **{label}** — {desc}")
-            else:
-                category_lines.append(f"• {emoji} **{label}**")
+        if not self.category_keys:
+            categories_text = "• No categories configured"
+        else:
+            start = self.page * self.page_size
+            end = start + self.page_size
+            category_lines = []
+            for key in self.category_keys[start:end]:
+                meta = VOTE_CATEGORIES.get(key, {})
+                emoji = meta.get("emoji") or "🗳️"
+                label = meta.get("label") or key.replace("_", " ").title()
+                desc = meta.get("description") or ""
+                if desc:
+                    category_lines.append(f"• {emoji} **{label}** — {desc}")
+                else:
+                    category_lines.append(f"• {emoji} **{label}**")
+            categories_text = "\n".join(category_lines)
 
-        categories_text = "\n".join(category_lines) if category_lines else "• No categories configured"
+        total_pages = max(1, (len(self.category_keys) + self.page_size - 1) // self.page_size)
         return (
             "🗳️ **Voting panel**\n"
-            "Pick a category and a person, then press **Submit vote**.\n\n"
+            "Pick a person under each category. Each selection saves instantly.\n\n"
             "**Categories**\n"
             f"{categories_text}\n\n"
+            f"Page {self.page + 1}/{total_pages}\n\n"
             "Your selections and confirmation are private."
         )
 
-    async def submit_vote(self, interaction: discord.Interaction) -> None:
-        if not self.selected_category:
-            await interaction.response.send_message("Choose a category first.", ephemeral=True)
-            return
+    def _rebuild_components(self) -> None:
+        self.clear_items()
 
-        if self.selected_target is None:
-            await interaction.response.send_message("Choose a person first.", ephemeral=True)
-            return
+        start = self.page * self.page_size
+        end = start + self.page_size
+        page_keys = self.category_keys[start:end]
 
-        target_member = self.guild.get_member(self.selected_target.id)
-        if target_member is None:
-            await _respond_private_interaction(interaction, "That person is not in this server.")
-            return
+        for row, category_key in enumerate(page_keys):
+            self.add_item(CategoryVoteSelect(category_key=category_key, row=row))
 
-        confirmation = await _save_vote(self.guild, interaction.user, self.selected_category, target_member)
-        await _respond_private_interaction(interaction, confirmation)
+        total_pages = max(1, (len(self.category_keys) + self.page_size - 1) // self.page_size)
+        if total_pages > 1:
+            self.add_item(VotePageButton(label="Back", direction=-1, row=4))
+            self.add_item(VotePageButton(label="Next", direction=1, row=4))
 
-        if self.panel_message is not None:
-            with suppress(discord.Forbidden, discord.HTTPException):
-                await self.panel_message.delete()
-
-        _clear_open_vote_panel(self.guild.id, self.owner_id)
-
-        self.stop()
+    async def set_page(self, interaction: discord.Interaction, new_page: int) -> None:
+        total_pages = max(1, (len(self.category_keys) + self.page_size - 1) // self.page_size)
+        self.page = max(0, min(new_page, total_pages - 1))
+        self._rebuild_components()
+        await interaction.response.edit_message(content=self.summary_text(), view=self)
 
     async def on_timeout(self) -> None:
         if self.panel_message is not None:
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.panel_message.delete()
 
+        if self.temp_channel is not None:
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await self.temp_channel.delete(reason="Wrapped vote panel expired")
+
+        _clear_open_vote_channel(self.guild.id, self.owner_id)
         _clear_open_vote_panel(self.guild.id, self.owner_id)
 
 
-class VoteCategorySelect(discord.ui.Select):
-    def __init__(self):
-        options = _vote_categories_for_menu()
-        placeholder = "Choose a category"
-        if not options:
-            options = [discord.SelectOption(label="No categories configured", value="none")]
-            placeholder = "No categories configured"
-
-        super().__init__(
-            placeholder=placeholder,
-            min_values=1,
-            max_values=1,
-            options=options,
-            row=0,
-        )
+class CategoryVoteSelect(discord.ui.UserSelect):
+    def __init__(self, category_key: str, row: int):
+        self.category_key = category_key
+        meta = VOTE_CATEGORIES.get(category_key, {})
+        label = meta.get("label") or category_key.replace("_", " ").title()
+        super().__init__(placeholder=f"Vote for {label}", min_values=1, max_values=1, row=row)
 
     async def callback(self, interaction: discord.Interaction):
         view = self.view
         if not isinstance(view, VotePanelView):
             return
 
-        if self.values[0] == "none":
-            await _respond_private_interaction(interaction, "No categories are configured.")
+        selected_member = self.values[0]
+        target_member = view.guild.get_member(selected_member.id)
+        if target_member is None:
+            await _respond_private_interaction(interaction, "That person is not in this server.")
             return
 
-        view.selected_category = self.values[0]
-        label = VOTE_CATEGORIES.get(view.selected_category, {}).get("label") or "category"
-        await _respond_private_interaction(interaction, f"Selected category: **{label}**")
+        confirmation = await _save_vote(view.guild, interaction.user, self.category_key, target_member)
+        await _respond_private_interaction(interaction, confirmation)
 
 
-class VotePersonSelect(discord.ui.UserSelect):
-    def __init__(self):
-        super().__init__(placeholder="Choose a person", min_values=1, max_values=1, row=1)
+class VotePageButton(discord.ui.Button):
+    def __init__(self, label: str, direction: int, row: int):
+        super().__init__(label=label, style=discord.ButtonStyle.secondary, row=row)
+        self.direction = direction
 
     async def callback(self, interaction: discord.Interaction):
         view = self.view
         if not isinstance(view, VotePanelView):
             return
-
-        view.selected_target = self.values[0]
-        selected_name = getattr(view.selected_target, "display_name", None) or getattr(view.selected_target, "name", "Unknown")
-        await _respond_private_interaction(interaction, f"Selected person: **{selected_name}**")
-
-
-class VoteSubmitButton(discord.ui.Button):
-    def __init__(self):
-        super().__init__(label="Submit vote", style=discord.ButtonStyle.primary, emoji="✅", row=2)
-
-    async def callback(self, interaction: discord.Interaction):
-        view = self.view
-        if not isinstance(view, VotePanelView):
-            return
-        await view.submit_vote(interaction)
+        await view.set_page(interaction, view.page + self.direction)
 
 
 def _empty_vote_store() -> dict:
@@ -554,6 +522,26 @@ def _set_open_vote_panel_message(guild_id: int, user_id: int, message_id: int) -
 
 def _clear_open_vote_panel(guild_id: int, user_id: int) -> None:
     OPEN_VOTE_PANEL_MESSAGES.pop(_open_vote_channel_key(guild_id, user_id), None)
+
+
+def _guild_open_vote_keys(guild_id: int) -> list[tuple[int, int]]:
+    keys: list[tuple[int, int]] = []
+    for key in set(OPEN_VOTE_CHANNELS.keys()) | set(OPEN_VOTE_PANEL_MESSAGES.keys()):
+        if key[0] == guild_id:
+            keys.append(key)
+    return keys
+
+
+async def _clear_open_vote_panels_and_channels(guild: discord.Guild) -> None:
+    for guild_id, user_id in _guild_open_vote_keys(guild.id):
+        channel_id = OPEN_VOTE_CHANNELS.get((guild_id, user_id))
+        if channel_id is not None:
+            channel = guild.get_channel(channel_id)
+            if channel is not None:
+                with suppress(discord.Forbidden, discord.HTTPException):
+                    await channel.delete(reason="Wrapped votes cleared")
+        _clear_open_vote_channel(guild_id, user_id)
+        _clear_open_vote_panel(guild_id, user_id)
 
 
 def _parse_vote_timestamp(ballot: dict) -> datetime:
@@ -897,21 +885,22 @@ async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category
         _set_open_vote_channel(guild.id, ctx.author.id, temp_channel.id)
 
     view = VotePanelView(guild, owner_id=ctx.author.id)
-    if preselected_category:
-        view.selected_category = preselected_category
 
     panel_message_id = _get_open_vote_panel_message_id(guild.id, ctx.author.id)
+    panel_message = None
     if panel_message_id is not None:
-        previous_message = None
         with suppress(discord.NotFound, discord.Forbidden, discord.HTTPException):
-            previous_message = await temp_channel.fetch_message(panel_message_id)
-        if previous_message is not None:
-            with suppress(discord.Forbidden, discord.HTTPException):
-                await previous_message.delete()
-        else:
+            panel_message = await temp_channel.fetch_message(panel_message_id)
+        if panel_message is None:
             _clear_open_vote_panel(guild.id, ctx.author.id)
 
-    panel_message = await temp_channel.send(view.summary_text(), view=view)
+    if panel_message is None:
+        panel_message = await temp_channel.send(view.summary_text(), view=view)
+        with suppress(discord.Forbidden, discord.HTTPException):
+            await panel_message.pin(reason="Wrapped vote panel")
+    else:
+        await panel_message.edit(content=view.summary_text(), view=view)
+
     view.panel_message = panel_message
     view.temp_channel = temp_channel
     _set_open_vote_panel_message(guild.id, ctx.author.id, panel_message.id)
@@ -1365,7 +1354,7 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         return
 
     if member is None:
-        await _send_vote_panel_in_server(ctx, preselected_category=resolved)
+        await _send_vote_panel_in_server(ctx)
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
@@ -1404,7 +1393,7 @@ async def vote_ban_cmd(ctx: commands.Context, member: discord.Member = None):
 @wrapped_cmd.command(name="unban")
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
-async def vote_unban_cmd(ctx: commands.Context, member: discord.Member = None):
+async def vote_unban_cmd(ctx: commands.Context, member: discord.User = None):
     await _delete_invoking_message(ctx)
 
     if member is None:
@@ -1439,6 +1428,8 @@ async def wrapped_votes_cmd(ctx: commands.Context):
 @commands.has_permissions(manage_messages=True)
 async def wrapped_votes_clear_cmd(ctx: commands.Context):
     await _delete_invoking_message(ctx)
+
+    await _clear_open_vote_panels_and_channels(ctx.guild)
 
     latest_store = await _clear_all_votes_for_guild(ctx.guild.id)
     await push_file_via_api(
