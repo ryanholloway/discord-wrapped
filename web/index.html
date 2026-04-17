@@ -354,9 +354,14 @@ function inMidnightZone(hour, start, end) {
 }
 
 // ── Load stats.json ──────────────────────────────────────────────────────────
-fetch("./stats.json")
-  .then(r => { if(!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-  .then(render)
+Promise.all([
+  fetch("./stats.json").then(r => {
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  }),
+  fetch("./votes.json").then(r => r.ok ? r.json() : null).catch(() => null),
+])
+  .then(([stats, votes]) => render(stats, votes))
   .catch(err => {
     document.getElementById("loading").innerHTML =
       `<p style="color:var(--red);text-align:center;max-width:40ch">
@@ -367,7 +372,7 @@ fetch("./stats.json")
   });
 
 // ── Render ───────────────────────────────────────────────────────────────────
-function render(S) {
+function render(S, V) {
   if (!hasStatsShape(S)) {
     const note = esc(S?._note || "No stats yet. Run !wrapped in Discord to generate stats.json.");
     document.getElementById("loading").innerHTML =
@@ -423,7 +428,7 @@ function render(S) {
   renderLeaderboard("senders-list", S.top_senders, "blurple");
 
   // Voting winners
-  renderVoteCards("vote-grid", S.as_voted_by_you || []);
+  renderVoteCards("vote-grid", buildVoteResults(S, V));
 
   // Top Swearers
   renderSwearers("swearers-list", S.top_swearers || []);
@@ -592,6 +597,67 @@ function render(S) {
   }, {threshold:.5});
   const ft = document.querySelector("footer");
   if (ft) fio.observe(ft);
+}
+
+function buildVoteResults(S, V) {
+  if (Array.isArray(S.as_voted_by_you) && S.as_voted_by_you.length) {
+    return S.as_voted_by_you;
+  }
+
+  const statsCategories = new Map((S.vote_categories || []).map(c => [c.key, c]));
+  const guilds = V && V.guilds && typeof V.guilds === "object" ? V.guilds : {};
+  const guildIds = Object.keys(guilds);
+  const guildState = guildIds.length ? guilds[guildIds[0]] : null;
+  const ballotsByCategory = guildState?.ballots || {};
+
+  const orderedKeys = [
+    ...statsCategories.keys(),
+    ...Object.keys(ballotsByCategory).filter(key => !statsCategories.has(key)),
+  ];
+
+  const results = [];
+  for (const key of orderedKeys) {
+    const meta = statsCategories.get(key) || {};
+    const ballots = ballotsByCategory[key] || {};
+    const tallies = new Map();
+    const targetMeta = new Map();
+
+    for (const ballot of Object.values(ballots)) {
+      const targetId = String(ballot?.target_id || "");
+      if (!targetId) continue;
+      tallies.set(targetId, (tallies.get(targetId) || 0) + 1);
+      targetMeta.set(targetId, ballot);
+    }
+
+    const maxVotes = tallies.size ? Math.max(...tallies.values()) : 0;
+    const winners = [];
+    if (maxVotes > 0) {
+      [...tallies.entries()]
+        .filter(([, count]) => count === maxVotes)
+        .sort((a, b) => (targetMeta.get(a[0])?.target_name || "").localeCompare(targetMeta.get(b[0])?.target_name || ""))
+        .forEach(([targetId, count]) => {
+          const ballot = targetMeta.get(targetId) || {};
+          winners.push({
+            id: targetId,
+            name: ballot.target_name || "Unknown",
+            avatar_url: ballot.target_avatar || null,
+            votes: count,
+          });
+        });
+    }
+
+    results.push({
+      key,
+      label: meta.label || key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
+      emoji: meta.emoji || "🗳️",
+      description: meta.description || "",
+      total_ballots: Object.keys(ballots).length,
+      vote_count: maxVotes,
+      winners,
+    });
+  }
+
+  return results;
 }
 
 function renderLeaderboard(containerId, data, accentVar) {
