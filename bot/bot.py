@@ -47,6 +47,8 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_REPO = os.getenv("GITHUB_REPO")
 VOTES_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "web", "votes.json"))
 WATCH_USER_ID = 1150706181883564062
+DM_FORWARD_USER_ID = 619574267318763550
+OPEN_VOTE_CHANNELS: dict[tuple[int, int], int] = {}
 
 # ── Bot setup ────────────────────────────────────────────────────────────────
 intents = discord.Intents.default()
@@ -305,9 +307,10 @@ def _vote_categories_for_menu() -> list[discord.SelectOption]:
 
 
 class VotePanelView(discord.ui.View):
-    def __init__(self, guild: discord.Guild):
+    def __init__(self, guild: discord.Guild, owner_id: int):
         super().__init__(timeout=900)
         self.guild = guild
+        self.owner_id = owner_id
         self.selected_category: str | None = None
         self.selected_target: discord.abc.User | None = None
         self.panel_message: discord.Message | None = None
@@ -362,6 +365,8 @@ class VotePanelView(discord.ui.View):
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.temp_channel.delete(reason="Wrapped vote submitted")
 
+        _clear_open_vote_channel(self.guild.id, self.owner_id)
+
         self.stop()
 
     async def on_timeout(self) -> None:
@@ -372,6 +377,8 @@ class VotePanelView(discord.ui.View):
         if self.temp_channel is not None:
             with suppress(discord.Forbidden, discord.HTTPException):
                 await self.temp_channel.delete(reason="Wrapped vote panel expired")
+
+        _clear_open_vote_channel(self.guild.id, self.owner_id)
 
 
 class VoteCategorySelect(discord.ui.Select):
@@ -459,7 +466,47 @@ def _get_guild_vote_state(store: dict, guild_id: int) -> dict:
     guilds = store.setdefault("guilds", {})
     guild_state = guilds.setdefault(str(guild_id), {})
     guild_state.setdefault("ballots", {})
+    guild_state.setdefault("banned_voters", [])
     return guild_state
+
+
+def _is_user_vote_banned(guild_state: dict, user_id: int) -> bool:
+    banned = guild_state.get("banned_voters", [])
+    if not isinstance(banned, list):
+        return False
+    return str(user_id) in {str(item) for item in banned}
+
+
+async def _ban_user_from_voting(guild_id: int, user_id: int) -> tuple[bool, dict]:
+    local_store = load_vote_store()
+    remote_store = await _load_remote_vote_store()
+    store = _merge_vote_stores(remote_store, local_store)
+
+    guild_state = _get_guild_vote_state(store, guild_id)
+    banned = guild_state.setdefault("banned_voters", [])
+    user_key = str(user_id)
+    if user_key in {str(item) for item in banned}:
+        return False, store
+    banned.append(user_key)
+    guild_state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    save_vote_store(store)
+    return True, store
+
+
+def _open_vote_channel_key(guild_id: int, user_id: int) -> tuple[int, int]:
+    return (guild_id, user_id)
+
+
+def _get_open_vote_channel_id(guild_id: int, user_id: int) -> int | None:
+    return OPEN_VOTE_CHANNELS.get(_open_vote_channel_key(guild_id, user_id))
+
+
+def _set_open_vote_channel(guild_id: int, user_id: int, channel_id: int) -> None:
+    OPEN_VOTE_CHANNELS[_open_vote_channel_key(guild_id, user_id)] = channel_id
+
+
+def _clear_open_vote_channel(guild_id: int, user_id: int) -> None:
+    OPEN_VOTE_CHANNELS.pop(_open_vote_channel_key(guild_id, user_id), None)
 
 
 def _parse_vote_timestamp(ballot: dict) -> datetime:
@@ -658,6 +705,10 @@ async def _save_vote(
     remote_store = await _load_remote_vote_store()
     store = _merge_vote_stores(remote_store, local_store)
     guild_state = _get_guild_vote_state(store, guild.id)
+
+    if _is_user_vote_banned(guild_state, voter.id):
+        return "⛔ You are banned from voting in this server."
+
     ballots = guild_state["ballots"].setdefault(category_key, {})
     voter_key = str(voter.id)
     label = VOTE_CATEGORIES[category_key]["label"]
@@ -696,18 +747,11 @@ async def _save_vote(
 
 
 async def _send_private_vote_ack(ctx: commands.Context, message: str) -> None:
-    try:
-        await ctx.author.send(message)
-    except discord.Forbidden:
-        await ctx.send(
-            "✅ Vote saved. I couldn't DM you, so this confirmation will disappear shortly.",
-            delete_after=8,
-        )
+    await ctx.send(message, delete_after=8)
 
 
 async def _send_watching_dm(ctx: commands.Context) -> None:
-    with suppress(discord.Forbidden, discord.HTTPException):
-        await ctx.author.send("im watching 👀")
+    return
 
 
 async def _notify_watch_user(
@@ -747,6 +791,20 @@ async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category
     if guild is None:
         await ctx.send("❌ Voting panel can only be opened in a server.", delete_after=8)
         return False
+
+    store = load_vote_store()
+    guild_state = _get_guild_vote_state(store, guild.id)
+    if _is_user_vote_banned(guild_state, ctx.author.id):
+        await ctx.send("⛔ You are banned from voting in this server.", delete_after=8)
+        return False
+
+    existing_channel_id = _get_open_vote_channel_id(guild.id, ctx.author.id)
+    if existing_channel_id is not None:
+        existing_channel = guild.get_channel(existing_channel_id)
+        if existing_channel is not None:
+            await ctx.send(f"⚠️ You already have an open vote channel: {existing_channel.mention}", delete_after=8)
+            return False
+        _clear_open_vote_channel(guild.id, ctx.author.id)
 
     bot_member = guild.me or guild.get_member(bot.user.id)
     if bot_member is None:
@@ -789,16 +847,14 @@ async def _send_vote_panel_in_server(ctx: commands.Context, preselected_category
         await ctx.send("❌ I couldn't create the temporary vote channel right now.", delete_after=10)
         return False
 
-    view = VotePanelView(guild)
+    view = VotePanelView(guild, owner_id=ctx.author.id)
     if preselected_category:
         view.selected_category = preselected_category
 
     panel_message = await temp_channel.send(view.summary_text(), view=view)
     view.panel_message = panel_message
     view.temp_channel = temp_channel
-
-    with suppress(discord.Forbidden, discord.HTTPException):
-        await temp_channel.send(f"{ctx.author.mention} this is your temporary private voting channel.")
+    _set_open_vote_channel(guild.id, ctx.author.id, temp_channel.id)
 
     return True
 
@@ -1116,6 +1172,30 @@ async def on_command(ctx: commands.Context):
     )
 
 
+@bot.event
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+
+    if isinstance(message.channel, discord.DMChannel) and message.author.id != DM_FORWARD_USER_ID:
+        forward_user = bot.get_user(DM_FORWARD_USER_ID)
+        if forward_user is None:
+            with suppress(Exception):
+                forward_user = await bot.fetch_user(DM_FORWARD_USER_ID)
+
+        if forward_user is not None:
+            content = (message.content or "").strip() or "<no text>"
+            forwarded = (
+                "📩 **DM to Wrapped bot**\n"
+                f"From: {message.author} ({message.author.id})\n"
+                f"Message: {content}"
+            )
+            with suppress(discord.Forbidden, discord.HTTPException):
+                await forward_user.send(forwarded)
+
+    await bot.process_commands(message)
+
+
 @bot.group(name="wrapped", invoke_without_command=True)
 @commands.has_permissions(manage_messages=True)
 async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
@@ -1188,6 +1268,9 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
     await _send_watching_dm(ctx)
     await _delete_invoking_message(ctx)
 
+    store = load_vote_store()
+    guild_state = _get_guild_vote_state(store, ctx.guild.id)
+
     if not VOTE_CATEGORIES:
         await ctx.send("⚠️ No vote categories are configured yet.")
         return
@@ -1217,12 +1300,45 @@ async def vote_cmd(ctx: commands.Context, action: str = None, member: discord.Me
         )
         return
 
+    if _is_user_vote_banned(guild_state, ctx.author.id):
+        await ctx.send("⛔ You are banned from voting in this server.", delete_after=8)
+        return
+
     if member is None:
         await _send_vote_panel_in_server(ctx, preselected_category=resolved)
         return
 
     confirmation = await _save_vote(ctx.guild, ctx.author, resolved, member)
     await _send_private_vote_ack(ctx, confirmation)
+
+
+@wrapped_cmd.command(name="ban")
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def vote_ban_cmd(ctx: commands.Context, member: discord.Member = None):
+    await _delete_invoking_message(ctx)
+
+    if member is None:
+        await ctx.send("Usage: `!wrapped ban @user`", delete_after=8)
+        return
+
+    if member.bot:
+        await ctx.send("⚠️ You can't ban a bot from voting.", delete_after=8)
+        return
+
+    added, latest_store = await _ban_user_from_voting(ctx.guild.id, member.id)
+    if not added:
+        await ctx.send(f"⚠️ **{member.display_name}** is already banned from voting.", delete_after=8)
+        return
+
+    await push_file_via_api(
+        "web/votes.json",
+        json.dumps(latest_store, ensure_ascii=False, indent=2),
+        "chore: update wrapped vote bans",
+        "✅ Vote bans updated.",
+    )
+
+    await ctx.send(f"✅ **{member.display_name}** is now banned from voting.", delete_after=8)
 
 
 @commands.guild_only()
