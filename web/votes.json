@@ -2,24 +2,16 @@
   "guilds": {
     "976854702278975529": {
       "ballots": {
-        "most_likely_to_forget_the_deadline": {
+        "most_likely_to_be_a_pedo": {
           "619574267318763550": {
-            "target_id": "410147117793804288",
-            "target_name": "Jad Fuhr",
-            "target_avatar": "https://cdn.discordapp.com/avatars/410147117793804288/be5fe37c2d9399d78f0ef8655083bdd9.png?size=1024",
-            "voted_at": "2026-04-17T12:31:16.801710+00:00"
-          }
-        },
-        "most_likely_to_have_a_breakdown": {
-          "865668325508644894": {
-            "target_id": "865668325508644894",
-            "target_name": "BlueBaron(Jordan)",
-            "target_avatar": "https://cdn.discordapp.com/avatars/865668325508644894/bcdfc7a2e8658e41f105f149b59f23f8.png?size=1024",
-            "voted_at": "2026-04-17T12:33:23.187169+00:00"
+            "target_id": "369893020658696194",
+            "target_name": "CraicMeister (Kyle D)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+            "voted_at": "2026-04-17T12:37:36.866552+00:00"
           }
         }
       },
-      "updated_at": "2026-04-17T12:33:23.187192+00:00"
+      "updated_at": "2026-04-17T12:37:36.866572+00:00"
     }
   }
 }
