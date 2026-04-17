@@ -1,8 +1,17 @@
 {
   "guilds": {
     "976854702278975529": {
-      "ballots": {},
-      "updated_at": "2026-04-17T13:43:57.400130+00:00",
+      "ballots": {
+        "most_likely_to_be_late": {
+          "619574267318763550": {
+            "target_id": "734346157534478377",
+            "target_name": "Oli",
+            "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
+            "voted_at": "2026-04-17T13:45:59.621886+00:00"
+          }
+        }
+      },
+      "updated_at": "2026-04-17T13:45:59.621898+00:00",
       "banned_voters": []
     }
   }
