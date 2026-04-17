@@ -8,6 +8,12 @@
             "target_name": "CraicMeister (Kyle D)",
             "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
             "voted_at": "2026-04-17T12:10:15.692469+00:00"
+          },
+          "294227081108389888": {
+            "target_id": "369893020658696194",
+            "target_name": "CraicMeister (Kyle D)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+            "voted_at": "2026-04-17T12:18:56.830330+00:00"
           }
         },
         "most_likely_to_carry_the_group": {
@@ -43,7 +49,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T12:18:16.251760+00:00"
+      "updated_at": "2026-04-17T12:18:56.830343+00:00"
     }
   }
 }
