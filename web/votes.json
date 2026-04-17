@@ -76,6 +76,12 @@
             "target_name": "katrina",
             "target_avatar": "https://cdn.discordapp.com/avatars/805389309565206588/34b92aac37af3fa202fc4163543e2bf7.png?size=1024",
             "voted_at": "2026-04-17T14:08:54.887987+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "1022580635224776795",
+            "target_name": "MEABEAB(Alex)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1022580635224776795/033336fa69eb5b7f3bcff1e08c450359.png?size=1024",
+            "voted_at": "2026-04-17T14:33:50.633012+00:00"
           }
         },
         "most_likely_to_carry_the_group": {
@@ -519,7 +525,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:13:23.404098+00:00",
+      "updated_at": "2026-04-17T14:33:50.633025+00:00",
       "banned_voters": []
     }
   }
