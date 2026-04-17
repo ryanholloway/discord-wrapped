@@ -195,9 +195,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
             "voted_at": "2026-04-17T13:54:39.156755+00:00"
           }
+        },
+        "most_likely_to_be_a_russian_spy": {
+          "619574267318763550": {
+            "target_id": "392945874076172289",
+            "target_name": "Scaldy Panda (Emily)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/392945874076172289/9e60f0402dde62641064697bf679e4e2.png?size=1024",
+            "voted_at": "2026-04-17T13:54:44.473727+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T13:54:39.156769+00:00",
+      "updated_at": "2026-04-17T13:54:44.473743+00:00",
       "banned_voters": []
     }
   }
