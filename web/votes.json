@@ -120,6 +120,12 @@
             "target_name": "(Cyprian) SlippyCyppy",
             "target_avatar": "https://cdn.discordapp.com/avatars/500732416483131394/cb40f0ae0163abf2ca110c47efc1240a.png?size=1024",
             "voted_at": "2026-04-17T14:09:11.257656+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "177168674992422912",
+            "target_name": "NinjaDeluxe (Jakub)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/177168674992422912/135dfa0823b350841ae2e7a5e49253e9.png?size=1024",
+            "voted_at": "2026-04-17T14:34:10.702831+00:00"
           }
         },
         "most_likely_to_have_a_breakdown": {
@@ -525,7 +531,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:33:50.633025+00:00",
+      "updated_at": "2026-04-17T14:34:10.702842+00:00",
       "banned_voters": []
     }
   }
