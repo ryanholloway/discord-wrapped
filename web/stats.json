@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-04-17T12:22:47.702902+01:00",
+  "generated_at": "2026-04-17T12:46:28.514564+01:00",
   "server_name": "Game Dev & IDAD at SETU",
   "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2022-09-01",
     "to": "2026-04-17"
   },
-  "total_messages": 43673,
+  "total_messages": 43677,
   "active_members": 77,
   "midnight_questions": 136,
   "top_senders": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 3287
+      "count": 3289
     },
     {
       "name": "Steven Kelly",
@@ -36,11 +36,11 @@
     },
     {
       "name": "Adam Prendergast-Ryan",
-      "count": 1843
+      "count": 1844
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 1599
+      "count": 1600
     },
     {
       "name": "BlueBaron(Jordan)",
@@ -96,7 +96,7 @@
   "top_channels": [
     {
       "name": "general",
-      "count": 13202
+      "count": 13206
     },
     {
       "name": "game-dev-class-info",
@@ -138,7 +138,7 @@
   "top_mentioned": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 587
+      "count": 588
     },
     {
       "name": "Pastor Fred",
@@ -162,7 +162,7 @@
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 245
+      "count": 246
     },
     {
       "name": "Jad Fuhr",
@@ -175,6 +175,88 @@
     {
       "name": "Scaldy Panda (Emily)",
       "count": 169
+    }
+  ],
+  "top_swearers": [
+    {
+      "id": "454399292724084737",
+      "name": "(Edward) DishonoredSkull",
+      "avatar_url": "https://cdn.discordapp.com/avatars/454399292724084737/ee888ab240662cac279cd241cceafa0c.png?size=1024",
+      "swear_messages": 151,
+      "message_count": 2023,
+      "swear_rate": 7.46
+    },
+    {
+      "id": "437358398036770828",
+      "name": "Wavesan",
+      "avatar_url": "https://cdn.discordapp.com/avatars/437358398036770828/f6f1253f7c5ea22e794e57fd9313c265.png?size=1024",
+      "swear_messages": 28,
+      "message_count": 389,
+      "swear_rate": 7.2
+    },
+    {
+      "id": "456226577798135808",
+      "name": "Deleted User",
+      "avatar_url": "https://cdn.discordapp.com/embed/avatars/3.png",
+      "swear_messages": 53,
+      "message_count": 762,
+      "swear_rate": 6.96
+    },
+    {
+      "id": "914227757343469658",
+      "name": "ColourCodedWasps",
+      "avatar_url": "https://cdn.discordapp.com/avatars/914227757343469658/47907bf1fd4a4254b05eaddfad0bae79.png?size=1024",
+      "swear_messages": 11,
+      "message_count": 159,
+      "swear_rate": 6.92
+    },
+    {
+      "id": "217283574729015297",
+      "name": "Bean Boy (Dean)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/217283574729015297/7bebb6958eb91247b0380786ce37c551.png?size=1024",
+      "swear_messages": 4,
+      "message_count": 60,
+      "swear_rate": 6.67
+    },
+    {
+      "id": "479705641276014593",
+      "name": "Sharkbirb (Kieran)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/479705641276014593/c14295e62a99870214f7e6742aa972ae.png?size=1024",
+      "swear_messages": 83,
+      "message_count": 1283,
+      "swear_rate": 6.47
+    },
+    {
+      "id": "865668325508644894",
+      "name": "BlueBaron(Jordan)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/865668325508644894/bcdfc7a2e8658e41f105f149b59f23f8.png?size=1024",
+      "swear_messages": 84,
+      "message_count": 1395,
+      "swear_rate": 6.02
+    },
+    {
+      "id": "294227081108389888",
+      "name": "Dunnesparce [Stephen]",
+      "avatar_url": "https://cdn.discordapp.com/avatars/294227081108389888/926da16ff81c60b4bde0894894363967.png?size=1024",
+      "swear_messages": 186,
+      "message_count": 3289,
+      "swear_rate": 5.66
+    },
+    {
+      "id": "303292494001733663",
+      "name": "Shugger",
+      "avatar_url": "https://cdn.discordapp.com/avatars/303292494001733663/cda382f9a6692a1e446533d1f98c8001.png?size=1024",
+      "swear_messages": 10,
+      "message_count": 205,
+      "swear_rate": 4.88
+    },
+    {
+      "id": "273590153606332418",
+      "name": "Dylan",
+      "avatar_url": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
+      "swear_messages": 7,
+      "message_count": 150,
+      "swear_rate": 4.67
     }
   ],
   "spotlight_mentions": [],
@@ -623,68 +705,6 @@
         }
       ]
     },
-    "violence_jokes": {
-      "count": 8,
-      "weighted_count": 9.66,
-      "samples": [
-        {
-          "author": "Masked Insanity",
-          "content": "The  stands are weird asf like how they gonna fight is intriguing",
-          "timestamp": "2023-02-19T22:19:23.673000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1076991418372989078"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "*Smack*",
-          "timestamp": "2022-10-05T23:29:45.353000+00:00",
-          "channel": "parties",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022478684101292032/1027361987795091517"
-        },
-        {
-          "author": "(Edward) DishonoredSkull",
-          "content": "Smack your hand",
-          "timestamp": "2026-04-12T00:13:04.230000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1492678907705426071"
-        },
-        {
-          "author": "wisp",
-          "content": "the rules literally say “complete full knowledge of the rules is how you play this game” or some shit like everyone is going to fight before it even starts",
-          "timestamp": "2022-09-29T22:52:03.199000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1025178172439932988"
-        },
-        {
-          "author": "Wavesan",
-          "content": "I'm gonna fight it out, all you can do really",
-          "timestamp": "2023-10-09T12:44:37.750000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1160920758747406456"
-        },
-        {
-          "author": "Adam Prendergast-Ryan",
-          "content": "<@218842922727112704> how you gonna fight these allegations?",
-          "timestamp": "2022-12-07T14:04:25.404000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1050050152750141481"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "We're all gonna fight me thinks",
-          "timestamp": "2022-10-14T12:47:12.743000+00:00",
-          "channel": "general",
-          "jump_url": "https://discord.com/channels/976854702278975529/978799036658229248/1030461777219166262"
-        },
-        {
-          "author": "Zoë",
-          "content": "I’m gonna fight her",
-          "timestamp": "2022-12-07T10:18:06.418000+00:00",
-          "channel": "vent",
-          "jump_url": "https://discord.com/channels/976854702278975529/978802609173434378/1049993198354845738"
-        }
-      ]
-    },
     "cope_messages": {
       "count": 17,
       "weighted_count": 23.78,
@@ -796,36 +816,9 @@
         }
       ]
     },
-    "classic_excuses": {
-      "count": 3,
-      "weighted_count": 4.66,
-      "samples": [
-        {
-          "author": "d.crim02",
-          "content": "he didnt upload lab2.h or uploaded the wrong file by accident",
-          "timestamp": "2024-09-18T11:07:44.934000+00:00",
-          "channel": "game-dev-assignments",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1285920191661871125"
-        },
-        {
-          "author": "[Nick] colocota",
-          "content": "otherwise try to download it again from blackboard and replace in case it got corrupted somehow",
-          "timestamp": "2023-02-05T22:01:34.611000+00:00",
-          "channel": "game-dev-assignments",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1071913504283570226"
-        },
-        {
-          "author": "Dunnesparce [Stephen]",
-          "content": "For Lab 8 btw, I thought it was due today",
-          "timestamp": "2026-03-20T12:48:01.893000+00:00",
-          "channel": "cloud",
-          "jump_url": "https://discord.com/channels/976854702278975529/1461312052571275274/1484533978965737503"
-        }
-      ]
-    },
     "swear_words": {
-      "count": 3531,
-      "weighted_count": 4956.62,
+      "count": 1425,
+      "weighted_count": 1991.44,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -833,34 +826,6 @@
           "timestamp": "2023-02-03T15:20:10.932000+00:00",
           "channel": "photography",
           "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1071087714281209856"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "Classic mistake",
-          "timestamp": "2022-12-09T17:10:53.312000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1050821853968597022"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "“Hello there passer by could you perhaps help me find my lost chicken Margret”",
-          "timestamp": "2022-11-22T21:33:42.529000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1044727401143349368"
-        },
-        {
-          "author": "Pastor Fred",
-          "content": "I know and they said oh yeah pre load was yesterday so you could download this shite yesterday but nooooo",
-          "timestamp": "2022-11-16T14:11:19.860000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441745926983680"
-        },
-        {
-          "author": "Sharkbirb (Kieran)",
-          "content": "Classic Activision not knowing how to condense their files",
-          "timestamp": "2022-11-16T14:08:34.293000+00:00",
-          "channel": "photography",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804443522953238/1042441051488657459"
         },
         {
           "author": "Adam Prendergast-Ryan",
@@ -878,13 +843,6 @@
         },
         {
           "author": "wisp",
-          "content": "holy shittt",
-          "timestamp": "2022-10-26T18:43:53.208000+00:00",
-          "channel": "cooking",
-          "jump_url": "https://discord.com/channels/976854702278975529/978804498376032297/1034900191662309426"
-        },
-        {
-          "author": "wisp",
           "content": "deadass writing the recipe on word rn it’s too long to type out",
           "timestamp": "2022-10-04T14:57:02.387000+00:00",
           "channel": "cooking",
@@ -896,20 +854,6 @@
           "timestamp": "2023-12-01T12:10:20.670000+00:00",
           "channel": "anime",
           "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1180118687605342269"
-        },
-        {
-          "author": "Zoë",
-          "content": "Hey <@399139829264416768> what’s that anime you’re watching in Bernie’s class",
-          "timestamp": "2023-02-08T14:32:30.678000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1072887656834408538"
-        },
-        {
-          "author": "Adam Prendergast-Ryan",
-          "content": "I mostly just watch the classics now",
-          "timestamp": "2022-10-11T19:58:13.075000+00:00",
-          "channel": "anime",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1029483079716311133"
         },
         {
           "author": "Jad Fuhr",
@@ -931,6 +875,55 @@
           "timestamp": "2022-10-07T20:58:45.636000+00:00",
           "channel": "anime",
           "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1028048764319043624"
+        },
+        {
+          "author": "Dragon",
+          "content": "My internet is so ass rn holy shit",
+          "timestamp": "2022-09-27T14:25:21.313000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1024325881956679790"
+        },
+        {
+          "author": "Dragon",
+          "content": "AH INTERNET CONNECTION IS ASS",
+          "timestamp": "2022-09-27T14:25:16.907000+00:00",
+          "channel": "anime",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022934996996067340/1024325863476564050"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "OH SHIT INABAKUMORI MENTIONED",
+          "timestamp": "2024-01-23T22:13:49.338000+00:00",
+          "channel": "music",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1199477114643169331"
+        },
+        {
+          "author": "Adam Prendergast-Ryan",
+          "content": "TURN THAT SHIT UP",
+          "timestamp": "2022-12-04T01:15:14.289000+00:00",
+          "channel": "music",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1048769417347092560"
+        },
+        {
+          "author": "Adam Prendergast-Ryan",
+          "content": "Why the fuck does this go so fucking hard",
+          "timestamp": "2022-12-01T16:53:45.115000+00:00",
+          "channel": "music",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1047918438473011251"
+        },
+        {
+          "author": "Deleted User",
+          "content": "Pete is a fat bastard",
+          "timestamp": "2022-11-17T11:25:42.182000+00:00",
+          "channel": "music",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1042762452150009876"
+        },
+        {
+          "author": "(Edward) DishonoredSkull",
+          "content": "For fuck sake, why is it always the legendary lads. Loved that game and its soundtrack",
+          "timestamp": "2022-10-29T22:04:50.036000+00:00",
+          "channel": "music",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1036037925261033583"
         }
       ]
     },
@@ -1544,7 +1537,7 @@
     "9": 1210,
     "10": 1915,
     "11": 2255,
-    "12": 2784,
+    "12": 2788,
     "13": 2830,
     "14": 2909,
     "15": 3076,
@@ -1562,7 +1555,7 @@
     "Tuesday": 7505,
     "Wednesday": 7065,
     "Thursday": 8130,
-    "Friday": 6976,
+    "Friday": 6980,
     "Saturday": 2697,
     "Sunday": 4588
   },
@@ -1610,7 +1603,7 @@
     "2026-01": 1493,
     "2026-02": 434,
     "2026-03": 566,
-    "2026-04": 1130
+    "2026-04": 1134
   },
   "midnight_zone": {
     "start": 1,
@@ -1622,6 +1615,6 @@
       "missing_permissions": 3,
       "excluded_by_name": 9
     },
-    "duration_seconds": 464.14
+    "duration_seconds": 464.26
   }
 }
