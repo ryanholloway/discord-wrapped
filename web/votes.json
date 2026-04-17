@@ -170,6 +170,12 @@
             "target_name": "MonikaNusi",
             "target_avatar": "https://cdn.discordapp.com/avatars/353509000903393280/cb0916b127880edde506cd0452a351ff.png?size=1024",
             "voted_at": "2026-04-17T14:09:32.666487+00:00"
+          },
+          "734346157534478377": {
+            "target_id": "474630870146220083",
+            "target_name": "Pastor Fred",
+            "target_avatar": "https://cdn.discordapp.com/avatars/474630870146220083/3ba76069d442230d8efc16f888c0a99d.png?size=1024",
+            "voted_at": "2026-04-17T14:39:53.928231+00:00"
           }
         },
         "most_likely_to_be_drunk_during_a_group_meeting": {
@@ -537,7 +543,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:37:50.256287+00:00",
+      "updated_at": "2026-04-17T14:39:53.928242+00:00",
       "banned_voters": []
     }
   }
