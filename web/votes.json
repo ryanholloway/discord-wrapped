@@ -187,9 +187,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
             "voted_at": "2026-04-17T13:54:31.524420+00:00"
           }
+        },
+        "most_likely_to_be_caught_using_chatgpt_on_an_assignment": {
+          "619574267318763550": {
+            "target_id": "1150706181883564062",
+            "target_name": "C00286125 (Danny Delaney)",
+            "target_avatar": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+            "voted_at": "2026-04-17T13:54:39.156755+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T13:54:31.524433+00:00",
+      "updated_at": "2026-04-17T13:54:39.156769+00:00",
       "banned_voters": []
     }
   }
