@@ -50,6 +50,12 @@
             "target_name": "Scaldy Panda (Emily)",
             "target_avatar": "https://cdn.discordapp.com/avatars/392945874076172289/9e60f0402dde62641064697bf679e4e2.png?size=1024",
             "voted_at": "2026-04-17T13:46:23.473596+00:00"
+          },
+          "294227081108389888": {
+            "target_id": "474630870146220083",
+            "target_name": "Pastor Fred",
+            "target_avatar": "https://cdn.discordapp.com/avatars/474630870146220083/3ba76069d442230d8efc16f888c0a99d.png?size=1024",
+            "voted_at": "2026-04-17T13:48:27.303446+00:00"
           }
         },
         "most_likely_to_be_drunk_during_a_group_meeting": {
@@ -85,7 +91,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T13:48:17.080083+00:00",
+      "updated_at": "2026-04-17T13:48:27.303460+00:00",
       "banned_voters": []
     }
   }
