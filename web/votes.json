@@ -26,6 +26,12 @@
             "target_name": "(Cyprian) SlippyCyppy",
             "target_avatar": "https://cdn.discordapp.com/avatars/500732416483131394/cb40f0ae0163abf2ca110c47efc1240a.png?size=1024",
             "voted_at": "2026-04-17T13:53:13.820830+00:00"
+          },
+          "369893020658696194": {
+            "target_id": "734346157534478377",
+            "target_name": "Oli",
+            "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
+            "voted_at": "2026-04-17T14:05:09.489210+00:00"
           }
         },
         "most_likely_to_forget_the_deadline": {
@@ -339,7 +345,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:04:42.918336+00:00",
+      "updated_at": "2026-04-17T14:05:09.489220+00:00",
       "banned_voters": []
     }
   }
