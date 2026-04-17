@@ -354,6 +354,12 @@
             "target_name": "CraicMeister (Kyle D)",
             "target_avatar": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
             "voted_at": "2026-04-17T14:03:53.866968+00:00"
+          },
+          "369893020658696194": {
+            "target_id": "349243708610183188",
+            "target_name": "Adam Prendergast-Ryan",
+            "target_avatar": "https://cdn.discordapp.com/guilds/976854702278975529/users/349243708610183188/avatars/c29aafc1326f529ce2300f3fddcf95ef.png?size=1024",
+            "voted_at": "2026-04-17T14:07:03.236995+00:00"
           }
         },
         "most_likely_to_slime_out_a_lecturer": {
@@ -405,7 +411,7 @@
           }
         }
       },
-      "updated_at": "2026-04-17T14:06:52.350314+00:00",
+      "updated_at": "2026-04-17T14:07:03.237006+00:00",
       "banned_voters": []
     }
   }
