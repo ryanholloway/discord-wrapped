@@ -33,9 +33,17 @@
             "target_avatar": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
             "voted_at": "2026-04-17T12:16:36.082819+00:00"
           }
+        },
+        "most_likely_to_be_late": {
+          "294227081108389888": {
+            "target_id": "734346157534478377",
+            "target_name": "Oli",
+            "target_avatar": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
+            "voted_at": "2026-04-17T12:18:16.251747+00:00"
+          }
         }
       },
-      "updated_at": "2026-04-17T12:16:36.082831+00:00"
+      "updated_at": "2026-04-17T12:18:16.251760+00:00"
     }
   }
 }
