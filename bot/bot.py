@@ -5,7 +5,7 @@ Commands (run in any channel the bot can see):
   !wrapped          → scrape everything and write stats.json
   !wrapped status   → show a quick count without full scrape
   !wrapped preview  → print a summary to the channel
-    !vote             → cast or inspect category votes
+    !wrapped vote     → cast or inspect category votes
 
 Needs:  DISCORD_TOKEN in .env
 Writes: OUTPUT_PATH from config.py  (default: ../web/stats.json)
@@ -727,7 +727,7 @@ async def on_ready():
     ))
 
 
-@bot.command(name="wrapped")
+@bot.group(name="wrapped", invoke_without_command=True)
 @commands.has_permissions(manage_messages=True)
 async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     """
@@ -786,13 +786,13 @@ async def wrapped_cmd(ctx: commands.Context, subcommand: str = ""):
     await ctx.send(msg)
 
 
-@bot.group(name="vote", invoke_without_command=True)
+@wrapped_cmd.group(name="vote", invoke_without_command=True)
 @commands.guild_only()
 async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.Member = None):
     """
-    !vote <category> @member   → cast a vote
-    !vote categories           → list available categories
-    !vote results              → show current winners
+    !wrapped vote <category> @member   → cast a vote
+    !wrapped vote categories           → list available categories
+    !wrapped vote results              → show current winners
     """
 
     if not VOTE_CATEGORIES:
@@ -806,12 +806,12 @@ async def vote_cmd(ctx: commands.Context, category: str = None, member: discord.
     resolved = _resolve_vote_category(category)
     if not resolved:
         await ctx.send(
-            "❌ Unknown vote category. Use `!vote categories` to see the available options."
+            "❌ Unknown vote category. Use `!wrapped vote categories` to see the available options."
         )
         return
 
     if member is None:
-        await ctx.send("❌ Mention a server member to vote for, e.g. `!vote late @name`.")
+        await ctx.send("❌ Mention a server member to vote for, e.g. `!wrapped vote late @name`.")
         return
 
     store = load_vote_store()
@@ -856,7 +856,7 @@ async def vote_categories_cmd(ctx: commands.Context):
         label = meta.get("label") or key.replace("_", " ").title()
         desc = meta.get("description") or ""
         lines.append(f"• {emoji} `{key}` — {label}{f' · {desc}' if desc else ''}")
-    lines.append("\nUse: `!vote <category_key> @member`")
+    lines.append("\nUse: `!wrapped vote <category_key> @member`")
     await ctx.send("\n".join(lines))
 
 
@@ -888,9 +888,9 @@ async def vote_results_cmd(ctx: commands.Context):
 
 async def _send_vote_help(ctx: commands.Context):
     lines = ["🗳️ **How voting works**"]
-    lines.append("• Cast a vote with `!vote <category_key> @member`")
-    lines.append("• List categories with `!vote categories`")
-    lines.append("• View current winners with `!vote results`")
+    lines.append("• Cast a vote with `!wrapped vote <category_key> @member`")
+    lines.append("• List categories with `!wrapped vote categories`")
+    lines.append("• View current winners with `!wrapped vote results`")
     if VOTE_CATEGORIES:
         lines.append("\nCurrent categories:")
         for key, meta in VOTE_CATEGORIES.items():

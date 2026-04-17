@@ -27,7 +27,7 @@ CONFIG = {
     ],
 
     # ── VOTING CATEGORIES ─────────────────────────────────────────
-    # Used by the !vote commands.
+    # Used by the !wrapped vote commands.
     # Key = command slug, value = display label + optional emoji/description.
     "VOTE_CATEGORIES": {
         "most_likely_to_be_late": {
