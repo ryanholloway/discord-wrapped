@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-04-17T12:46:28.514564+01:00",
+  "generated_at": "2026-04-20T12:49:37.860150+01:00",
   "server_name": "Game Dev & IDAD at SETU",
   "server_icon": "https://cdn.discordapp.com/icons/976854702278975529/f7f54b3a52ed027418a4c97d2524de18.png?size=1024",
   "date_range": {
     "from": "2022-09-01",
-    "to": "2026-04-17"
+    "to": "2026-04-20"
   },
-  "total_messages": 43677,
+  "total_messages": 43933,
   "active_members": 77,
-  "midnight_questions": 136,
+  "midnight_questions": 137,
   "top_senders": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 3289
+      "count": 3323
     },
     {
       "name": "Steven Kelly",
-      "count": 3164
+      "count": 3192
     },
     {
       "name": "wisp",
@@ -24,11 +24,11 @@
     },
     {
       "name": "Pastor Fred",
-      "count": 2515
+      "count": 2549
     },
     {
       "name": "(Edward) DishonoredSkull",
-      "count": 2023
+      "count": 2027
     },
     {
       "name": "Devi",
@@ -36,15 +36,15 @@
     },
     {
       "name": "Adam Prendergast-Ryan",
-      "count": 1844
+      "count": 1846
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 1600
+      "count": 1620
     },
     {
       "name": "BlueBaron(Jordan)",
-      "count": 1395
+      "count": 1396
     },
     {
       "name": "TheDanox (Daniel M)",
@@ -54,27 +54,27 @@
   "top_emojis": [
     {
       "emoji": "❤️",
-      "count": 1383
+      "count": 1388
     },
     {
       "emoji": "😭",
-      "count": 1223
+      "count": 1237
     },
     {
       "emoji": "😂",
-      "count": 739
+      "count": 742
     },
     {
       "emoji": "👍",
-      "count": 613
+      "count": 619
     },
     {
       "emoji": "💀",
-      "count": 475
+      "count": 478
     },
     {
       "emoji": "🤣",
-      "count": 434
+      "count": 445
     },
     {
       "emoji": "🟨",
@@ -82,7 +82,7 @@
     },
     {
       "emoji": "🔥",
-      "count": 334
+      "count": 337
     },
     {
       "emoji": "🇼",
@@ -90,21 +90,21 @@
     },
     {
       "emoji": "🙏",
-      "count": 255
+      "count": 258
     }
   ],
   "top_channels": [
     {
       "name": "general",
-      "count": 13206
+      "count": 13236
     },
     {
       "name": "game-dev-class-info",
-      "count": 8914
+      "count": 8989
     },
     {
       "name": "game-dev-assignments",
-      "count": 6749
+      "count": 6773
     },
     {
       "name": "video-games",
@@ -116,7 +116,7 @@
     },
     {
       "name": "questions",
-      "count": 1354
+      "count": 1353
     },
     {
       "name": "idad-assignments",
@@ -138,19 +138,19 @@
   "top_mentioned": [
     {
       "name": "Dunnesparce [Stephen]",
-      "count": 588
+      "count": 597
     },
     {
       "name": "Pastor Fred",
-      "count": 390
+      "count": 398
     },
     {
       "name": "Steven Kelly",
-      "count": 387
+      "count": 390
     },
     {
       "name": "(Edward) DishonoredSkull",
-      "count": 290
+      "count": 293
     },
     {
       "name": "wisp",
@@ -162,26 +162,108 @@
     },
     {
       "name": "CraicMeister (Kyle D)",
-      "count": 246
+      "count": 252
     },
     {
       "name": "Jad Fuhr",
-      "count": 213
+      "count": 222
     },
     {
       "name": "Naoise",
       "count": 186
     },
     {
-      "name": "Scaldy Panda (Emily)",
-      "count": 169
+      "name": "akaryano (Ryan)",
+      "count": 174
+    }
+  ],
+  "top_swearers": [
+    {
+      "id": "454399292724084737",
+      "name": "(Edward) DishonoredSkull",
+      "avatar_url": "https://cdn.discordapp.com/avatars/454399292724084737/ee888ab240662cac279cd241cceafa0c.png?size=1024",
+      "swear_messages": 151,
+      "message_count": 2027,
+      "swear_rate": 7.45
+    },
+    {
+      "id": "437358398036770828",
+      "name": "Wavesan",
+      "avatar_url": "https://cdn.discordapp.com/avatars/437358398036770828/f6f1253f7c5ea22e794e57fd9313c265.png?size=1024",
+      "swear_messages": 28,
+      "message_count": 389,
+      "swear_rate": 7.2
+    },
+    {
+      "id": "456226577798135808",
+      "name": "Deleted User",
+      "avatar_url": "https://cdn.discordapp.com/embed/avatars/3.png",
+      "swear_messages": 53,
+      "message_count": 762,
+      "swear_rate": 6.96
+    },
+    {
+      "id": "914227757343469658",
+      "name": "ColourCodedWasps",
+      "avatar_url": "https://cdn.discordapp.com/avatars/914227757343469658/47907bf1fd4a4254b05eaddfad0bae79.png?size=1024",
+      "swear_messages": 11,
+      "message_count": 159,
+      "swear_rate": 6.92
+    },
+    {
+      "id": "217283574729015297",
+      "name": "Bean Boy (Dean)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/217283574729015297/31abcbbbbe13854728b71fe3f7c44929.png?size=1024",
+      "swear_messages": 4,
+      "message_count": 60,
+      "swear_rate": 6.67
+    },
+    {
+      "id": "479705641276014593",
+      "name": "Sharkbirb (Kieran)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/479705641276014593/c14295e62a99870214f7e6742aa972ae.png?size=1024",
+      "swear_messages": 83,
+      "message_count": 1283,
+      "swear_rate": 6.47
+    },
+    {
+      "id": "865668325508644894",
+      "name": "BlueBaron(Jordan)",
+      "avatar_url": "https://cdn.discordapp.com/avatars/865668325508644894/bcdfc7a2e8658e41f105f149b59f23f8.png?size=1024",
+      "swear_messages": 84,
+      "message_count": 1396,
+      "swear_rate": 6.02
+    },
+    {
+      "id": "294227081108389888",
+      "name": "Dunnesparce [Stephen]",
+      "avatar_url": "https://cdn.discordapp.com/avatars/294227081108389888/926da16ff81c60b4bde0894894363967.png?size=1024",
+      "swear_messages": 188,
+      "message_count": 3323,
+      "swear_rate": 5.66
+    },
+    {
+      "id": "303292494001733663",
+      "name": "Shugger",
+      "avatar_url": "https://cdn.discordapp.com/avatars/303292494001733663/cda382f9a6692a1e446533d1f98c8001.png?size=1024",
+      "swear_messages": 10,
+      "message_count": 205,
+      "swear_rate": 4.88
+    },
+    {
+      "id": "273590153606332418",
+      "name": "Dylan",
+      "avatar_url": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
+      "swear_messages": 7,
+      "message_count": 150,
+      "swear_rate": 4.67
     }
   ],
   "spotlight_mentions": [],
   "keyword_buckets": {
     "panic_deadline": {
-      "count": 163,
-      "weighted_count": 230.55,
+      "count": 165,
+      "weighted_count": 234.39,
       "samples": [
         {
           "author": "Pastor Fred",
@@ -291,8 +373,8 @@
       ]
     },
     "noel_mentions": {
-      "count": 375,
-      "weighted_count": 632.9,
+      "count": 378,
+      "weighted_count": 638.31,
       "samples": [
         {
           "author": "Dunnesparce [Stephen]",
@@ -328,6 +410,20 @@
           "timestamp": "2024-09-13T13:31:53.265000+00:00",
           "channel": "timetables",
           "jump_url": "https://discord.com/channels/976854702278975529/1175873140837072998/1284144526063173662"
+        },
+        {
+          "author": "Croissant (Jonathan)",
+          "content": "praying Noel is still in China",
+          "timestamp": "2026-04-19T19:56:30.991000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1495513446706577580"
+        },
+        {
+          "author": "Pastor Fred",
+          "content": "Nah mate there gonna stick Noel on our drone and he decides who to lock onto",
+          "timestamp": "2026-04-19T19:54:18.144000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1495512889505616082"
         },
         {
           "author": "d.crim02",
@@ -384,26 +480,12 @@
           "timestamp": "2026-04-15T13:05:36.352000+00:00",
           "channel": "game-dev-class-info",
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493960486192943124"
-        },
-        {
-          "author": "akaryano (Ryan)",
-          "content": "Noel said he'd never seen code in the format of `bool isTrue = (variable.true || variable2.false)` so idk what's going on with him tbh",
-          "timestamp": "2026-04-15T09:09:03.713000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493900957950672916"
-        },
-        {
-          "author": "akaryano (Ryan)",
-          "content": "Noel asked some stupid questions but didn't seem too terrible",
-          "timestamp": "2026-04-15T09:06:21.002000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1493900275491143831"
         }
       ]
     },
     "phil_mentions": {
       "count": 417,
-      "weighted_count": 608.04,
+      "weighted_count": 607.61,
       "samples": [
         {
           "author": "Zoë",
@@ -514,7 +596,7 @@
     },
     "dark_humor": {
       "count": 29,
-      "weighted_count": 47.55,
+      "weighted_count": 47.51,
       "samples": [
         {
           "author": "akaryano (Ryan)",
@@ -625,7 +707,7 @@
     },
     "cope_messages": {
       "count": 17,
-      "weighted_count": 23.78,
+      "weighted_count": 23.76,
       "samples": [
         {
           "author": "(Edward) DishonoredSkull",
@@ -735,8 +817,8 @@
       ]
     },
     "swear_words": {
-      "count": 1425,
-      "weighted_count": 1991.44,
+      "count": 1432,
+      "weighted_count": 2004.15,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -887,8 +969,8 @@
       ]
     },
     "ai_mentions": {
-      "count": 30,
-      "weighted_count": 49.3,
+      "count": 31,
+      "weighted_count": 51.26,
       "samples": [
         {
           "author": "Adam Prendergast-Ryan",
@@ -896,6 +978,13 @@
           "timestamp": "2023-02-10T10:29:50.885000+00:00",
           "channel": "music",
           "jump_url": "https://discord.com/channels/976854702278975529/1022904047306551386/1073551364367597589"
+        },
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "That pen you're using is AI generated",
+          "timestamp": "2026-04-19T19:57:11.409000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1495513616231960747"
         },
         {
           "author": "Dunnesparce [Stephen]",
@@ -987,20 +1076,20 @@
           "timestamp": "2023-11-28T12:10:11.534000+00:00",
           "channel": "game-dev-assignments",
           "jump_url": "https://discord.com/channels/976854702278975529/1022635847562043403/1179031485689384990"
-        },
-        {
-          "author": "Nathan_Hater69",
-          "content": "listen, if you're really struggling i'll allow you to use chatgpt for 100 words",
-          "timestamp": "2026-01-16T16:11:15.141000+00:00",
-          "channel": "civil-war",
-          "jump_url": "https://discord.com/channels/976854702278975529/1461740078811451514/1461754685621928081"
         }
       ]
     },
     "stress_indicators": {
-      "count": 65,
-      "weighted_count": 94.04,
+      "count": 66,
+      "weighted_count": 95.97,
       "samples": [
+        {
+          "author": "CraicMeister (Kyle D)",
+          "content": "Once wednesday is over we basically lose 90% of any stress",
+          "timestamp": "2026-04-19T19:46:53.898000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1495511026202972171"
+        },
         {
           "author": "MEABEAB(Alex)",
           "content": "https://tenor.com/view/stressed-stressed-out-it-is-what-it-is-meme-gif-1807874383562258451",
@@ -1098,19 +1187,12 @@
           "timestamp": "2024-10-23T12:06:54.674000+00:00",
           "channel": "game-dev-class-info",
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1298618655646552097"
-        },
-        {
-          "author": "TheDanox (Daniel M)",
-          "content": "Well lads, same as last year, couldnt do anything, had to be brought back to hospital on easter and when i arrived home i was so mentally exhausted from evrything i couldn't put myself to do code (not",
-          "timestamp": "2024-04-08T06:55:38.504000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1226787524723081277"
         }
       ]
     },
     "party_time": {
       "count": 43,
-      "weighted_count": 53.45,
+      "weighted_count": 53.43,
       "samples": [
         {
           "author": "BlueBaron(Jordan)",
@@ -1221,7 +1303,7 @@
     },
     "drink_mentions": {
       "count": 22,
-      "weighted_count": 27.02,
+      "weighted_count": 27.0,
       "samples": [
         {
           "author": "wisp",
@@ -1331,8 +1413,8 @@
       ]
     },
     "gaming_references": {
-      "count": 186,
-      "weighted_count": 249.04,
+      "count": 187,
+      "weighted_count": 250.89,
       "samples": [
         {
           "author": "Aqua",
@@ -1384,6 +1466,13 @@
           "jump_url": "https://discord.com/channels/976854702278975529/978798440081424394/1022943868699820042"
         },
         {
+          "author": "Pastor Fred",
+          "content": "How HOW are we gonna steam roll this man, they are gonna ask some stupid question like so when you wrote this code what were you eating or what was the weather like also recite the entire bible in sim",
+          "timestamp": "2026-04-17T19:21:37.904000+00:00",
+          "channel": "game-dev-class-info",
+          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1494779891931938856"
+        },
+        {
           "author": "Dunnesparce [Stephen]",
           "content": "I've been playing through RE1 remake on Steam after completing Requiem! Some of the challenge runs for achievements are great, REmake is an easy 10/10 game",
           "timestamp": "2026-04-10T17:47:25.938000+00:00",
@@ -1431,20 +1520,13 @@
           "timestamp": "2025-11-18T18:12:57.736000+00:00",
           "channel": "game-dev-class-info",
           "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1440404430854819941"
-        },
-        {
-          "author": "BlueBaron(Jordan)",
-          "content": "I am so interested in it, ive seen some negative reviews but after getting borderlands 4 and seeing the reviews on that im more inclined to believe the overviews than the steam reviews",
-          "timestamp": "2025-09-28T10:05:23.987000+00:00",
-          "channel": "game-dev-class-info",
-          "jump_url": "https://discord.com/channels/976854702278975529/1022178829730590800/1421799950592901130"
         }
       ]
     }
   },
   "hourly_activity": {
-    "0": 1604,
-    "1": 691,
+    "0": 1652,
+    "1": 710,
     "2": 275,
     "3": 124,
     "4": 78,
@@ -1452,30 +1534,30 @@
     "6": 83,
     "7": 444,
     "8": 883,
-    "9": 1210,
+    "9": 1214,
     "10": 1915,
-    "11": 2255,
-    "12": 2788,
-    "13": 2830,
-    "14": 2909,
-    "15": 3076,
-    "16": 3002,
-    "17": 2976,
-    "18": 2926,
-    "19": 3044,
-    "20": 2762,
-    "21": 2803,
-    "22": 2560,
+    "11": 2275,
+    "12": 2797,
+    "13": 2843,
+    "14": 2926,
+    "15": 3083,
+    "16": 3015,
+    "17": 2983,
+    "18": 2945,
+    "19": 3060,
+    "20": 2803,
+    "21": 2822,
+    "22": 2564,
     "23": 2323
   },
   "weekday_activity": {
-    "Monday": 6712,
+    "Monday": 6786,
     "Tuesday": 7505,
     "Wednesday": 7065,
     "Thursday": 8130,
-    "Friday": 6980,
-    "Saturday": 2697,
-    "Sunday": 4588
+    "Friday": 7017,
+    "Saturday": 2744,
+    "Sunday": 4686
   },
   "monthly_activity": {
     "2022-09": 2453,
@@ -1519,20 +1601,372 @@
     "2025-11": 1401,
     "2025-12": 963,
     "2026-01": 1493,
-    "2026-02": 434,
+    "2026-02": 433,
     "2026-03": 566,
-    "2026-04": 1134
+    "2026-04": 1391
   },
   "midnight_zone": {
     "start": 1,
     "end": 6
   },
   "scrape_meta": {
-    "channels_scraped": 46,
+    "channels_scraped": 47,
     "channels_skipped": {
       "missing_permissions": 3,
       "excluded_by_name": 9
     },
-    "duration_seconds": 464.26
-  }
+    "duration_seconds": 458.37
+  },
+  "vote_categories": [
+    {
+      "key": "most_likely_to_be_late",
+      "label": "Most Likely to Be Late",
+      "emoji": "⏰",
+      "description": "Vote for the person who is always cutting it close."
+    },
+    {
+      "key": "most_likely_to_forget_the_deadline",
+      "label": "Most Likely to Forget the Deadline",
+      "emoji": "📚",
+      "description": "Vote for the person who would absolutely miss a due date."
+    },
+    {
+      "key": "most_likely_to_carry_the_group",
+      "label": "Most Likely to Carry the Group",
+      "emoji": "🏋️",
+      "description": "Vote for the person doing the most lifting."
+    },
+    {
+      "key": "most_likely_to_have_a_breakdown",
+      "label": "Most Likely to Have a Breakdown",
+      "emoji": "💥",
+      "description": "Vote for the person who is most likely to have a breakdown."
+    },
+    {
+      "key": "most_likely_to_be_drunk_during_a_group_meeting",
+      "label": "Most Likely to Be Drunk During a Group Meeting",
+      "emoji": "🍻",
+      "description": "Vote for the person who is most likely to be drunk during a group meeting."
+    },
+    {
+      "key": "most_likely_to_be_a_pedo",
+      "label": "Most Likely to be a Pedo",
+      "emoji": "👶",
+      "description": "Vote for the person who is most likely to be a pedo. (idk man, Kyle Requested this one, ask him)"
+    },
+    {
+      "key": "most_likely_to_be_ai",
+      "label": "Most Likely to be an AI",
+      "emoji": "🤖",
+      "description": "Vote for the person who is most likely to be an AI."
+    },
+    {
+      "key": "most_likely_to_go_to_epsteins_island_but_for_the_snorkling_and_not_the_other_stuff",
+      "label": "Most Likely to go to Epstein's Island but for the Snorkeling and not the other stuff",
+      "emoji": "🏝️",
+      "description": "Vote for the person who is most likely to go to Epstein's Island but for the Snorkeling and not the other stuff."
+    },
+    {
+      "key": "most_likely_to_die_to_a_chatgpt_generated_message",
+      "label": "Most Likely to Die to a ChatGPT-Generated Message",
+      "emoji": "💀",
+      "description": "Vote for the person who is most likely to die to a ChatGPT-generated message."
+    },
+    {
+      "key": "most_likely_to_be_caught_using_chatgpt_on_an_assignment",
+      "label": "Most Likely to be Caught Using ChatGPT on an Assignment",
+      "emoji": "👀",
+      "description": "Vote for the person who is most likely to be caught using ChatGPT on an assignment."
+    },
+    {
+      "key": "most_likely_to_be_a_russian_spy",
+      "label": "Most Likely to be a Russian Spy",
+      "emoji": "🇷🇺",
+      "description": "Vote for the person who is most likely to be a Russian spy."
+    },
+    {
+      "key": "most_likely_to_develop_a_crush_on_the_lecturer",
+      "label": "Most Likely to Develop a Crush on the Lecturer",
+      "emoji": "😍",
+      "description": "Vote for the person who is most likely to develop a crush on the lecturer."
+    },
+    {
+      "key": "most_likely_to_slime_out_a_lecturer",
+      "label": "Most Likely to Slime Out a Lecturer",
+      "emoji": "🤢",
+      "description": "Vote for the person who is most likely to slime out a lecturer."
+    },
+    {
+      "key": "most_likely_to_try_fuck_the_wrapped_discord_bot",
+      "label": "Most Likely to Try to Fuck the Wrapped Discord Bot",
+      "emoji": "🍆",
+      "description": "Vote for the person who is most likely to try to fuck the Wrapped Discord bot."
+    },
+    {
+      "key": "most_likely_to_cry_during_a_demo",
+      "label": "Most Likely to Cry During a Demo",
+      "emoji": "😢",
+      "description": "Vote for the person who is most likely to cry during a demo."
+    }
+  ],
+  "as_voted_by_you": [
+    {
+      "key": "most_likely_to_be_late",
+      "label": "Most Likely to Be Late",
+      "emoji": "⏰",
+      "description": "Vote for the person who is always cutting it close.",
+      "total_ballots": 7,
+      "vote_count": 5,
+      "winners": [
+        {
+          "id": "734346157534478377",
+          "name": "Oli",
+          "avatar_url": "https://cdn.discordapp.com/avatars/734346157534478377/ec2b1cf4ba27ac48fa4799ee35d7900e.png?size=1024",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_forget_the_deadline",
+      "label": "Most Likely to Forget the Deadline",
+      "emoji": "📚",
+      "description": "Vote for the person who would absolutely miss a due date.",
+      "total_ballots": 7,
+      "vote_count": 2,
+      "winners": [
+        {
+          "id": "410147117793804288",
+          "name": "Jad Fuhr",
+          "avatar_url": "https://cdn.discordapp.com/avatars/410147117793804288/be5fe37c2d9399d78f0ef8655083bdd9.png?size=1024",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_carry_the_group",
+      "label": "Most Likely to Carry the Group",
+      "emoji": "🏋️",
+      "description": "Vote for the person doing the most lifting.",
+      "total_ballots": 7,
+      "vote_count": 2,
+      "winners": [
+        {
+          "id": "294227081108389888",
+          "name": "Dunnesparce [Stephen]",
+          "avatar_url": "https://cdn.discordapp.com/avatars/294227081108389888/926da16ff81c60b4bde0894894363967.png?size=1024",
+          "votes": 2
+        },
+        {
+          "id": "429693409934966786",
+          "name": "Steven Kelly",
+          "avatar_url": "https://cdn.discordapp.com/avatars/429693409934966786/fbc172bc9ad8d0c1d505e8d5d26480bb.png?size=1024",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_have_a_breakdown",
+      "label": "Most Likely to Have a Breakdown",
+      "emoji": "💥",
+      "description": "Vote for the person who is most likely to have a breakdown.",
+      "total_ballots": 7,
+      "vote_count": 2,
+      "winners": [
+        {
+          "id": "474630870146220083",
+          "name": "Pastor Fred",
+          "avatar_url": "https://cdn.discordapp.com/avatars/474630870146220083/3ba76069d442230d8efc16f888c0a99d.png?size=1024",
+          "votes": 2
+        },
+        {
+          "id": "392945874076172289",
+          "name": "Scaldy Panda (Emily)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/392945874076172289/9e60f0402dde62641064697bf679e4e2.png?size=1024",
+          "votes": 2
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_be_drunk_during_a_group_meeting",
+      "label": "Most Likely to Be Drunk During a Group Meeting",
+      "emoji": "🍻",
+      "description": "Vote for the person who is most likely to be drunk during a group meeting.",
+      "total_ballots": 7,
+      "vote_count": 5,
+      "winners": [
+        {
+          "id": "273590153606332418",
+          "name": "Dylan",
+          "avatar_url": "https://cdn.discordapp.com/avatars/273590153606332418/1df53e48bdb5025ed625fcf5753407c8.png?size=1024",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_be_a_pedo",
+      "label": "Most Likely to be a Pedo",
+      "emoji": "👶",
+      "description": "Vote for the person who is most likely to be a pedo. (idk man, Kyle Requested this one, ask him)",
+      "total_ballots": 7,
+      "vote_count": 3,
+      "winners": [
+        {
+          "id": "619574267318763550",
+          "name": "akaryano (Ryan)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/619574267318763550/5fecdde76018e2754df919e53635c611.png?size=1024",
+          "votes": 3
+        },
+        {
+          "id": "369893020658696194",
+          "name": "CraicMeister (Kyle D)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_be_ai",
+      "label": "Most Likely to be an AI",
+      "emoji": "🤖",
+      "description": "Vote for the person who is most likely to be an AI.",
+      "total_ballots": 6,
+      "vote_count": 6,
+      "winners": [
+        {
+          "id": "1150706181883564062",
+          "name": "C00286125 (Danny Delaney)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+          "votes": 6
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_go_to_epsteins_island_but_for_the_snorkling_and_not_the_other_stuff",
+      "label": "Most Likely to go to Epstein's Island but for the Snorkeling and not the other stuff",
+      "emoji": "🏝️",
+      "description": "Vote for the person who is most likely to go to Epstein's Island but for the Snorkeling and not the other stuff.",
+      "total_ballots": 6,
+      "vote_count": 3,
+      "winners": [
+        {
+          "id": "429693409934966786",
+          "name": "Steven Kelly",
+          "avatar_url": "https://cdn.discordapp.com/avatars/429693409934966786/fbc172bc9ad8d0c1d505e8d5d26480bb.png?size=1024",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_die_to_a_chatgpt_generated_message",
+      "label": "Most Likely to Die to a ChatGPT-Generated Message",
+      "emoji": "💀",
+      "description": "Vote for the person who is most likely to die to a ChatGPT-generated message.",
+      "total_ballots": 6,
+      "vote_count": 4,
+      "winners": [
+        {
+          "id": "1150706181883564062",
+          "name": "C00286125 (Danny Delaney)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+          "votes": 4
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_be_caught_using_chatgpt_on_an_assignment",
+      "label": "Most Likely to be Caught Using ChatGPT on an Assignment",
+      "emoji": "👀",
+      "description": "Vote for the person who is most likely to be caught using ChatGPT on an assignment.",
+      "total_ballots": 6,
+      "vote_count": 5,
+      "winners": [
+        {
+          "id": "1150706181883564062",
+          "name": "C00286125 (Danny Delaney)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/1150706181883564062/c82b3fa769ed6e6ffdea579381ed5f5c.png?size=1024",
+          "votes": 5
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_be_a_russian_spy",
+      "label": "Most Likely to be a Russian Spy",
+      "emoji": "🇷🇺",
+      "description": "Vote for the person who is most likely to be a Russian spy.",
+      "total_ballots": 6,
+      "vote_count": 3,
+      "winners": [
+        {
+          "id": "353509000903393280",
+          "name": "MonikaNusi",
+          "avatar_url": "https://cdn.discordapp.com/avatars/353509000903393280/cb0916b127880edde506cd0452a351ff.png?size=1024",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_develop_a_crush_on_the_lecturer",
+      "label": "Most Likely to Develop a Crush on the Lecturer",
+      "emoji": "😍",
+      "description": "Vote for the person who is most likely to develop a crush on the lecturer.",
+      "total_ballots": 6,
+      "vote_count": 4,
+      "winners": [
+        {
+          "id": "369893020658696194",
+          "name": "CraicMeister (Kyle D)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+          "votes": 4
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_slime_out_a_lecturer",
+      "label": "Most Likely to Slime Out a Lecturer",
+      "emoji": "🤢",
+      "description": "Vote for the person who is most likely to slime out a lecturer.",
+      "total_ballots": 6,
+      "vote_count": 3,
+      "winners": [
+        {
+          "id": "369893020658696194",
+          "name": "CraicMeister (Kyle D)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_try_fuck_the_wrapped_discord_bot",
+      "label": "Most Likely to Try to Fuck the Wrapped Discord Bot",
+      "emoji": "🍆",
+      "description": "Vote for the person who is most likely to try to fuck the Wrapped Discord bot.",
+      "total_ballots": 5,
+      "vote_count": 3,
+      "winners": [
+        {
+          "id": "369893020658696194",
+          "name": "CraicMeister (Kyle D)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/369893020658696194/a_16a9d4034506e13b8ce3ae9c84aad99b.gif?size=1024",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "key": "most_likely_to_cry_during_a_demo",
+      "label": "Most Likely to Cry During a Demo",
+      "emoji": "😢",
+      "description": "Vote for the person who is most likely to cry during a demo.",
+      "total_ballots": 5,
+      "vote_count": 2,
+      "winners": [
+        {
+          "id": "392945874076172289",
+          "name": "Scaldy Panda (Emily)",
+          "avatar_url": "https://cdn.discordapp.com/avatars/392945874076172289/9e60f0402dde62641064697bf679e4e2.png?size=1024",
+          "votes": 2
+        }
+      ]
+    }
+  ]
 }
